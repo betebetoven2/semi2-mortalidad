@@ -36,6 +36,7 @@ El almacenamiento raw local se resuelve mediante un NAS Toshiba de 2 TB comparti
 ```
 ingesta/
     scripts/
+        scripts/bronze_ingesta.ipynb ingesta hacia databricks con logs incluidos
         config.py                   Carga de variables de entorno (.env)
         scraper_base.py             Clase base con auditoría PostgreSQL integrada
         download_ine.py             Descarga INE Guatemala 2018-2024 (XLSX)
@@ -116,7 +117,9 @@ La API del Banco Mundial permite consultar múltiples países en una sola petici
 
 ### Google Drive — Archivos del equipo
 
-El script `download_gdrive.py` lee archivos desde una carpeta compartida del equipo mediante la API de Google Drive con autenticación por Service Account. Esta fuente cubre el requisito de ingesta desde almacenamiento documental compartido establecido en los términos del proyecto.
+Carpeta compartida del equipo con ID `198lQfATsiCSEwJIaIlijq9N0vyVIdRq8`.
+
+El script `download_gdrive.py` descarga el diccionario de variables del INE publicado en la carpeta compartida mediante una petición HTTP GET al endpoint de exportación de Drive usando el ID del archivo, sin autenticación adicional. El archivo se almacena en `raw/gdrive/` en el NAS local y se transfiere a S3.
 
 ## Base de datos de auditoría
 
@@ -130,6 +133,18 @@ Para consultar el estado de la última ingesta:
 SELECT * FROM semi2.resumen_ingesta;
 ```
 
+## Tablas Delta — Schema bronze (Databricks)
+
+Las tablas se crean en Databricks Free Edition leyendo los raw files desde S3 mediante boto3. Cada tabla corresponde a una fuente de datos sin relaciones entre ellas.
+
+| Tabla | Fuente | Filas |
+|---|---|---|
+| bronze.xlsx_ine | INE Guatemala 2018-2024, XLSX | 674,064 |
+| bronze.sav_ine_legacy | INE Guatemala 2015-2017, SAV convertido a Parquet | 245,167 |
+| bronze.json_oms | WHO/OMS GHO API, JSON | 1,708 |
+| bronze.json_worldbank | World Bank API, JSON | 450 |
+| bronze.gdrive_docs | Google Drive, diccionario de variables INE | 1,837 |
+
 ## Evidencia de ejecución
 
 Al término de la ingesta completa, el bucket S3 contiene:
@@ -141,6 +156,7 @@ raw/ine/           defunciones_2015.sav   defunciones_2015.parquet
                    defunciones_2018.xlsx  ...  defunciones_2024.xlsx
 raw/oms/           who_life_expectancy_gtm.json  ... (15 archivos)
 raw/centroamerica/ worldbank_crude_death_rate_centroamerica.json  ... (5 archivos)
+raw/gdrive/        diccionario_defunciones_ine.xlsx
 ```
 
-La tabla `semi2.resumen_ingesta` muestra 43 ejecuciones registradas: 28 exitosas para INE (incluyendo legacy), 15 para WHO/OMS y 5 para World Bank.
+La tabla `semi2.resumen_ingesta` muestra 44 ejecuciones registradas: 28 exitosas para INE (incluyendo legacy), 15 para WHO/OMS, 5 para World Bank y 1 para Google Drive.
