@@ -1,0 +1,7 @@
+docker run --name sandbox-mortalidad \
+  -e POSTGRES_USER=admin_sandbox \
+  -e POSTGRES_PASSWORD=contrasena123 \
+  -e POSTGRES_DB=mortalidad_gtm_db \
+  -p 5433:5432 \
+  -v sandbox_pgdata:/var/lib/postgresql/data \
+  postgres:15-alpine

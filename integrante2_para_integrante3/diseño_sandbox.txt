@@ -1,0 +1,211 @@
+## Diseño de Tablas Sandbox — PostgreSQL
+
+El Sandbox es una zona de aterrizaje fiel al origen. El principio rector es: **ninguna transformación destructiva**. Los datos entran tal como vienen del S3, incluyendo nulos, códigos numéricos sin decodificar y valores atípicos. Todo problema encontrado se documenta, no se corrige en esta capa.
+
+---
+
+### Decisiones de diseño
+
+**Una tabla por familia de fuente.** Los datos del INE tienen una estructura tabular de defunciones individuales, mientras que los datos de OMS y Banco Mundial son series de tiempo de indicadores agregados. Mezclarlos en una sola tabla generaría columnas vacías masivas y dificultaría la trazabilidad.
+
+**Columnas al máximo común denominador.** Dado que los archivos INE de 2015-2017 tienen 28 columnas y los de 2018-2024 tienen entre 25 y 27, la tabla Sandbox del INE incluye todas las columnas posibles. Las que no aplican a ciertos años simplemente quedarán en NULL — eso es evidencia, no error.
+
+**Columna de auditoría en todas las tablas.** Se agrega `fuente_archivo` en cada tabla para saber de qué archivo exacto del S3 proviene cada fila. Esto es el lineage mínimo requerido.
+
+---
+
+### Tabla 1: `sandbox_ine_defunciones`
+
+Contiene los registros individuales de defunciones publicados por el INE, años 2015-2024. Es la tabla más importante del Sandbox.
+
+```sql
+CREATE TABLE sandbox_ine_defunciones (
+    -- Columna de auditoría
+    id_sandbox      SERIAL PRIMARY KEY,
+    fuente_archivo  VARCHAR(100),   -- Ej: 'raw/ine/defunciones_2015.parquet'
+    fecha_carga     TIMESTAMP DEFAULT NOW(),
+
+    -- Registro (lugar y fecha de registro de la defunción)
+    depreg   NUMERIC,        -- Código de departamento de registro
+    mupreg   VARCHAR(10),    -- Código de municipio de registro
+    mesreg   NUMERIC,        -- Mes de registro
+    anoreg   NUMERIC,        -- Año de registro
+
+    -- Ocurrencia (lugar y fecha donde ocurrió la muerte)
+    depocu   NUMERIC,        -- Código de departamento de ocurrencia
+    mupocu   VARCHAR(10),    -- Código de municipio de ocurrencia
+    diaocu   NUMERIC,        -- Día de ocurrencia
+    mesocu   NUMERIC,        -- Mes de ocurrencia
+    anoocu   NUMERIC,        -- Año de ocurrencia
+
+    -- Área y sexo
+    areag    NUMERIC,        -- Área geográfica (1=urbano, 2=rural). NULL en años 2018+
+    sexo     NUMERIC,        -- Sexo del difunto (1=masculino, 2=femenino)
+
+    -- Características del difunto
+    edadif   NUMERIC,        -- Edad del difunto
+    perdif   NUMERIC,        -- Período de la edad (1=días, 2=meses, 3=años)
+    puedif   NUMERIC,        -- Pueblo de pertenencia
+    ecidif   NUMERIC,        -- Estado civil
+    escodif  NUMERIC,        -- Escolaridad. NULL en año 2024
+    ciuodif  VARCHAR(10),    -- Código de ciudad. NULL en año 2024
+    pnadif   NUMERIC,        -- País de nacimiento
+    dnadif   NUMERIC,        -- Departamento de nacimiento
+    mnadif   VARCHAR(10),    -- Municipio de nacimiento
+    nacdif   NUMERIC,        -- Nacionalidad
+    predif   NUMERIC,        -- País de residencia
+    dredif   NUMERIC,        -- Departamento de residencia
+    mredif   VARCHAR(10),    -- Municipio de residencia
+
+    -- Causa de muerte
+    caudef   VARCHAR(10),    -- Código CIE-10 de causa de defunción
+
+    -- Campos administrativos
+    asist    NUMERIC,        -- Tipo de asistencia médica recibida
+    ocur     NUMERIC,        -- Lugar de ocurrencia
+    cerdef   NUMERIC         -- Tipo de certificado de defunción
+);
+```
+
+**Notas sobre esta tabla:**
+
+- El campo `anoreg` se llamó `Añoreg` en los archivos originales. Al cargar a PostgreSQL se normaliza el nombre para evitar caracteres especiales.
+- `escodif` y `ciuodif` no existen en el archivo de 2024 — quedarán en NULL para ese año. Documentar en el diccionario de datos.
+- `areag` no existe en archivos 2018-2024 — misma situación.
+- Los valores `9999`, `99` y `9999.0` que aparecen en varios campos son códigos de "no aplica" o "desconocido" del INE. **No se reemplazan por NULL en Sandbox** — se documentan tal cual.
+- `mupreg`, `mupocu`, `ciuodif`, `mnadif`, `mredif` se guardan como `VARCHAR` porque en los archivos originales aparecen con ceros a la izquierda (ej: `"0101"`).
+
+---
+
+### Tabla 2: `sandbox_oms_indicadores`
+
+Contiene todos los archivos JSON de la OMS: esperanza de vida, esperanza de vida saludable y mortalidad en menores de 5 años, para Guatemala, Costa Rica, Honduras, Panamá y El Salvador.
+
+```sql
+CREATE TABLE sandbox_oms_indicadores (
+    -- Columna de auditoría
+    id_sandbox      SERIAL PRIMARY KEY,
+    fuente_archivo  VARCHAR(100),   -- Ej: 'raw/oms/who_life_expectancy_gtm.json'
+    fecha_carga     TIMESTAMP DEFAULT NOW(),
+
+    -- Identificadores del registro OMS
+    id_oms              BIGINT,         -- Campo 'Id' original de la API OMS
+    indicator_code      VARCHAR(50),    -- Código del indicador (ej: WHOSIS_000001)
+
+    -- Dimensión geográfica
+    spatial_dim_type    VARCHAR(20),    -- Tipo de dimensión espacial (ej: COUNTRY)
+    spatial_dim         VARCHAR(10),    -- Código ISO del país (ej: GTM, CRI)
+    parent_location_code VARCHAR(10),   -- Código de región OMS (ej: AMR)
+    parent_location     VARCHAR(50),    -- Nombre de región (ej: Americas)
+
+    -- Dimensión temporal
+    time_dim_type       VARCHAR(20),    -- Tipo de dimensión temporal (ej: YEAR)
+    time_dim            INTEGER,        -- Año del dato
+
+    -- Dimensiones adicionales
+    dim1_type           VARCHAR(30),    -- Tipo de dimensión 1 (ej: SEX)
+    dim1                VARCHAR(30),    -- Valor dimensión 1 (ej: SEX_BTSX, SEX_FMLE, SEX_MLE)
+    dim2_type           VARCHAR(30),    -- Tipo de dimensión 2 (ej: AGEGROUP). NULL en varios indicadores
+    dim2                VARCHAR(50),    -- Valor dimensión 2. NULL en varios indicadores
+
+    -- Valores del indicador
+    value_text          VARCHAR(50),    -- Valor con intervalo de confianza (ej: '68.7 [68.3-69.2]')
+    numeric_value       NUMERIC,        -- Valor numérico central
+    low                 NUMERIC,        -- Límite inferior del intervalo
+    high                NUMERIC,        -- Límite superior del intervalo
+
+    -- Metadatos temporales del registro
+    date_registro       VARCHAR(50),    -- Fecha de publicación del dato en la API OMS
+    time_dimension_value VARCHAR(10),
+    time_dimension_begin VARCHAR(50),
+    time_dimension_end   VARCHAR(50)
+);
+```
+
+**Notas sobre esta tabla:**
+
+- Se unifican los 15 archivos JSON de OMS en una sola tabla. El campo `fuente_archivo` permite saber de cuál proviene cada fila.
+- `dim2_type` y `dim2` son NULL en los indicadores de esperanza de vida, pero tienen valores en mortalidad de menores de 5 años. Se guardan así — no se separan en tablas distintas.
+- `value_text` se conserva además del valor numérico porque contiene el intervalo de confianza completo, que podría ser útil en análisis posteriores.
+
+---
+
+### Tabla 3: `sandbox_worldbank_indicadores`
+
+Contiene los cinco archivos JSON del Banco Mundial con indicadores de mortalidad para Centroamérica.
+
+```sql
+CREATE TABLE sandbox_worldbank_indicadores (
+    -- Columna de auditoría
+    id_sandbox      SERIAL PRIMARY KEY,
+    fuente_archivo  VARCHAR(100),   -- Ej: 'raw/centroamerica/worldbank_crude_death_rate_centroamerica.json'
+    fecha_carga     TIMESTAMP DEFAULT NOW(),
+
+    -- Identificación del indicador
+    indicator_id    VARCHAR(50),    -- Código del indicador (ej: SP.DYN.CDRT.IN)
+    indicator_value VARCHAR(200),   -- Descripción del indicador
+
+    -- Dimensión geográfica
+    country_id          VARCHAR(5),     -- Código ISO 2 letras (ej: CR, GT)
+    country_value       VARCHAR(50),    -- Nombre del país
+    countryiso3code     VARCHAR(5),     -- Código ISO 3 letras (ej: CRI, GTM)
+
+    -- Dimensión temporal
+    date_year           VARCHAR(10),    -- Año como texto (campo 'date' del original)
+
+    -- Valor del indicador
+    value               NUMERIC,        -- Valor numérico. NULL en 3 de 5 indicadores para años recientes
+    unit                VARCHAR(20),    -- Unidad de medida
+    obs_status          VARCHAR(10),    -- Estado de la observación
+    decimal_places      INTEGER         -- Número de decimales
+);
+```
+
+**Notas sobre esta tabla:**
+
+- Tres indicadores (communicable, injuries, noncommunicable) tienen 60 de 90 filas con `value` NULL. Esto se debe a que el Banco Mundial no tiene datos recientes para esos indicadores en Centroamérica. No es un error de carga — es un problema de la fuente.
+- `date_year` se guarda como `VARCHAR` porque en el JSON original viene como texto. La conversión a entero se hará en Stage.
+
+---
+
+### Tabla 4: `sandbox_gdrive_diccionario`
+
+Contiene el diccionario de variables del INE descargado desde Google Drive.
+
+```sql
+CREATE TABLE sandbox_gdrive_diccionario (
+    -- Columna de auditoría
+    id_sandbox      SERIAL PRIMARY KEY,
+    fuente_archivo  VARCHAR(100),   -- 'raw/gdrive/diccionario_defunciones_ine.xlsx'
+    fecha_carga     TIMESTAMP DEFAULT NOW(),
+
+    -- Contenido del diccionario
+    variable        VARCHAR(200),   -- Nombre de la variable (columna 'Valores de las variables defunciones')
+    codigo          VARCHAR(50),    -- Código numérico (columna 'Unnamed: 1')
+    etiqueta        VARCHAR(200)    -- Etiqueta descriptiva (columna 'Unnamed: 2')
+);
+```
+
+**Notas sobre esta tabla:**
+
+- El archivo Excel tiene encabezados mal formateados (`Unnamed: 1`, `Unnamed: 2`). Se renombran al cargar.
+- La columna `variable` tiene 197 nulos de 200 filas porque el Excel usa celdas combinadas — el nombre de la variable solo aparece en la primera fila del grupo. Esto se documenta, no se corrige en Sandbox.
+
+---
+
+### Resumen de tablas
+
+| Tabla | Fuente | Filas estimadas |
+|---|---|---|
+| sandbox_ine_defunciones | INE / S3 | ~700,000 |
+| sandbox_oms_indicadores | OMS / S3 | ~1,300 |
+| sandbox_worldbank_indicadores | Banco Mundial / S3 | 450 |
+| sandbox_gdrive_diccionario | Google Drive / S3 | 200 |
+
+---
+
+### Pendientes antes de crear las tablas
+
+1. Confirmar con el Integrante 1 si hay más archivos que subirán al S3 antes de la entrega.
+2. Revisar el diccionario del INE (`diccionario_defunciones_ine.xlsx`) para completar los comentarios de cada columna de `sandbox_ine_defunciones`.
+3. Definir si los archivos `.sav` de 2015-2017 se cargan también o solo los `.parquet`. Recomendación: solo los `.parquet` ya que los `.sav` son muestras de 200 filas del mismo año.
