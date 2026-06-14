@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#diccionario-de-tablas-capa-sandbox" class="md-skip">
+        <a href="#diccionario-de-tablas-capa-bronze-sandbox" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -540,45 +540,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sandbox_ine_defunciones" class="md-nav__link">
+  <a href="#bronzexlsx_ine" class="md-nav__link">
     <span class="md-ellipsis">
-      sandbox_ine_defunciones
+      bronze.xlsx_ine
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sandbox_oms_indicadores" class="md-nav__link">
+  <a href="#bronzesav_ine_legacy" class="md-nav__link">
     <span class="md-ellipsis">
-      sandbox_oms_indicadores
+      bronze.sav_ine_legacy
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sandbox_worldbank_indicadores" class="md-nav__link">
+  <a href="#bronzejson_oms" class="md-nav__link">
     <span class="md-ellipsis">
-      sandbox_worldbank_indicadores
+      bronze.json_oms
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sandbox_gdrive_diccionario" class="md-nav__link">
+  <a href="#bronzejson_worldbank" class="md-nav__link">
     <span class="md-ellipsis">
-      sandbox_gdrive_diccionario
+      bronze.json_worldbank
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#erd-fuentes-de-datos-fase-1" class="md-nav__link">
+  <a href="#bronzegdrive_docs" class="md-nav__link">
     <span class="md-ellipsis">
-      ERD — Fuentes de Datos (Fase 1)
+      bronze.gdrive_docs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erd-tablas-bronze-fase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ERD — Tablas Bronze (Fase 1)
     </span>
   </a>
   
@@ -588,15 +597,6 @@
   <a href="#erd-base-de-datos-de-auditoria" class="md-nav__link">
     <span class="md-ellipsis">
       ERD — Base de Datos de Auditoría
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sandbox_log_carga" class="md-nav__link">
-    <span class="md-ellipsis">
-      sandbox_log_carga
     </span>
   </a>
   
@@ -736,45 +736,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sandbox_ine_defunciones" class="md-nav__link">
+  <a href="#bronzexlsx_ine" class="md-nav__link">
     <span class="md-ellipsis">
-      sandbox_ine_defunciones
+      bronze.xlsx_ine
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sandbox_oms_indicadores" class="md-nav__link">
+  <a href="#bronzesav_ine_legacy" class="md-nav__link">
     <span class="md-ellipsis">
-      sandbox_oms_indicadores
+      bronze.sav_ine_legacy
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sandbox_worldbank_indicadores" class="md-nav__link">
+  <a href="#bronzejson_oms" class="md-nav__link">
     <span class="md-ellipsis">
-      sandbox_worldbank_indicadores
+      bronze.json_oms
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sandbox_gdrive_diccionario" class="md-nav__link">
+  <a href="#bronzejson_worldbank" class="md-nav__link">
     <span class="md-ellipsis">
-      sandbox_gdrive_diccionario
+      bronze.json_worldbank
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#erd-fuentes-de-datos-fase-1" class="md-nav__link">
+  <a href="#bronzegdrive_docs" class="md-nav__link">
     <span class="md-ellipsis">
-      ERD — Fuentes de Datos (Fase 1)
+      bronze.gdrive_docs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erd-tablas-bronze-fase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ERD — Tablas Bronze (Fase 1)
     </span>
   </a>
   
@@ -784,15 +793,6 @@
   <a href="#erd-base-de-datos-de-auditoria" class="md-nav__link">
     <span class="md-ellipsis">
       ERD — Base de Datos de Auditoría
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sandbox_log_carga" class="md-nav__link">
-    <span class="md-ellipsis">
-      sandbox_log_carga
     </span>
   </a>
   
@@ -813,8 +813,8 @@
                   
 
 
-<h1 id="diccionario-de-tablas-capa-sandbox">Diccionario de Tablas — Capa Sandbox<a class="headerlink" href="#diccionario-de-tablas-capa-sandbox" title="Permanent link">&para;</a></h1>
-<p>Las cinco tablas físicas del esquema <code>sandbox</code> en PostgreSQL. Todas comparten tres columnas de linaje (<code>id_sandbox</code>, <code>fuente_archivo</code>, <code>fecha_carga</code>) inyectadas automáticamente durante la ingesta.</p>
+<h1 id="diccionario-de-tablas-capa-bronze-sandbox">Diccionario de Tablas — Capa Bronze (Sandbox)<a class="headerlink" href="#diccionario-de-tablas-capa-bronze-sandbox" title="Permanent link">&para;</a></h1>
+<p>Las cinco tablas Delta del schema <code>bronze</code> en Databricks Free Edition. Todas las tablas son independientes entre sí por diseño: una tabla por fuente de datos, sin relaciones entre ellas. Cada tabla incluye columnas de metadato de trazabilidad prefijadas con guion bajo.</p>
 <p><strong>Leyenda de banderas:</strong></p>
 <table>
 <thead>
@@ -825,12 +825,8 @@
 </thead>
 <tbody>
 <tr>
-<td><code>PK</code></td>
-<td>Llave primaria</td>
-</tr>
-<tr>
-<td><code>[LINAJE]</code></td>
-<td>Metadato de trazabilidad, no es dato de dominio</td>
+<td><code>[META]</code></td>
+<td>Metadato de trazabilidad inyectado durante la ingesta, no proviene de la fuente</td>
 </tr>
 <tr>
 <td><code>[SENSIBLE]</code></td>
@@ -838,24 +834,23 @@
 </tr>
 <tr>
 <td><code>[CRITICA]</code></td>
-<td>Esencial para los análisis principales</td>
+<td>Esencial para los análisis principales pre/post COVID</td>
 </tr>
 <tr>
 <td><code>NULL</code></td>
-<td>El campo puede estar vacío (diseño "Cero Destrucción")</td>
+<td>El campo puede estar vacío (diseño sin transformación destructiva)</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="sandbox_ine_defunciones"><code>sandbox_ine_defunciones</code><a class="headerlink" href="#sandbox_ine_defunciones" title="Permanent link">&para;</a></h2>
-<p><strong>921,208 registros</strong> · Fuente: INE Guatemala 2015–2024</p>
-<p>Tabla transaccional principal. Cada fila representa un fallecimiento individual con sus atributos demográficos, geográficos y la causa de muerte codificada en CIE-10.</p>
+<h2 id="bronzexlsx_ine"><code>bronze.xlsx_ine</code><a class="headerlink" href="#bronzexlsx_ine" title="Permanent link">&para;</a></h2>
+<p><strong>674,064 registros</strong> · Fuente: INE Guatemala 2018–2024 · Formato original: XLSX</p>
+<p>Microdatos de defunciones del Instituto Nacional de Estadística para el periodo post-2017. Cada fila representa un fallecimiento individual con sus atributos demográficos, geográficos y la causa de muerte codificada en CIE-10. Todos los campos se ingieren como string sin transformación.</p>
 <table>
 <thead>
 <tr>
 <th>Columna</th>
 <th>Tipo</th>
-<th>Etiqueta</th>
 <th>Descripción</th>
 <th>Dominio</th>
 <th>Banderas</th>
@@ -863,265 +858,226 @@
 </thead>
 <tbody>
 <tr>
-<td><code>id_sandbox</code></td>
-<td>SERIAL</td>
-<td>ID de Ingesta</td>
-<td>Identificador único de ingesta, no proviene del INE</td>
-<td>Autoincremental</td>
-<td><code>PK</code> <code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>fuente_archivo</code></td>
-<td>VARCHAR(100)</td>
-<td>Archivo Origen</td>
-<td>Ruta S3 del archivo que originó esta fila</td>
-<td><code>raw/ine/defunciones_YYYY.xlsx</code></td>
-<td><code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>fecha_carga</code></td>
-<td>TIMESTAMP</td>
-<td>Fecha de Carga</td>
-<td>Marca de tiempo UTC de inserción</td>
-<td>UTC</td>
-<td><code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>depreg</code></td>
-<td>NUMERIC(4,0)</td>
-<td>Depto. Registro</td>
+<td><code>Depreg</code></td>
+<td>string</td>
 <td>Departamento de registro legal</td>
-<td>1–22</td>
+<td>Código numérico 1–22</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>mupreg</code></td>
-<td>VARCHAR(10)</td>
-<td>Mpio. Registro</td>
+<td><code>Mupreg</code></td>
+<td>string</td>
 <td>Municipio de registro legal</td>
 <td>Código INE</td>
-<td>NULL <code>[SENSIBLE]</code></td>
+<td>NULL</td>
 </tr>
 <tr>
-<td><code>mesreg</code></td>
-<td>NUMERIC(2,0)</td>
-<td>Mes Registro</td>
+<td><code>Mesreg</code></td>
+<td>string</td>
 <td>Mes del registro legal</td>
 <td>1–12</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>anoreg</code></td>
-<td>NUMERIC(4,0)</td>
-<td>Año Registro</td>
+<td><code>Añoreg</code></td>
+<td>string</td>
 <td>Año del registro legal</td>
-<td>2015–2024</td>
+<td>2018–2024</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>depocu</code></td>
-<td>NUMERIC(4,0)</td>
-<td>Depto. Ocurrencia</td>
-<td>Departamento donde ocurrió la muerte — <strong>variable geográfica principal</strong></td>
-<td>1–22</td>
+<td><code>Depocu</code></td>
+<td>string</td>
+<td>Departamento donde ocurrió la muerte</td>
+<td>Código numérico 1–22</td>
 <td><code>[CRITICA]</code> NULL</td>
 </tr>
 <tr>
-<td><code>mupocu</code></td>
-<td>VARCHAR(10)</td>
-<td>Mpio. Ocurrencia</td>
-<td>Municipio donde ocurrió la muerte — granularidad máxima</td>
+<td><code>Mupocu</code></td>
+<td>string</td>
+<td>Municipio donde ocurrió la muerte</td>
 <td>Código INE</td>
 <td><code>[CRITICA]</code> <code>[SENSIBLE]</code> NULL</td>
 </tr>
 <tr>
-<td><code>diaocu</code></td>
-<td>NUMERIC(2,0)</td>
-<td>Día Ocurrencia</td>
-<td>Día del fallecimiento</td>
-<td>1–31</td>
-<td><code>[SENSIBLE]</code> NULL</td>
-</tr>
-<tr>
-<td><code>mesocu</code></td>
-<td>NUMERIC(2,0)</td>
-<td>Mes Ocurrencia</td>
-<td>Mes del fallecimiento</td>
-<td>1–12</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td><code>anoocu</code></td>
-<td>NUMERIC(4,0)</td>
-<td>Año Ocurrencia</td>
-<td>Año del fallecimiento — <strong>variable temporal principal</strong></td>
-<td>2015–2024</td>
-<td><code>[CRITICA]</code> NULL</td>
-</tr>
-<tr>
-<td><code>areag</code></td>
-<td>NUMERIC(1,0)</td>
-<td>Área Geográfica</td>
-<td>Clasificación urbana/rural del lugar de ocurrencia</td>
-<td>1=Urbano, 2=Rural</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td><code>sexo</code></td>
-<td>NUMERIC(1,0)</td>
-<td>Sexo</td>
+<td><code>Sexo</code></td>
+<td>string</td>
 <td>Sexo biológico registrado</td>
 <td>1=Hombre, 2=Mujer, 9=Ignorado</td>
 <td><code>[CRITICA]</code> NULL</td>
 </tr>
 <tr>
-<td><code>edadif</code></td>
-<td>NUMERIC(3,0)</td>
-<td>Edad</td>
+<td><code>Diaocu</code></td>
+<td>string</td>
+<td>Día del fallecimiento</td>
+<td>1–31</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Mesocu</code></td>
+<td>string</td>
+<td>Mes del fallecimiento</td>
+<td>1–12</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Añoocu</code></td>
+<td>string</td>
+<td>Año del fallecimiento</td>
+<td>2018–2024</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Edadif</code></td>
+<td>string</td>
 <td>Edad en años al momento del fallecimiento</td>
 <td>0–120</td>
 <td><code>[CRITICA]</code> <code>[SENSIBLE]</code> NULL</td>
 </tr>
 <tr>
-<td><code>perdif</code></td>
-<td>NUMERIC(1,0)</td>
-<td>Pertenencia Étnica</td>
-<td>Grupo étnico autodeclarado o registrado</td>
+<td><code>Perdif</code></td>
+<td>string</td>
+<td>Pertenencia étnica</td>
 <td>1=Maya, 2=Garífuna, 3=Xinca, 4=Mestizo, 5=Otro</td>
 <td><code>[SENSIBLE]</code> NULL</td>
 </tr>
 <tr>
-<td><code>puedif</code></td>
-<td>NUMERIC(4,0)</td>
-<td>Pueblo de Pertenencia</td>
-<td>Pueblo específico (ej. K'iche', Mam)</td>
+<td><code>Puedif</code></td>
+<td>string</td>
+<td>Pueblo de pertenencia específico</td>
 <td>Catálogo INE ~30 pueblos</td>
 <td><code>[SENSIBLE]</code> NULL</td>
 </tr>
 <tr>
-<td><code>ecidif</code></td>
-<td>NUMERIC(1,0)</td>
-<td>Estado Civil</td>
+<td><code>Ecidif</code></td>
+<td>string</td>
 <td>Estado civil al momento de la defunción</td>
 <td>1=Soltero, 2=Casado, 3=Unido, 4=Viudo, 5=Divorciado</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>escodif</code></td>
-<td>NUMERIC(2,0)</td>
-<td>Escolaridad</td>
+<td><code>Escodif</code></td>
+<td>string</td>
 <td>Último nivel educativo alcanzado</td>
 <td>0=Ninguno … 5=Superior, 9=Ignorado</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>ciuodif</code></td>
-<td>VARCHAR(10)</td>
-<td>Ocupación</td>
-<td>Código de ocupación/profesión — alta tasa de nulos</td>
+<td><code>Ciuodif</code></td>
+<td>string</td>
+<td>Código de ocupación</td>
 <td>Clasificación CIUO del INE</td>
 <td><code>[SENSIBLE]</code> NULL</td>
 </tr>
 <tr>
-<td><code>pnadif</code></td>
-<td>NUMERIC(4,0)</td>
-<td>País Nacimiento</td>
+<td><code>Pnadif</code></td>
+<td>string</td>
 <td>País de nacimiento</td>
 <td>Códigos INE</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>dnadif</code></td>
-<td>NUMERIC(4,0)</td>
-<td>Depto. Nacimiento</td>
-<td>Departamento de nacimiento (si Guatemala)</td>
+<td><code>Dnadif</code></td>
+<td>string</td>
+<td>Departamento de nacimiento</td>
 <td>1–22</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>mnadif</code></td>
-<td>VARCHAR(10)</td>
-<td>Mpio. Nacimiento</td>
+<td><code>Mnadif</code></td>
+<td>string</td>
 <td>Municipio de nacimiento</td>
 <td>Código INE</td>
 <td><code>[SENSIBLE]</code> NULL</td>
 </tr>
 <tr>
-<td><code>nacdif</code></td>
-<td>NUMERIC(4,0)</td>
-<td>Nacionalidad</td>
+<td><code>Nacdif</code></td>
+<td>string</td>
 <td>Nacionalidad legal registrada</td>
 <td>Códigos INE</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>predif</code></td>
-<td>NUMERIC(4,0)</td>
-<td>País Residencia</td>
+<td><code>Predif</code></td>
+<td>string</td>
 <td>País de residencia habitual</td>
 <td>Códigos país</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>dredif</code></td>
-<td>NUMERIC(4,0)</td>
-<td>Depto. Residencia</td>
+<td><code>Dredif</code></td>
+<td>string</td>
 <td>Departamento de residencia habitual</td>
 <td>1–22</td>
 <td><code>[SENSIBLE]</code> NULL</td>
 </tr>
 <tr>
-<td><code>mredif</code></td>
-<td>VARCHAR(10)</td>
-<td>Mpio. Residencia</td>
+<td><code>Mredif</code></td>
+<td>string</td>
 <td>Municipio de residencia habitual</td>
 <td>Código INE</td>
 <td><code>[SENSIBLE]</code> NULL</td>
 </tr>
 <tr>
-<td><code>caudef</code></td>
-<td>VARCHAR(10)</td>
-<td>Causa CIE-10</td>
-<td><strong>Causa de muerte en CIE-10.</strong> Ej: I219=Infarto, J18=Neumonía, X95=Agresión por arma</td>
+<td><code>Caudef</code></td>
+<td>string</td>
+<td>Causa de muerte en CIE-10</td>
 <td>A00–Z99</td>
 <td><code>[CRITICA]</code> NULL</td>
 </tr>
 <tr>
-<td><code>asist</code></td>
-<td>NUMERIC(1,0)</td>
-<td>Asistencia Médica</td>
-<td>Tipo de asistencia recibida</td>
+<td><code>Asist</code></td>
+<td>string</td>
+<td>Tipo de asistencia médica recibida</td>
 <td>1=Con asistencia, 2=Sin, 3=En tránsito, 9=Ignorado</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>ocur</code></td>
-<td>NUMERIC(1,0)</td>
-<td>Lugar Ocurrencia</td>
+<td><code>Ocur</code></td>
+<td>string</td>
 <td>Tipo de lugar donde ocurrió la muerte</td>
 <td>1=Hospital público, 2=IGSS, 3=Clínica privada, 4=Domicilio, 5=Vía pública</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>cerdef</code></td>
-<td>NUMERIC(1,0)</td>
-<td>Certificador</td>
-<td>Quién certificó oficialmente la defunción</td>
+<td><code>Cerdef</code></td>
+<td>string</td>
+<td>Quién certificó la defunción</td>
 <td>1=Médico tratante, 2=Forense, 3=Autoridad local</td>
 <td>NULL</td>
+</tr>
+<tr>
+<td><code>_anio</code></td>
+<td>string</td>
+<td>Año del archivo de origen</td>
+<td>2018–2024</td>
+<td><code>[META]</code></td>
+</tr>
+<tr>
+<td><code>_archivo_origen</code></td>
+<td>string</td>
+<td>Ruta S3 del archivo que originó esta fila</td>
+<td>raw/ine/defunciones_YYYY.xlsx</td>
+<td><code>[META]</code></td>
+</tr>
+<tr>
+<td><code>_fuente</code></td>
+<td>string</td>
+<td>Identificador de la fuente de datos</td>
+<td>INE_GUATEMALA</td>
+<td><code>[META]</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="sandbox_oms_indicadores"><code>sandbox_oms_indicadores</code><a class="headerlink" href="#sandbox_oms_indicadores" title="Permanent link">&para;</a></h2>
-<p><strong>1,708 registros</strong> · Fuente: WHO/OMS GHO API · Granularidad: País × Indicador × Año × Sexo</p>
-<p>Estadística agregada oficial de salud a nivel país. No contiene datos individuales.</p>
+<h2 id="bronzesav_ine_legacy"><code>bronze.sav_ine_legacy</code><a class="headerlink" href="#bronzesav_ine_legacy" title="Permanent link">&para;</a></h2>
+<p><strong>245,167 registros</strong> · Fuente: INE Guatemala 2015–2017 · Formato original: SAV (SPSS), convertido a Parquet</p>
+<p>Microdatos de defunciones para el periodo pre-2018. Estructura idéntica a <code>bronze.xlsx_ine</code> con la adición de la columna <code>Areag</code> presente únicamente en los archivos legacy. Los archivos originales .sav se preservan en S3 junto al parquet convertido.</p>
 <table>
 <thead>
 <tr>
 <th>Columna</th>
 <th>Tipo</th>
-<th>Etiqueta</th>
 <th>Descripción</th>
 <th>Dominio</th>
 <th>Banderas</th>
@@ -1129,113 +1085,439 @@
 </thead>
 <tbody>
 <tr>
-<td><code>id_sandbox</code></td>
-<td>SERIAL</td>
-<td>ID Ingesta</td>
-<td>Identificador único</td>
-<td>Autoincremental</td>
-<td><code>PK</code> <code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>fuente_archivo</code></td>
-<td>VARCHAR(100)</td>
-<td>Archivo Origen</td>
-<td>Nombre del JSON en S3</td>
-<td><code>who_{indicador}_{país}.json</code></td>
-<td><code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>fecha_carga</code></td>
-<td>TIMESTAMP</td>
-<td>Fecha Carga</td>
-<td>Momento de inserción UTC</td>
-<td>UTC</td>
-<td><code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>id_oms</code></td>
-<td>BIGINT</td>
-<td>ID OMS</td>
-<td>ID interno del registro en la BD de la OMS</td>
-<td>Entero</td>
+<td><code>Depreg</code></td>
+<td>string</td>
+<td>Departamento de registro legal</td>
+<td>Código numérico 1–22</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>indicator_code</code></td>
-<td>VARCHAR(50)</td>
-<td>Código Indicador</td>
-<td>Código GHO del indicador (ej. <code>WHOSIS_000001</code>)</td>
-<td>Catálogo GHO</td>
+<td><code>Mupreg</code></td>
+<td>string</td>
+<td>Municipio de registro legal</td>
+<td>Código INE</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Mesreg</code></td>
+<td>string</td>
+<td>Mes del registro legal</td>
+<td>1–12</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Añoreg</code></td>
+<td>string</td>
+<td>Año del registro legal</td>
+<td>2015–2017</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Depocu</code></td>
+<td>string</td>
+<td>Departamento donde ocurrió la muerte</td>
+<td>Código numérico 1–22</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Mupocu</code></td>
+<td>string</td>
+<td>Municipio donde ocurrió la muerte</td>
+<td>Código INE</td>
+<td><code>[CRITICA]</code> <code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Areag</code></td>
+<td>string</td>
+<td>Clasificación urbana/rural del lugar de ocurrencia</td>
+<td>1=Urbano, 2=Rural</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Sexo</code></td>
+<td>string</td>
+<td>Sexo biológico registrado</td>
+<td>1=Hombre, 2=Mujer, 9=Ignorado</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Diaocu</code></td>
+<td>string</td>
+<td>Día del fallecimiento</td>
+<td>1–31</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Mesocu</code></td>
+<td>string</td>
+<td>Mes del fallecimiento</td>
+<td>1–12</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Añoocu</code></td>
+<td>string</td>
+<td>Año del fallecimiento</td>
+<td>2015–2017</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Edadif</code></td>
+<td>string</td>
+<td>Edad en años al momento del fallecimiento</td>
+<td>0–120</td>
+<td><code>[CRITICA]</code> <code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Perdif</code></td>
+<td>string</td>
+<td>Pertenencia étnica</td>
+<td>1=Maya, 2=Garífuna, 3=Xinca, 4=Mestizo, 5=Otro</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Puedif</code></td>
+<td>string</td>
+<td>Pueblo de pertenencia específico</td>
+<td>Catálogo INE ~30 pueblos</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Ecidif</code></td>
+<td>string</td>
+<td>Estado civil</td>
+<td>1=Soltero, 2=Casado, 3=Unido, 4=Viudo, 5=Divorciado</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Escodif</code></td>
+<td>string</td>
+<td>Último nivel educativo alcanzado</td>
+<td>0=Ninguno … 5=Superior, 9=Ignorado</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Ciuodif</code></td>
+<td>string</td>
+<td>Código de ocupación</td>
+<td>Clasificación CIUO del INE</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Pnadif</code></td>
+<td>string</td>
+<td>País de nacimiento</td>
+<td>Códigos INE</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Dnadif</code></td>
+<td>string</td>
+<td>Departamento de nacimiento</td>
+<td>1–22</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Mnadif</code></td>
+<td>string</td>
+<td>Municipio de nacimiento</td>
+<td>Código INE</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Nacdif</code></td>
+<td>string</td>
+<td>Nacionalidad legal registrada</td>
+<td>Códigos INE</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Predif</code></td>
+<td>string</td>
+<td>País de residencia habitual</td>
+<td>Códigos país</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Dredif</code></td>
+<td>string</td>
+<td>Departamento de residencia habitual</td>
+<td>1–22</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Mredif</code></td>
+<td>string</td>
+<td>Municipio de residencia habitual</td>
+<td>Código INE</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Caudef</code></td>
+<td>string</td>
+<td>Causa de muerte en CIE-10</td>
+<td>A00–Z99</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>Asist</code></td>
+<td>string</td>
+<td>Tipo de asistencia médica recibida</td>
+<td>1=Con asistencia, 2=Sin, 3=En tránsito, 9=Ignorado</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Ocur</code></td>
+<td>string</td>
+<td>Tipo de lugar donde ocurrió la muerte</td>
+<td>1=Hospital público, 2=IGSS, 3=Clínica privada, 4=Domicilio, 5=Vía pública</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Cerdef</code></td>
+<td>string</td>
+<td>Quién certificó la defunción</td>
+<td>1=Médico tratante, 2=Forense, 3=Autoridad local</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>_anio</code></td>
+<td>string</td>
+<td>Año del archivo de origen</td>
+<td>2015–2017</td>
+<td><code>[META]</code></td>
+</tr>
+<tr>
+<td><code>_archivo_origen</code></td>
+<td>string</td>
+<td>Ruta S3 del archivo que originó esta fila</td>
+<td>raw/ine/defunciones_YYYY.parquet</td>
+<td><code>[META]</code></td>
+</tr>
+<tr>
+<td><code>_fuente</code></td>
+<td>string</td>
+<td>Identificador de la fuente de datos</td>
+<td>INE_GUATEMALA_LEGACY</td>
+<td><code>[META]</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="bronzejson_oms"><code>bronze.json_oms</code><a class="headerlink" href="#bronzejson_oms" title="Permanent link">&para;</a></h2>
+<p><strong>1,708 registros</strong> · Fuente: WHO/OMS Global Health Observatory API · Granularidad: País × Indicador × Año × Sexo</p>
+<p>Indicadores oficiales de salud agregados a nivel país descargados desde la API pública GHO. No contiene datos individuales. Cubre Guatemala, Costa Rica, Honduras, El Salvador y Panamá.</p>
+<table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Dominio</th>
+<th>Banderas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Id</code></td>
+<td>string</td>
+<td>ID interno del registro en la base de datos GHO</td>
+<td>Entero como string</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>IndicatorCode</code></td>
+<td>string</td>
+<td>Código GHO del indicador</td>
+<td>WHOSIS_000001, WHOSIS_000002, MDG_0000000001</td>
 <td><code>[CRITICA]</code></td>
 </tr>
 <tr>
-<td><code>spatial_dim</code></td>
-<td>VARCHAR(10)</td>
-<td>País ISO-3</td>
-<td>Código ISO 3166-1 alpha-3 — <strong>llave de cruce con Banco Mundial</strong></td>
+<td><code>SpatialDimType</code></td>
+<td>string</td>
+<td>Tipo de dimensión espacial</td>
+<td>COUNTRY</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>SpatialDim</code></td>
+<td>string</td>
+<td>Código ISO-3 del país</td>
 <td>GTM, CRI, HND, SLV, PAN</td>
 <td><code>[CRITICA]</code></td>
 </tr>
 <tr>
-<td><code>parent_location_code</code></td>
-<td>VARCHAR(10)</td>
-<td>Región OMS</td>
+<td><code>ParentLocationCode</code></td>
+<td>string</td>
 <td>Código de región OMS</td>
-<td>AMR (Américas)</td>
+<td>AMR</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>time_dim</code></td>
-<td>INTEGER</td>
-<td>Año</td>
-<td>Año de medición — <strong>llave temporal</strong></td>
+<td><code>ParentLocation</code></td>
+<td>string</td>
+<td>Nombre de la región OMS</td>
+<td>Americas</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>TimeDimType</code></td>
+<td>string</td>
+<td>Tipo de dimensión temporal</td>
+<td>YEAR</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>TimeDim</code></td>
+<td>string</td>
+<td>Año de medición</td>
 <td>1990–2023 aprox.</td>
 <td><code>[CRITICA]</code></td>
 </tr>
 <tr>
-<td><code>dim1</code></td>
-<td>VARCHAR(30)</td>
-<td>Sexo</td>
-<td>Desagregación por sexo</td>
+<td><code>Dim1Type</code></td>
+<td>string</td>
+<td>Tipo de primera dimensión adicional</td>
+<td>SEX</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Dim1</code></td>
+<td>string</td>
+<td>Valor de la primera dimensión</td>
 <td>Male, Female, Both sexes</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>numeric_value</code></td>
-<td>NUMERIC</td>
-<td><strong>Valor</strong></td>
-<td>Valor numérico del indicador — <strong>columna de análisis principal</strong></td>
+<td><code>Dim2Type</code></td>
+<td>string</td>
+<td>Tipo de segunda dimensión</td>
+<td>Vacío en estos indicadores</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Dim2</code></td>
+<td>string</td>
+<td>Valor de la segunda dimensión</td>
+<td>NULL</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Dim3Type</code></td>
+<td>string</td>
+<td>Tipo de tercera dimensión</td>
+<td>NULL</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Dim3</code></td>
+<td>string</td>
+<td>Valor de la tercera dimensión</td>
+<td>NULL</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>DataSourceDimType</code></td>
+<td>string</td>
+<td>Tipo de fuente de datos</td>
+<td>NULL</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>DataSourceDim</code></td>
+<td>string</td>
+<td>Fuente de datos específica</td>
+<td>NULL</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Value</code></td>
+<td>string</td>
+<td>Valor del indicador como texto</td>
+<td>Cadena</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>NumericValue</code></td>
+<td>string</td>
+<td>Valor numérico del indicador</td>
 <td>Real positivo</td>
 <td><code>[CRITICA]</code> NULL</td>
 </tr>
 <tr>
-<td><code>low_value</code></td>
-<td>NUMERIC</td>
-<td>IC Inferior</td>
+<td><code>Low</code></td>
+<td>string</td>
 <td>Límite inferior del intervalo de confianza</td>
 <td>Real positivo</td>
 <td>NULL</td>
 </tr>
 <tr>
-<td><code>high_value</code></td>
-<td>NUMERIC</td>
-<td>IC Superior</td>
+<td><code>High</code></td>
+<td>string</td>
 <td>Límite superior del intervalo de confianza</td>
 <td>Real positivo</td>
 <td>NULL</td>
 </tr>
+<tr>
+<td><code>Comments</code></td>
+<td>string</td>
+<td>Notas metodológicas de la OMS</td>
+<td>Texto libre</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>Date</code></td>
+<td>string</td>
+<td>Fecha de publicación del dato</td>
+<td>ISO 8601</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>TimeDimensionValue</code></td>
+<td>string</td>
+<td>Valor canónico de la dimensión temporal</td>
+<td>Año como string</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>TimeDimensionBegin</code></td>
+<td>string</td>
+<td>Inicio del periodo de medición</td>
+<td>ISO 8601</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>TimeDimensionEnd</code></td>
+<td>string</td>
+<td>Fin del periodo de medición</td>
+<td>ISO 8601</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>_archivo_origen</code></td>
+<td>string</td>
+<td>Ruta S3 del JSON que originó esta fila</td>
+<td>raw/oms/who_{indicador}_{pais}.json</td>
+<td><code>[META]</code></td>
+</tr>
+<tr>
+<td><code>_fuente</code></td>
+<td>string</td>
+<td>Identificador de la fuente</td>
+<td>WHO_OMS</td>
+<td><code>[META]</code></td>
+</tr>
 </tbody>
 </table>
 <hr />
-<h2 id="sandbox_worldbank_indicadores"><code>sandbox_worldbank_indicadores</code><a class="headerlink" href="#sandbox_worldbank_indicadores" title="Permanent link">&para;</a></h2>
+<h2 id="bronzejson_worldbank"><code>bronze.json_worldbank</code><a class="headerlink" href="#bronzejson_worldbank" title="Permanent link">&para;</a></h2>
 <p><strong>450 registros</strong> · Fuente: World Bank API · Granularidad: País × Indicador × Año</p>
-<p>Indicadores macroeconómicos y de salud agregados a nivel país para 6 países centroamericanos.</p>
+<p>Cinco indicadores de mortalidad y causa de muerte para seis países centroamericanos (GTM, CRI, HND, SLV, PAN, NIC) con rango temporal 2010–2024. Esta fuente reemplazó a CEPAL CEPALSTAT cuyo dominio no fue resolvible durante la ingesta, fallo documentado en la tabla de auditoría (run_id 22).</p>
 <table>
 <thead>
 <tr>
 <th>Columna</th>
 <th>Tipo</th>
-<th>Etiqueta</th>
 <th>Descripción</th>
 <th>Dominio</th>
 <th>Banderas</th>
@@ -1243,89 +1525,86 @@
 </thead>
 <tbody>
 <tr>
-<td><code>id_sandbox</code></td>
-<td>SERIAL</td>
-<td>ID Ingesta</td>
-<td>Identificador único</td>
-<td>Autoincremental</td>
-<td><code>PK</code> <code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>fuente_archivo</code></td>
-<td>VARCHAR(100)</td>
-<td>Archivo Origen</td>
-<td>Ruta del JSON en S3</td>
-<td>Cadena</td>
-<td><code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>fecha_carga</code></td>
-<td>TIMESTAMP</td>
-<td>Fecha Carga</td>
-<td>Momento de inserción UTC</td>
-<td>UTC</td>
-<td><code>[LINAJE]</code></td>
-</tr>
-<tr>
-<td><code>indicator_id</code></td>
-<td>VARCHAR(50)</td>
-<td>Código Indicador BM</td>
-<td>Código técnico del Banco Mundial (ej. <code>SP.DYN.CDRT.IN</code>)</td>
-<td>Catálogo BM</td>
+<td><code>indicator</code></td>
+<td>string</td>
+<td>Objeto JSON con id y valor del indicador</td>
+<td>Serializado como string</td>
 <td><code>[CRITICA]</code></td>
 </tr>
 <tr>
-<td><code>indicator_value</code></td>
-<td>VARCHAR(200)</td>
-<td>Nombre Indicador</td>
-<td>Nombre completo en inglés</td>
-<td>Texto</td>
-<td>NULL</td>
+<td><code>country</code></td>
+<td>string</td>
+<td>Objeto JSON con id y nombre del país</td>
+<td>Serializado como string</td>
+<td><code>[CRITICA]</code></td>
 </tr>
 <tr>
 <td><code>countryiso3code</code></td>
-<td>VARCHAR(5)</td>
-<td>País ISO-3</td>
-<td>Código estándar — <strong>llave de cruce con OMS</strong></td>
+<td>string</td>
+<td>Código ISO-3 del país</td>
 <td>GTM, CRI, HND, SLV, PAN, NIC</td>
 <td><code>[CRITICA]</code></td>
 </tr>
 <tr>
-<td><code>date_year</code></td>
-<td>VARCHAR(10)</td>
-<td>Año</td>
+<td><code>date</code></td>
+<td>string</td>
 <td>Año de la medición</td>
 <td>2010–2024</td>
 <td><code>[CRITICA]</code></td>
 </tr>
 <tr>
 <td><code>value</code></td>
-<td>NUMERIC</td>
-<td><strong>Valor</strong></td>
-<td>Valor numérico del indicador — <strong>columna de análisis principal</strong></td>
+<td>string</td>
+<td>Valor numérico del indicador</td>
 <td>Real, puede ser NULL</td>
 <td><code>[CRITICA]</code> NULL</td>
 </tr>
 <tr>
+<td><code>unit</code></td>
+<td>string</td>
+<td>Unidad de medida</td>
+<td>Vacío en estos indicadores</td>
+<td>NULL</td>
+</tr>
+<tr>
 <td><code>obs_status</code></td>
-<td>VARCHAR(10)</td>
-<td>Estado Observación</td>
-<td>Indica si es dato real, estimado o preliminar</td>
+<td>string</td>
+<td>Estado de la observación</td>
 <td>Vacío=real, E=estimado, P=preliminar</td>
 <td>NULL</td>
 </tr>
+<tr>
+<td><code>decimal</code></td>
+<td>string</td>
+<td>Decimales de precisión del valor</td>
+<td>Entero como string</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>_archivo_origen</code></td>
+<td>string</td>
+<td>Ruta S3 del JSON que originó esta fila</td>
+<td>raw/centroamerica/worldbank_{indicador}.json</td>
+<td><code>[META]</code></td>
+</tr>
+<tr>
+<td><code>_fuente</code></td>
+<td>string</td>
+<td>Identificador de la fuente</td>
+<td>WORLDBANK</td>
+<td><code>[META]</code></td>
+</tr>
 </tbody>
 </table>
 <hr />
-<h2 id="sandbox_gdrive_diccionario"><code>sandbox_gdrive_diccionario</code><a class="headerlink" href="#sandbox_gdrive_diccionario" title="Permanent link">&para;</a></h2>
-<p><strong>1,837 registros</strong> · Fuente: Diccionario del equipo (Google Drive)</p>
-<p>Catálogo maestro para decodificar los códigos numéricos del INE. Sin esta tabla, los datos de <code>sandbox_ine_defunciones</code> son ilegibles.</p>
+<h2 id="bronzegdrive_docs"><code>bronze.gdrive_docs</code><a class="headerlink" href="#bronzegdrive_docs" title="Permanent link">&para;</a></h2>
+<p><strong>1,837 registros</strong> · Fuente: Google Drive del equipo · Formato original: XLSX</p>
+<p>Diccionario de variables del INE descargado desde una carpeta compartida de Google Drive. Contiene los códigos y etiquetas necesarios para decodificar los valores numéricos de las tablas <code>bronze.xlsx_ine</code> y <code>bronze.sav_ine_legacy</code>. Las columnas tienen nombres generados automáticamente al limpiar caracteres especiales del Excel original.</p>
 <table>
 <thead>
 <tr>
 <th>Columna</th>
 <th>Tipo</th>
-<th>Etiqueta</th>
 <th>Descripción</th>
 <th>Dominio</th>
 <th>Banderas</th>
@@ -1333,153 +1612,50 @@
 </thead>
 <tbody>
 <tr>
-<td><code>id_sandbox</code></td>
-<td>SERIAL</td>
-<td>ID Ingesta</td>
-<td>Identificador único</td>
-<td>Autoincremental</td>
-<td><code>PK</code> <code>[LINAJE]</code></td>
+<td><code>Valores_de_las_variables_defunciones</code></td>
+<td>string</td>
+<td>Nombre de la variable o categoría del diccionario</td>
+<td>Texto libre</td>
+<td><code>[CRITICA]</code> NULL</td>
 </tr>
 <tr>
-<td><code>fuente_archivo</code></td>
-<td>VARCHAR(100)</td>
-<td>Archivo Origen</td>
-<td>Ruta del Excel en S3</td>
-<td><code>raw/gdrive/diccionario_defunciones_ine.xlsx</code></td>
-<td><code>[LINAJE]</code></td>
+<td><code>Unnamed:_1</code></td>
+<td>string</td>
+<td>Segunda columna del Excel original sin encabezado</td>
+<td>Texto libre</td>
+<td>NULL</td>
 </tr>
 <tr>
-<td><code>fecha_carga</code></td>
-<td>TIMESTAMP</td>
-<td>Fecha Carga</td>
-<td>Momento de inserción UTC</td>
-<td>UTC</td>
-<td><code>[LINAJE]</code></td>
+<td><code>Unnamed:_2</code></td>
+<td>string</td>
+<td>Tercera columna del Excel original sin encabezado</td>
+<td>Texto libre</td>
+<td>NULL</td>
 </tr>
 <tr>
-<td><code>variable</code></td>
-<td>VARCHAR(200)</td>
-<td>Variable</td>
-<td>Nombre exacto de la columna en <code>sandbox_ine_defunciones</code></td>
-<td>Ej: <code>depocu</code>, <code>sexo</code></td>
-<td><code>[CRITICA]</code></td>
+<td><code>_archivo_origen</code></td>
+<td>string</td>
+<td>Ruta S3 del Excel que originó esta fila</td>
+<td>raw/gdrive/diccionario_defunciones_ine.xlsx</td>
+<td><code>[META]</code></td>
 </tr>
 <tr>
-<td><code>codigo</code></td>
-<td>VARCHAR(50)</td>
-<td>Código</td>
-<td>Valor crudo tal como aparece en el INE (VARCHAR para soportar CIE-10)</td>
-<td>Ej: <code>1</code>, <code>I219</code></td>
-<td><code>[CRITICA]</code></td>
-</tr>
-<tr>
-<td><code>etiqueta</code></td>
-<td>VARCHAR(200)</td>
-<td>Etiqueta</td>
-<td>Significado legible del código</td>
-<td>Ej: <code>Guatemala</code>, <code>Hombre</code></td>
-<td><code>[CRITICA]</code></td>
+<td><code>_fuente</code></td>
+<td>string</td>
+<td>Identificador de la fuente</td>
+<td>GOOGLE_DRIVE</td>
+<td><code>[META]</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="erd-fuentes-de-datos-fase-1">ERD — Fuentes de Datos (Fase 1)<a class="headerlink" href="#erd-fuentes-de-datos-fase-1" title="Permanent link">&para;</a></h2>
-<p><img alt="ERD Fuentes de Datos" src="../../images/Semis2Fase1ERD.jpg" /></p>
-<p>Diagrama entidad-relación de las cinco tablas físicas del schema <code>sandbox</code> en PostgreSQL, mostrando las relaciones entre los datos del INE, la OMS, el Banco Mundial y el diccionario de variables.</p>
+<h2 id="erd-tablas-bronze-fase-1">ERD — Tablas Bronze (Fase 1)<a class="headerlink" href="#erd-tablas-bronze-fase-1" title="Permanent link">&para;</a></h2>
+<p>Las cinco tablas del schema <code>bronze</code> en Databricks no tienen relaciones entre ellas por diseño. El ERD muestra su estructura física tal como fue importada desde el DDL generado a partir de los schemas reales de Databricks.</p>
+<p><img alt="ERD Bronze" src="../../images/Semis2Fase1ERD.png" /></p>
 <hr />
 <h2 id="erd-base-de-datos-de-auditoria">ERD — Base de Datos de Auditoría<a class="headerlink" href="#erd-base-de-datos-de-auditoria" title="Permanent link">&para;</a></h2>
-<p><img alt="ERD Auditoría de Ingesta" src="../../images/auditoria_er.png" /></p>
-<p>El schema <code>semi2</code> en PostgreSQL registra cada operación de ingesta en dos tablas relacionadas (<code>scraping_runs</code> y <code>archivos_descargados</code>) y expone una vista de resumen agregada por fuente (<code>resumen_ingesta</code>).</p>
-<hr />
-<h2 id="sandbox_log_carga"><code>sandbox_log_carga</code><a class="headerlink" href="#sandbox_log_carga" title="Permanent link">&para;</a></h2>
-<p><strong>Variable</strong> · Generada automáticamente por el pipeline</p>
-<p>Tabla de auditoría operativa. Registra cada evento de ingesta con su resultado.</p>
-<table>
-<thead>
-<tr>
-<th>Columna</th>
-<th>Tipo</th>
-<th>Etiqueta</th>
-<th>Descripción</th>
-<th>Dominio</th>
-<th>Banderas</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id_log</code></td>
-<td>SERIAL</td>
-<td>ID Evento</td>
-<td>Identificador del evento de carga</td>
-<td>Autoincremental</td>
-<td><code>PK</code></td>
-</tr>
-<tr>
-<td><code>fecha_inicio</code></td>
-<td>TIMESTAMP</td>
-<td>Inicio</td>
-<td>Hora de inicio de la ingesta</td>
-<td>UTC</td>
-<td></td>
-</tr>
-<tr>
-<td><code>fecha_fin</code></td>
-<td>TIMESTAMP</td>
-<td>Fin</td>
-<td>Hora de fin del bloque de carga</td>
-<td>UTC</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td><code>fuente_archivo</code></td>
-<td>VARCHAR(100)</td>
-<td>Archivo</td>
-<td>Ruta S3 del archivo procesado</td>
-<td>Cadena</td>
-<td></td>
-</tr>
-<tr>
-<td><code>tabla_destino</code></td>
-<td>VARCHAR(100)</td>
-<td>Tabla Destino</td>
-<td>Tabla Sandbox receptora</td>
-<td><code>sandbox_ine_defunciones</code>, etc.</td>
-<td></td>
-</tr>
-<tr>
-<td><code>filas_insertadas</code></td>
-<td>INTEGER</td>
-<td>Filas</td>
-<td>Conteo exacto de registros insertados</td>
-<td>Entero positivo</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td><code>estado</code></td>
-<td>VARCHAR(20)</td>
-<td>Estado</td>
-<td>Resultado de la operación</td>
-<td><code>EXITO</code>, <code>ERROR</code>, <code>OMITIDO</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>mensaje_error</code></td>
-<td>TEXT</td>
-<td>Error</td>
-<td>Traza técnica si el estado es <code>ERROR</code></td>
-<td>Texto o NULL</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td><code>script_version</code></td>
-<td>VARCHAR(20)</td>
-<td>Versión Script</td>
-<td>Versión del script Python que realizó la carga</td>
-<td>Semver (ej: <code>1.2.0</code>)</td>
-<td>NULL</td>
-</tr>
-</tbody>
-</table>
+<p>El schema <code>semi2</code> en PostgreSQL 16 (Docker, localhost:5432, base <code>law</code>) registra cada operación de ingesta. La tabla <code>scraping_runs</code> registra cada ejecución con run_id, fuente, URL de origen, estado, bytes y checksum. La tabla <code>archivos_descargados</code> registra cada archivo individual con su checksum MD5 y ruta S3. La vista <code>resumen_ingesta</code> agrega por fuente para monitoreo rápido.</p>
+<p><img alt="ERD Auditoría" src="../../images/auditoria_er.png" /></p>
 
 
 
