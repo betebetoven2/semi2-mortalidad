@@ -6,6 +6,10 @@ El **linaje de datos** (*data lineage*) describe el recorrido completo de cada r
 
 ## Diagramas del Pipeline
 
+!!! info "Diagrama editable"
+    El diagrama de arquitectura de 4 capas (fuente editable en Draw.io) está disponible en:
+    [Ver diagrama de 4 capas en Drive](https://drive.google.com/file/d/1krHaKEFT6kIuaiG1bwl5x-DGgsBc4ZcA/view){ .md-button }
+
 ### Vista de Alto Nivel
 
 ![Diagrama de alto nivel](../images/Diagrama-Alto-Nivel.svg)

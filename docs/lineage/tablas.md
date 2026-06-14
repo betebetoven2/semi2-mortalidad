@@ -116,6 +116,14 @@ Catálogo maestro para decodificar los códigos numéricos del INE. Sin esta tab
 
 ---
 
+## ERD — Fuentes de Datos (Fase 1)
+
+![ERD Fuentes de Datos](../images/Semis2Fase1ERD.jpg)
+
+Diagrama entidad-relación de las cinco tablas físicas del schema `sandbox` en PostgreSQL, mostrando las relaciones entre los datos del INE, la OMS, el Banco Mundial y el diccionario de variables.
+
+---
+
 ## ERD — Base de Datos de Auditoría
 
 ![ERD Auditoría de Ingesta](../images/auditoria_er.png)
