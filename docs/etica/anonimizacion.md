@@ -4,6 +4,27 @@ Este plan define **qué** se transforma, **cómo** y **en qué capa**, garantiza
 
 ---
 
+## Marco Normativo — EU Data Act y GDPR
+
+Este plan se fundamenta en el **EU Data Act — Reglamento (UE) 2023/2854** del Parlamento Europeo y del Consejo, de 13 de diciembre de 2023, sobre normas armonizadas para un acceso justo a los datos y su utilización. El Reglamento **entró en vigor el 11 de enero de 2024** y es **aplicable desde el 12 de septiembre de 2025**, y **complementa al GDPR (Reglamento (UE) 2016/679)** en lo relativo a la protección de datos personales.
+
+Aunque el proyecto se desarrolla en Guatemala, se adopta el EU Data Act como **estándar de referencia internacional** por ser el marco más exigente y actual en materia de gobernanza, compartición y reutilización de datos. El proyecto simula una consultoría de datos para el **PNUD** y el **MSPAS** —organismos del sector público con fines de interés público en salud—, escenario que encaja directamente en el supuesto de compartición **B2G (*business-to-government*) por necesidad excepcional** que regula el **Capítulo V del Data Act**, el cual cubre expresamente las **emergencias de salud pública** (p. ej. pandemias) y la **producción de estadística oficial**.
+
+### Principios del Data Act aplicados en este plan
+
+| Principio / Artículo del Data Act | Cómo lo implementa nuestra arquitectura |
+|---|---|
+| **Anonimización y agregación de datos personales** (Art. 20(2) y considerandos sobre compartición B2G): cuando los datos puestos a disposición de un organismo público contienen datos personales, deben anonimizarse o agregarse. | Capas **Silver** y **Gold**: generalización de edad y CIE-10, k-anonimato (k≥5) en municipio y etnia, y agregación a nivel departamento/nacional **antes** de cualquier acceso externo. |
+| **Minimización de datos y protección desde el diseño y por defecto** (*data minimisation*, *data protection by design and by default*). | Supresión de variables no analíticas (`diaocu`, `ciuodif`, `pnadif`, `mnadif`) y exposición del mínimo nivel de detalle necesario por perfil de usuario. |
+| **B2G — necesidad excepcional / interés público** (Cap. V, Art. 15): emergencias de salud pública y estadística oficial. | El análisis **pre/post-COVID** y la entrega a PNUD/MSPAS se tratan como compartición de interés público; el dato crudo permanece **inmutable** y solo se comparten vistas anonimizadas/agregadas. |
+| **Transmisión únicamente de datos no personales o anonimizados a terceros** (considerandos del Art. 5). | La capa **Gold** (pública / dashboards) no contiene ningún dato individual ni columna de etnia; solo cifras agregadas sin posibilidad de reidentificación. |
+| **Supleción del GDPR**: el Data Act no sustituye al GDPR, sino que se aplica **junto a él**. | Se mantienen como base el principio de proporcionalidad (GDPR art. 5) y la protección de datos étnicos (Convenio 169 OIT), descritos en el [Marco Ético](index.md). |
+
+!!! info "Por qué el Data Act y no solo el GDPR"
+    El GDPR regula *cómo se protegen* los datos personales; el **Data Act regula *cómo se comparten y reutilizan* los datos** —incluido el flujo hacia organismos públicos—, exigiendo anonimización y agregación como **condición** de esa compartición. Por eso el Data Act es el instrumento que da fundamento directo a este plan de anonimización/agregación por capas.
+
+---
+
 ## Arquitectura de Capas
 
 | Capa | Schema | Contenido | Acceso |
@@ -16,6 +37,9 @@ Este plan define **qué** se transforma, **cómo** y **en qué capa**, garantiza
 ```
 BRONZE ──[ETL Fase 2]──► SANDBOX ──[Vistas SQL]──► SILVER ──[Agregación]──► GOLD
 ```
+
+!!! abstract "Correspondencia con el Data Act"
+    Esta arquitectura por capas es la implementación técnica del mandato del Data Act: el dato personal individual nunca abandona Bronze/Sandbox; toda compartición (interna o B2G) ocurre sobre Silver/Gold, donde la anonimización y la agregación ya fueron aplicadas.
 
 ---
 
@@ -110,7 +134,7 @@ END AS perdif_anon
 
 ### Técnica 5 — Supresión de Variables No Analíticas
 
-Columnas que no aportan valor analítico significativo pero sí riesgo de reidentificación se eliminan desde Silver o Gold.
+Columnas que no aportan valor analítico significativo pero sí riesgo de reidentificación se eliminan desde Silver o Gold. Esta supresión materializa el principio de **minimización de datos** del Data Act y del GDPR.
 
 | Columna | Eliminada en | Motivo |
 |---|---|---|
@@ -196,3 +220,12 @@ FROM sandbox.sandbox_ine_defunciones;
 | `depocu` | Mantener | Mantener | — |
 | `asist` / `ocur` | Mantener | Mantener | — |
 | `ecidif` / `escodif` | Mantener | **Eliminar** | Supresión en Gold |
+
+---
+
+## Referencia normativa
+
+- **Reglamento (UE) 2023/2854 (Data Act)** — Parlamento Europeo y Consejo, 13 de diciembre de 2023. En vigor desde el 11/01/2024, aplicable desde el 12/09/2025. Capítulo V (compartición B2G por necesidad excepcional), Art. 15 y Art. 20(2) (costos de anonimización, pseudonimización y agregación).
+- **Reglamento (UE) 2016/679 (GDPR)** — principio de proporcionalidad y minimización (art. 5); protección de datos por diseño y por defecto (art. 25).
+- **Convenio 169 OIT** — protección de datos de pueblos indígenas (`perdif`, `puedif`).
+- **OPS/OMS** — estándares de rangos etarios y buenas prácticas en microdatos de mortalidad.

@@ -8,10 +8,14 @@ Los datos del INE en la capa Sandbox contienen información individual sobre per
 
 | Instrumento | Aplicación en este proyecto |
 |---|---|
+| **EU Data Act — Reglamento (UE) 2023/2854** | Marco internacional de referencia para el acceso, la compartición y la reutilización de datos (en vigor desde 11/01/2024, aplicable desde 12/09/2025). Exige **anonimización y agregación** de datos personales al ponerlos a disposición de organismos públicos (compartición **B2G** por necesidad excepcional, Cap. V). Fundamenta directamente el [Plan de Anonimización](anonimizacion.md). |
+| **GDPR — Reglamento (UE) 2016/679 (art. 5 y 25)** | Principio de proporcionalidad y minimización: usar solo el nivel de detalle necesario. Protección de datos por diseño y por defecto. Datos individuales solo en capas restringidas. |
 | **Convenio 169 OIT** | Protege datos étnicos de pueblos indígenas. Las columnas `perdif` y `puedif` son datos protegidos. |
-| **Principio de proporcionalidad (GDPR art. 5)** | Usar solo el nivel de detalle necesario para el análisis. Datos individuales solo en capas restringidas. |
 | **Ética de salud pública (OPS/OMS)** | Los microdatos de mortalidad deben procesarse de forma que no permitan reidentificación de familias. |
 | **Políticas INE Guatemala** | Los datos son de uso público pero su reutilización debe respetar la privacidad de los deudos. |
+
+!!! info "Relación Data Act ↔ GDPR"
+    El **GDPR** regula *cómo se protegen* los datos personales; el **Data Act** regula *cómo se comparten y reutilizan* —incluido el flujo hacia organismos públicos como PNUD/MSPAS—, exigiendo anonimización y agregación como condición de esa compartición. Ambos se aplican de forma complementaria en este proyecto.
 
 ---
 
