@@ -1,0 +1,1520 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación de gobernanza, linaje y ética — Seminario de Sistemas 2 | USAC 2026">
+      
+      
+        <meta name="author" content="Grupo 3">
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../etica/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Diccionario de Tablas - Plataforma Analítica de Mortalidad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#diccionario-de-tablas-capa-sandbox" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Plataforma Analítica de Mortalidad" class="md-header__button md-logo" aria-label="Plataforma Analítica de Mortalidad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Plataforma Analítica de Mortalidad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Diccionario de Tablas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../procedencia/" class="md-tabs__link">
+          
+  
+  Procedencia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Linaje de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../etica/" class="md-tabs__link">
+          
+  
+  Ética y Gobernanza
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Plataforma Analítica de Mortalidad" class="md-nav__button md-logo" aria-label="Plataforma Analítica de Mortalidad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Plataforma Analítica de Mortalidad
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Procedencia
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Procedencia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../procedencia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Catálogo de Fuentes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../procedencia/renap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RENAP — Solicitud Formal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linaje de Datos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Linaje de Datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arquitectura del Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Diccionario de Tablas
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Diccionario de Tablas
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_ine_defunciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_ine_defunciones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_oms_indicadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_oms_indicadores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_worldbank_indicadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_worldbank_indicadores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_gdrive_diccionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_gdrive_diccionario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erd-base-de-datos-de-auditoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      ERD — Base de Datos de Auditoría
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_log_carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_log_carga
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ética y Gobernanza
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Ética y Gobernanza
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../etica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Marco Ético
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../etica/anonimizacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan de Anonimización
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_ine_defunciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_ine_defunciones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_oms_indicadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_oms_indicadores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_worldbank_indicadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_worldbank_indicadores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_gdrive_diccionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_gdrive_diccionario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erd-base-de-datos-de-auditoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      ERD — Base de Datos de Auditoría
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox_log_carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      sandbox_log_carga
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="diccionario-de-tablas-capa-sandbox">Diccionario de Tablas — Capa Sandbox<a class="headerlink" href="#diccionario-de-tablas-capa-sandbox" title="Permanent link">&para;</a></h1>
+<p>Las cinco tablas físicas del esquema <code>sandbox</code> en PostgreSQL. Todas comparten tres columnas de linaje (<code>id_sandbox</code>, <code>fuente_archivo</code>, <code>fecha_carga</code>) inyectadas automáticamente durante la ingesta.</p>
+<p><strong>Leyenda de banderas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Bandera</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PK</code></td>
+<td>Llave primaria</td>
+</tr>
+<tr>
+<td><code>[LINAJE]</code></td>
+<td>Metadato de trazabilidad, no es dato de dominio</td>
+</tr>
+<tr>
+<td><code>[SENSIBLE]</code></td>
+<td>Contiene o permite inferir información personal</td>
+</tr>
+<tr>
+<td><code>[CRITICA]</code></td>
+<td>Esencial para los análisis principales</td>
+</tr>
+<tr>
+<td><code>NULL</code></td>
+<td>El campo puede estar vacío (diseño "Cero Destrucción")</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sandbox_ine_defunciones"><code>sandbox_ine_defunciones</code><a class="headerlink" href="#sandbox_ine_defunciones" title="Permanent link">&para;</a></h2>
+<p><strong>921,208 registros</strong> · Fuente: INE Guatemala 2015–2024</p>
+<p>Tabla transaccional principal. Cada fila representa un fallecimiento individual con sus atributos demográficos, geográficos y la causa de muerte codificada en CIE-10.</p>
+<table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Tipo</th>
+<th>Etiqueta</th>
+<th>Descripción</th>
+<th>Dominio</th>
+<th>Banderas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id_sandbox</code></td>
+<td>SERIAL</td>
+<td>ID de Ingesta</td>
+<td>Identificador único de ingesta, no proviene del INE</td>
+<td>Autoincremental</td>
+<td><code>PK</code> <code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>fuente_archivo</code></td>
+<td>VARCHAR(100)</td>
+<td>Archivo Origen</td>
+<td>Ruta S3 del archivo que originó esta fila</td>
+<td><code>raw/ine/defunciones_YYYY.xlsx</code></td>
+<td><code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>fecha_carga</code></td>
+<td>TIMESTAMP</td>
+<td>Fecha de Carga</td>
+<td>Marca de tiempo UTC de inserción</td>
+<td>UTC</td>
+<td><code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>depreg</code></td>
+<td>NUMERIC(4,0)</td>
+<td>Depto. Registro</td>
+<td>Departamento de registro legal</td>
+<td>1–22</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>mupreg</code></td>
+<td>VARCHAR(10)</td>
+<td>Mpio. Registro</td>
+<td>Municipio de registro legal</td>
+<td>Código INE</td>
+<td>NULL <code>[SENSIBLE]</code></td>
+</tr>
+<tr>
+<td><code>mesreg</code></td>
+<td>NUMERIC(2,0)</td>
+<td>Mes Registro</td>
+<td>Mes del registro legal</td>
+<td>1–12</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>anoreg</code></td>
+<td>NUMERIC(4,0)</td>
+<td>Año Registro</td>
+<td>Año del registro legal</td>
+<td>2015–2024</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>depocu</code></td>
+<td>NUMERIC(4,0)</td>
+<td>Depto. Ocurrencia</td>
+<td>Departamento donde ocurrió la muerte — <strong>variable geográfica principal</strong></td>
+<td>1–22</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>mupocu</code></td>
+<td>VARCHAR(10)</td>
+<td>Mpio. Ocurrencia</td>
+<td>Municipio donde ocurrió la muerte — granularidad máxima</td>
+<td>Código INE</td>
+<td><code>[CRITICA]</code> <code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>diaocu</code></td>
+<td>NUMERIC(2,0)</td>
+<td>Día Ocurrencia</td>
+<td>Día del fallecimiento</td>
+<td>1–31</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>mesocu</code></td>
+<td>NUMERIC(2,0)</td>
+<td>Mes Ocurrencia</td>
+<td>Mes del fallecimiento</td>
+<td>1–12</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>anoocu</code></td>
+<td>NUMERIC(4,0)</td>
+<td>Año Ocurrencia</td>
+<td>Año del fallecimiento — <strong>variable temporal principal</strong></td>
+<td>2015–2024</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>areag</code></td>
+<td>NUMERIC(1,0)</td>
+<td>Área Geográfica</td>
+<td>Clasificación urbana/rural del lugar de ocurrencia</td>
+<td>1=Urbano, 2=Rural</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>sexo</code></td>
+<td>NUMERIC(1,0)</td>
+<td>Sexo</td>
+<td>Sexo biológico registrado</td>
+<td>1=Hombre, 2=Mujer, 9=Ignorado</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>edadif</code></td>
+<td>NUMERIC(3,0)</td>
+<td>Edad</td>
+<td>Edad en años al momento del fallecimiento</td>
+<td>0–120</td>
+<td><code>[CRITICA]</code> <code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>perdif</code></td>
+<td>NUMERIC(1,0)</td>
+<td>Pertenencia Étnica</td>
+<td>Grupo étnico autodeclarado o registrado</td>
+<td>1=Maya, 2=Garífuna, 3=Xinca, 4=Mestizo, 5=Otro</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>puedif</code></td>
+<td>NUMERIC(4,0)</td>
+<td>Pueblo de Pertenencia</td>
+<td>Pueblo específico (ej. K'iche', Mam)</td>
+<td>Catálogo INE ~30 pueblos</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>ecidif</code></td>
+<td>NUMERIC(1,0)</td>
+<td>Estado Civil</td>
+<td>Estado civil al momento de la defunción</td>
+<td>1=Soltero, 2=Casado, 3=Unido, 4=Viudo, 5=Divorciado</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>escodif</code></td>
+<td>NUMERIC(2,0)</td>
+<td>Escolaridad</td>
+<td>Último nivel educativo alcanzado</td>
+<td>0=Ninguno … 5=Superior, 9=Ignorado</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>ciuodif</code></td>
+<td>VARCHAR(10)</td>
+<td>Ocupación</td>
+<td>Código de ocupación/profesión — alta tasa de nulos</td>
+<td>Clasificación CIUO del INE</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>pnadif</code></td>
+<td>NUMERIC(4,0)</td>
+<td>País Nacimiento</td>
+<td>País de nacimiento</td>
+<td>Códigos INE</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>dnadif</code></td>
+<td>NUMERIC(4,0)</td>
+<td>Depto. Nacimiento</td>
+<td>Departamento de nacimiento (si Guatemala)</td>
+<td>1–22</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>mnadif</code></td>
+<td>VARCHAR(10)</td>
+<td>Mpio. Nacimiento</td>
+<td>Municipio de nacimiento</td>
+<td>Código INE</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>nacdif</code></td>
+<td>NUMERIC(4,0)</td>
+<td>Nacionalidad</td>
+<td>Nacionalidad legal registrada</td>
+<td>Códigos INE</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>predif</code></td>
+<td>NUMERIC(4,0)</td>
+<td>País Residencia</td>
+<td>País de residencia habitual</td>
+<td>Códigos país</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>dredif</code></td>
+<td>NUMERIC(4,0)</td>
+<td>Depto. Residencia</td>
+<td>Departamento de residencia habitual</td>
+<td>1–22</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>mredif</code></td>
+<td>VARCHAR(10)</td>
+<td>Mpio. Residencia</td>
+<td>Municipio de residencia habitual</td>
+<td>Código INE</td>
+<td><code>[SENSIBLE]</code> NULL</td>
+</tr>
+<tr>
+<td><code>caudef</code></td>
+<td>VARCHAR(10)</td>
+<td>Causa CIE-10</td>
+<td><strong>Causa de muerte en CIE-10.</strong> Ej: I219=Infarto, J18=Neumonía, X95=Agresión por arma</td>
+<td>A00–Z99</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>asist</code></td>
+<td>NUMERIC(1,0)</td>
+<td>Asistencia Médica</td>
+<td>Tipo de asistencia recibida</td>
+<td>1=Con asistencia, 2=Sin, 3=En tránsito, 9=Ignorado</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>ocur</code></td>
+<td>NUMERIC(1,0)</td>
+<td>Lugar Ocurrencia</td>
+<td>Tipo de lugar donde ocurrió la muerte</td>
+<td>1=Hospital público, 2=IGSS, 3=Clínica privada, 4=Domicilio, 5=Vía pública</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>cerdef</code></td>
+<td>NUMERIC(1,0)</td>
+<td>Certificador</td>
+<td>Quién certificó oficialmente la defunción</td>
+<td>1=Médico tratante, 2=Forense, 3=Autoridad local</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sandbox_oms_indicadores"><code>sandbox_oms_indicadores</code><a class="headerlink" href="#sandbox_oms_indicadores" title="Permanent link">&para;</a></h2>
+<p><strong>1,708 registros</strong> · Fuente: WHO/OMS GHO API · Granularidad: País × Indicador × Año × Sexo</p>
+<p>Estadística agregada oficial de salud a nivel país. No contiene datos individuales.</p>
+<table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Tipo</th>
+<th>Etiqueta</th>
+<th>Descripción</th>
+<th>Dominio</th>
+<th>Banderas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id_sandbox</code></td>
+<td>SERIAL</td>
+<td>ID Ingesta</td>
+<td>Identificador único</td>
+<td>Autoincremental</td>
+<td><code>PK</code> <code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>fuente_archivo</code></td>
+<td>VARCHAR(100)</td>
+<td>Archivo Origen</td>
+<td>Nombre del JSON en S3</td>
+<td><code>who_{indicador}_{país}.json</code></td>
+<td><code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>fecha_carga</code></td>
+<td>TIMESTAMP</td>
+<td>Fecha Carga</td>
+<td>Momento de inserción UTC</td>
+<td>UTC</td>
+<td><code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>id_oms</code></td>
+<td>BIGINT</td>
+<td>ID OMS</td>
+<td>ID interno del registro en la BD de la OMS</td>
+<td>Entero</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>indicator_code</code></td>
+<td>VARCHAR(50)</td>
+<td>Código Indicador</td>
+<td>Código GHO del indicador (ej. <code>WHOSIS_000001</code>)</td>
+<td>Catálogo GHO</td>
+<td><code>[CRITICA]</code></td>
+</tr>
+<tr>
+<td><code>spatial_dim</code></td>
+<td>VARCHAR(10)</td>
+<td>País ISO-3</td>
+<td>Código ISO 3166-1 alpha-3 — <strong>llave de cruce con Banco Mundial</strong></td>
+<td>GTM, CRI, HND, SLV, PAN</td>
+<td><code>[CRITICA]</code></td>
+</tr>
+<tr>
+<td><code>parent_location_code</code></td>
+<td>VARCHAR(10)</td>
+<td>Región OMS</td>
+<td>Código de región OMS</td>
+<td>AMR (Américas)</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>time_dim</code></td>
+<td>INTEGER</td>
+<td>Año</td>
+<td>Año de medición — <strong>llave temporal</strong></td>
+<td>1990–2023 aprox.</td>
+<td><code>[CRITICA]</code></td>
+</tr>
+<tr>
+<td><code>dim1</code></td>
+<td>VARCHAR(30)</td>
+<td>Sexo</td>
+<td>Desagregación por sexo</td>
+<td>Male, Female, Both sexes</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>numeric_value</code></td>
+<td>NUMERIC</td>
+<td><strong>Valor</strong></td>
+<td>Valor numérico del indicador — <strong>columna de análisis principal</strong></td>
+<td>Real positivo</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>low_value</code></td>
+<td>NUMERIC</td>
+<td>IC Inferior</td>
+<td>Límite inferior del intervalo de confianza</td>
+<td>Real positivo</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>high_value</code></td>
+<td>NUMERIC</td>
+<td>IC Superior</td>
+<td>Límite superior del intervalo de confianza</td>
+<td>Real positivo</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sandbox_worldbank_indicadores"><code>sandbox_worldbank_indicadores</code><a class="headerlink" href="#sandbox_worldbank_indicadores" title="Permanent link">&para;</a></h2>
+<p><strong>450 registros</strong> · Fuente: World Bank API · Granularidad: País × Indicador × Año</p>
+<p>Indicadores macroeconómicos y de salud agregados a nivel país para 6 países centroamericanos.</p>
+<table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Tipo</th>
+<th>Etiqueta</th>
+<th>Descripción</th>
+<th>Dominio</th>
+<th>Banderas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id_sandbox</code></td>
+<td>SERIAL</td>
+<td>ID Ingesta</td>
+<td>Identificador único</td>
+<td>Autoincremental</td>
+<td><code>PK</code> <code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>fuente_archivo</code></td>
+<td>VARCHAR(100)</td>
+<td>Archivo Origen</td>
+<td>Ruta del JSON en S3</td>
+<td>Cadena</td>
+<td><code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>fecha_carga</code></td>
+<td>TIMESTAMP</td>
+<td>Fecha Carga</td>
+<td>Momento de inserción UTC</td>
+<td>UTC</td>
+<td><code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>indicator_id</code></td>
+<td>VARCHAR(50)</td>
+<td>Código Indicador BM</td>
+<td>Código técnico del Banco Mundial (ej. <code>SP.DYN.CDRT.IN</code>)</td>
+<td>Catálogo BM</td>
+<td><code>[CRITICA]</code></td>
+</tr>
+<tr>
+<td><code>indicator_value</code></td>
+<td>VARCHAR(200)</td>
+<td>Nombre Indicador</td>
+<td>Nombre completo en inglés</td>
+<td>Texto</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>countryiso3code</code></td>
+<td>VARCHAR(5)</td>
+<td>País ISO-3</td>
+<td>Código estándar — <strong>llave de cruce con OMS</strong></td>
+<td>GTM, CRI, HND, SLV, PAN, NIC</td>
+<td><code>[CRITICA]</code></td>
+</tr>
+<tr>
+<td><code>date_year</code></td>
+<td>VARCHAR(10)</td>
+<td>Año</td>
+<td>Año de la medición</td>
+<td>2010–2024</td>
+<td><code>[CRITICA]</code></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>NUMERIC</td>
+<td><strong>Valor</strong></td>
+<td>Valor numérico del indicador — <strong>columna de análisis principal</strong></td>
+<td>Real, puede ser NULL</td>
+<td><code>[CRITICA]</code> NULL</td>
+</tr>
+<tr>
+<td><code>obs_status</code></td>
+<td>VARCHAR(10)</td>
+<td>Estado Observación</td>
+<td>Indica si es dato real, estimado o preliminar</td>
+<td>Vacío=real, E=estimado, P=preliminar</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sandbox_gdrive_diccionario"><code>sandbox_gdrive_diccionario</code><a class="headerlink" href="#sandbox_gdrive_diccionario" title="Permanent link">&para;</a></h2>
+<p><strong>1,837 registros</strong> · Fuente: Diccionario del equipo (Google Drive)</p>
+<p>Catálogo maestro para decodificar los códigos numéricos del INE. Sin esta tabla, los datos de <code>sandbox_ine_defunciones</code> son ilegibles.</p>
+<table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Tipo</th>
+<th>Etiqueta</th>
+<th>Descripción</th>
+<th>Dominio</th>
+<th>Banderas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id_sandbox</code></td>
+<td>SERIAL</td>
+<td>ID Ingesta</td>
+<td>Identificador único</td>
+<td>Autoincremental</td>
+<td><code>PK</code> <code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>fuente_archivo</code></td>
+<td>VARCHAR(100)</td>
+<td>Archivo Origen</td>
+<td>Ruta del Excel en S3</td>
+<td><code>raw/gdrive/diccionario_defunciones_ine.xlsx</code></td>
+<td><code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>fecha_carga</code></td>
+<td>TIMESTAMP</td>
+<td>Fecha Carga</td>
+<td>Momento de inserción UTC</td>
+<td>UTC</td>
+<td><code>[LINAJE]</code></td>
+</tr>
+<tr>
+<td><code>variable</code></td>
+<td>VARCHAR(200)</td>
+<td>Variable</td>
+<td>Nombre exacto de la columna en <code>sandbox_ine_defunciones</code></td>
+<td>Ej: <code>depocu</code>, <code>sexo</code></td>
+<td><code>[CRITICA]</code></td>
+</tr>
+<tr>
+<td><code>codigo</code></td>
+<td>VARCHAR(50)</td>
+<td>Código</td>
+<td>Valor crudo tal como aparece en el INE (VARCHAR para soportar CIE-10)</td>
+<td>Ej: <code>1</code>, <code>I219</code></td>
+<td><code>[CRITICA]</code></td>
+</tr>
+<tr>
+<td><code>etiqueta</code></td>
+<td>VARCHAR(200)</td>
+<td>Etiqueta</td>
+<td>Significado legible del código</td>
+<td>Ej: <code>Guatemala</code>, <code>Hombre</code></td>
+<td><code>[CRITICA]</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="erd-base-de-datos-de-auditoria">ERD — Base de Datos de Auditoría<a class="headerlink" href="#erd-base-de-datos-de-auditoria" title="Permanent link">&para;</a></h2>
+<p><img alt="ERD Auditoría de Ingesta" src="../../images/auditoria_er.png" /></p>
+<p>El schema <code>semi2</code> en PostgreSQL registra cada operación de ingesta en dos tablas relacionadas (<code>scraping_runs</code> y <code>archivos_descargados</code>) y expone una vista de resumen agregada por fuente (<code>resumen_ingesta</code>).</p>
+<hr />
+<h2 id="sandbox_log_carga"><code>sandbox_log_carga</code><a class="headerlink" href="#sandbox_log_carga" title="Permanent link">&para;</a></h2>
+<p><strong>Variable</strong> · Generada automáticamente por el pipeline</p>
+<p>Tabla de auditoría operativa. Registra cada evento de ingesta con su resultado.</p>
+<table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Tipo</th>
+<th>Etiqueta</th>
+<th>Descripción</th>
+<th>Dominio</th>
+<th>Banderas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id_log</code></td>
+<td>SERIAL</td>
+<td>ID Evento</td>
+<td>Identificador del evento de carga</td>
+<td>Autoincremental</td>
+<td><code>PK</code></td>
+</tr>
+<tr>
+<td><code>fecha_inicio</code></td>
+<td>TIMESTAMP</td>
+<td>Inicio</td>
+<td>Hora de inicio de la ingesta</td>
+<td>UTC</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fecha_fin</code></td>
+<td>TIMESTAMP</td>
+<td>Fin</td>
+<td>Hora de fin del bloque de carga</td>
+<td>UTC</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>fuente_archivo</code></td>
+<td>VARCHAR(100)</td>
+<td>Archivo</td>
+<td>Ruta S3 del archivo procesado</td>
+<td>Cadena</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tabla_destino</code></td>
+<td>VARCHAR(100)</td>
+<td>Tabla Destino</td>
+<td>Tabla Sandbox receptora</td>
+<td><code>sandbox_ine_defunciones</code>, etc.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>filas_insertadas</code></td>
+<td>INTEGER</td>
+<td>Filas</td>
+<td>Conteo exacto de registros insertados</td>
+<td>Entero positivo</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>estado</code></td>
+<td>VARCHAR(20)</td>
+<td>Estado</td>
+<td>Resultado de la operación</td>
+<td><code>EXITO</code>, <code>ERROR</code>, <code>OMITIDO</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>mensaje_error</code></td>
+<td>TEXT</td>
+<td>Error</td>
+<td>Traza técnica si el estado es <code>ERROR</code></td>
+<td>Texto o NULL</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td><code>script_version</code></td>
+<td>VARCHAR(20)</td>
+<td>Versión Script</td>
+<td>Versión del script Python que realizó la carga</td>
+<td>Semver (ej: <code>1.2.0</code>)</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
