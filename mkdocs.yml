@@ -1,0 +1,63 @@
+site_name: Plataforma Analítica de Mortalidad
+site_description: Documentación de gobernanza, linaje y ética — Seminario de Sistemas 2 | USAC 2026
+site_author: Grupo 3
+docs_dir: docs
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Inicio: index.md
+  - Procedencia:
+      - Catálogo de Fuentes: procedencia/index.md
+      - RENAP — Solicitud Formal: procedencia/renap.md
+  - Linaje de Datos:
+      - Arquitectura del Pipeline: lineage/index.md
+      - Diccionario de Tablas: lineage/tablas.md
+  - Ética y Gobernanza:
+      - Marco Ético: etica/index.md
+      - Plan de Anonimización: etica/anonimizacion.md
+
+plugins:
+  - search:
+      lang: es
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
