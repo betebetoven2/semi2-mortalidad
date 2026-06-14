@@ -8,12 +8,13 @@ Este plan define **qué** se transforma, **cómo** y **en qué capa**, garantiza
 
 | Capa | Schema | Contenido | Acceso |
 |---|---|---|---|
-| **SANDBOX** (Raw) | `sandbox` | Datos individuales crudos e inmutables. Metadatos de linaje por fila. | Solo ingeniería de datos |
+| **BRONZE** (Raw) | Databricks `bronze` | Datos crudos tal como vienen de S3. Sin transformación. | Solo ingeniería de datos |
+| **SANDBOX** (Normalizado) | PostgreSQL `sandbox` | Datos tipados y normalizados. Sin transformación destructiva. | Solo ingeniería de datos |
 | **SILVER** (Restringida) | `silver` | Edad en rangos OPS · CIE-10 a categoría (3 chars) · Etnia con k-anonimato (k≥5) · Municipio suprimido si k<5 | Investigadores autorizados |
 | **GOLD** (Pública) | `gold` | Solo nivel departamento/nacional · Causa a capítulo CIE-10 (1 char) · Sin etnia individual · Celdas <5 suprimidas | Público general / dashboards |
 
 ```
-SANDBOX ──[ETL Fase 2 / Vistas SQL]──► SILVER ──[Agregación]──► GOLD
+BRONZE ──[ETL Fase 2]──► SANDBOX ──[Vistas SQL]──► SILVER ──[Agregación]──► GOLD
 ```
 
 ---
@@ -98,8 +99,9 @@ La etnia es un dato protegido internacionalmente (Convenio 169 OIT). En municipi
 
 ```sql
 CASE
-    WHEN COUNT(*) OVER (PARTITION BY perdif, mupocu, anoocu) < 5
-    THEN NULL
+    WHEN COUNT(*) OVER (
+        PARTITION BY perdif, mupocu, anoocu
+    ) < 5 THEN NULL
     ELSE perdif
 END AS perdif_anon
 ```

@@ -24,7 +24,7 @@ Los datos del INE en la capa Sandbox contienen información individual sobre per
     Ningún registro fue eliminado durante la ingesta, incluso si contiene nulos o esquemas incompletos. Esta regla preserva la trazabilidad completa al dato original.
 
 !!! info "Acceso por capas"
-    El nivel de detalle disponible para cada usuario depende de la capa a la que tiene acceso. Ver [Plan de Anonimización](anonimizacion.md) para la arquitectura Sandbox → Silver → Gold.
+    El nivel de detalle disponible para cada usuario depende de la capa a la que tiene acceso. Ver [Plan de Anonimización](anonimizacion.md) para la arquitectura Bronze → Sandbox → Silver → Gold.
 
 ---
 
@@ -78,7 +78,7 @@ Los datos del INE en la capa Sandbox contienen información individual sobre per
 
 | Perfil | Capa Accesible | Justificación |
 |---|---|---|
-| **Ingeniero de datos** | Sandbox + Silver + Gold | Necesita acceso completo para ETL y depuración |
+| **Ingeniero de datos** | Bronze + Sandbox + Silver + Gold | Necesita acceso completo para ETL y depuración |
 | **Epidemiólogo / Investigador** | Silver + Gold | Requiere causa detallada; no necesita dato crudo individual |
 | **Analista de políticas públicas** | Gold | Solo necesita tendencias agregadas por departamento |
 | **Público general / Dashboard** | Gold (vistas curadas) | Solo cifras consolidadas, sin posibilidad de reidentificación |

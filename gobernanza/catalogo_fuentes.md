@@ -24,7 +24,7 @@ Este catálogo documenta las cuatro fuentes de datos heterogéneas que alimentan
 | **Tabla Databricks** | `bronze.xlsx_ine` |
 | **Formato** | Microsoft Excel (.xlsx) |
 | **Años cubiertos** | 2018, 2019, 2020, 2021, 2022, 2023, 2024 (7 archivos) |
-| **Volumen** | 674,064 registros (parte de los 921,208 totales de INE) |
+| **Volumen** | 674,064 registros (parte de los 919,231 totales de INE) |
 | **Método de acceso** | Descarga directa HTTP GET sin autenticación |
 | **Frecuencia de actualización** | Anual (publicación con rezago de ~12 meses) |
 | **Cobertura geográfica** | República de Guatemala, nivel municipio |
@@ -36,8 +36,8 @@ Este catálogo documenta las cuatro fuentes de datos heterogéneas que alimentan
 - **Rezago temporal:** La publicación anual implica que el año más reciente disponible puede tener hasta 12 meses de retraso respecto al año calendario corriente.
 - **Esquema variable por año:** Las columnas no son uniformes entre años. Se detectaron versiones con 25 y otras con 28 columnas. Se resolvió con un "Súper Esquema" de 30+ columnas y relleno de `NULL` donde la variable no existía.
 - **Subregistro:** El INE reconoce que no todos los fallecimientos llegan al registro civil, particularmente en áreas rurales e indígenas. Las cifras pueden subestimar la mortalidad real.
-- **Codificación de CIE-10:** Algunas causas de defunción (`caudef`) están codificadas de forma incompleta o con códigos no estándar, requiriendo limpieza en la capa analítica.
-- **Calidad del dato de ocupación (`ciuodif`):** Alta tasa de valores nulos o genéricos. No se recomienda para análisis socioeconómico sin tratamiento previo.
+- **Codificación de CIE-10:** Algunas causas de defunción (`Caudef`) están codificadas de forma incompleta o con códigos no estándar, requiriendo limpieza en la capa analítica.
+- **Calidad del dato de ocupación (`Ciuodif`):** Alta tasa de valores nulos o genéricos. No se recomienda para análisis socioeconómico sin tratamiento previo.
 
 ---
 
@@ -63,7 +63,7 @@ Este catálogo documenta las cuatro fuentes de datos heterogéneas que alimentan
 - **Barrera técnica de acceso:** El portal legacy está protegido por Radware Bot Manager (WAF). El acceso requiere simulación de navegador completo con Playwright, lo que hace la descarga frágil ante cambios en el portal INE.
 - **Formato propietario (SAV/SPSS):** Los archivos originales son binarios propietarios de IBM SPSS. La conversión a Parquet vía `pyreadstat` introduce una dependencia de software; cualquier bug en la librería puede afectar la fidelidad del dato.
 - **Metadatos del SAV no migrados:** Las etiquetas de valor y variable embebidas en el SAV de SPSS no se preservan automáticamente en Parquet; se depende del diccionario de Google Drive como fuente externa de decodificación.
-- **Incompatibilidad de esquema con serie 2018-2024:** Las columnas del período legacy pueden diferir en nombre o tipo con las versiones modernas, lo que exige lógica de homologación en la capa Silver/Gold.
+- **Incompatibilidad de esquema con serie 2018-2024:** Las columnas del período legacy pueden diferir en nombre o tipo con las versiones modernas, lo que exige lógica de homologación en la capa Silver/Gold. La diferencia principal es la presencia de la columna `Areag` únicamente en los archivos legacy.
 
 ---
 
@@ -88,7 +88,7 @@ Este catálogo documenta las cuatro fuentes de datos heterogéneas que alimentan
 ### Limitaciones y Advertencias
 
 - **Granularidad nacional únicamente:** La API del GHO provee datos a nivel país, no subnacional. No es posible cruzar con datos departamentales del INE sin metodología de desagregación adicional.
-- **Intervalos de confianza amplios:** Los valores `low_value` y `high_value` reflejan incertidumbre estadística significativa, especialmente en países con sistemas de registro civil débiles.
+- **Intervalos de confianza amplios:** Los valores `Low` y `High` reflejan incertidumbre estadística significativa, especialmente en países con sistemas de registro civil débiles.
 - **Latencia de actualización:** Los datos más recientes suelen tener 1–2 años de rezago respecto al año corriente. El año 2024 puede no estar disponible hasta 2025-2026.
 - **Dependencia de CDN (Azure):** La API usa Azure CDN (`azureedge.net`) como proxy. Interrupciones en este servicio afectan la ingesta aunque la fuente original de OMS esté disponible.
 - **Formato OData:** El campo de datos útiles está anidado bajo la clave `value` en el JSON de respuesta; los cambios en la especificación OData de la OMS podrían romper la ingesta.
@@ -109,14 +109,14 @@ Este catálogo documenta las cuatro fuentes de datos heterogéneas que alimentan
 | **Archivos generados** | 5 archivos JSON (1 por indicador) |
 | **Volumen** | 450 registros |
 | **Países** | GTM, CRI, HND, SLV, PAN, NIC (Centroamérica) |
-| **Indicadores** | Tasa bruta de mortalidad, mortalidad infantil, mortalidad materna, esperanza de vida, causas de muerte |
+| **Indicadores** | Tasa bruta de mortalidad, mortalidad infantil, causas de muerte por enfermedades transmisibles, no transmisibles y lesiones |
 | **Autenticación** | Ninguna (API pública) |
 | **Frecuencia de actualización** | Anual |
 | **Licencia** | Creative Commons CC BY 4.0 |
 
 ### Limitaciones y Advertencias
 
-- **Fuente alternativa:** Esta fuente reemplazó a CEPALSTAT (CEPAL), cuyo dominio `api.cepal.org` no fue resolvible durante la ejecución. El fallo quedó documentado en la tabla de auditoría (run_id 22, estado `FALLIDO`).
+- **Fuente alternativa:** Esta fuente reemplazó a CEPALSTAT (CEPAL), cuyo dominio `api.cepal.org` no fue resolvible durante la ejecución. El fallo quedó documentado en la tabla de auditoría `semi2.scraping_runs` (run_id 22, estado `FALLIDO`).
 - **Datos derivados y estimados:** Los indicadores del Banco Mundial son en su mayoría estimaciones calculadas a partir de registros nacionales y ajustes metodológicos propios, no cifras de registro directo. El campo `obs_status` indica si el dato es estimado, real o proyectado.
 - **Paginación de la API:** La respuesta JSON tiene estructura de array donde el índice 0 es metadata de paginación y el índice 1 son los datos. Cambios en esta estructura romperían la ingesta.
 - **Cobertura limitada para años recientes:** Los datos de 2023 y 2024 suelen ser estimaciones preliminares que el Banco Mundial revisa retroactivamente.
@@ -132,7 +132,6 @@ Este catálogo documenta las cuatro fuentes de datos heterogéneas que alimentan
 | **URL de origen** | Carpeta compartida de Google Drive, ID: `198lQfATsiCSEwJIaIlijq9N0vyVIdRq8` |
 | **Ruta S3** | `s3://mortalidad-gtm-2026/raw/gdrive/diccionario_defunciones_ine.xlsx` |
 | **Tabla Databricks** | `bronze.gdrive_docs` |
-| **Tabla Sandbox** | `sandbox.sandbox_gdrive_diccionario` |
 | **Formato** | Microsoft Excel (.xlsx) |
 | **Volumen** | 1,837 registros (pares variable-código-etiqueta) |
 | **Autenticación** | Ninguna (carpeta compartida públicamente vía URL de exportación) |
