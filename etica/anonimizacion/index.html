@@ -629,6 +629,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#marco-normativo-eu-data-act-y-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Marco Normativo — EU Data Act y GDPR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Marco Normativo — EU Data Act y GDPR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principios-del-data-act-aplicados-en-este-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principios del Data Act aplicados en este plan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#arquitectura-de-capas" class="md-nav__link">
     <span class="md-ellipsis">
       Arquitectura de Capas
@@ -710,6 +734,15 @@
   <a href="#tabla-de-decisiones-por-columna" class="md-nav__link">
     <span class="md-ellipsis">
       Tabla de Decisiones por Columna
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencia-normativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referencia normativa
     </span>
   </a>
   
@@ -758,6 +791,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#marco-normativo-eu-data-act-y-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Marco Normativo — EU Data Act y GDPR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Marco Normativo — EU Data Act y GDPR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principios-del-data-act-aplicados-en-este-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principios del Data Act aplicados en este plan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#arquitectura-de-capas" class="md-nav__link">
     <span class="md-ellipsis">
       Arquitectura de Capas
@@ -844,6 +901,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#referencia-normativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referencia normativa
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -861,6 +927,45 @@
 
 <h1 id="plan-de-anonimizacion-y-agregacion">Plan de Anonimización y Agregación<a class="headerlink" href="#plan-de-anonimizacion-y-agregacion" title="Permanent link">&para;</a></h1>
 <p>Este plan define <strong>qué</strong> se transforma, <strong>cómo</strong> y <strong>en qué capa</strong>, garantizando que los usuarios finales nunca accedan a datos individuales crudos.</p>
+<hr />
+<h2 id="marco-normativo-eu-data-act-y-gdpr">Marco Normativo — EU Data Act y GDPR<a class="headerlink" href="#marco-normativo-eu-data-act-y-gdpr" title="Permanent link">&para;</a></h2>
+<p>Este plan se fundamenta en el <strong>EU Data Act — Reglamento (UE) 2023/2854</strong> del Parlamento Europeo y del Consejo, de 13 de diciembre de 2023, sobre normas armonizadas para un acceso justo a los datos y su utilización. El Reglamento <strong>entró en vigor el 11 de enero de 2024</strong> y es <strong>aplicable desde el 12 de septiembre de 2025</strong>, y <strong>complementa al GDPR (Reglamento (UE) 2016/679)</strong> en lo relativo a la protección de datos personales.</p>
+<p>Aunque el proyecto se desarrolla en Guatemala, se adopta el EU Data Act como <strong>estándar de referencia internacional</strong> por ser el marco más exigente y actual en materia de gobernanza, compartición y reutilización de datos. El proyecto simula una consultoría de datos para el <strong>PNUD</strong> y el <strong>MSPAS</strong> —organismos del sector público con fines de interés público en salud—, escenario que encaja directamente en el supuesto de compartición <strong>B2G (<em>business-to-government</em>) por necesidad excepcional</strong> que regula el <strong>Capítulo V del Data Act</strong>, el cual cubre expresamente las <strong>emergencias de salud pública</strong> (p. ej. pandemias) y la <strong>producción de estadística oficial</strong>.</p>
+<h3 id="principios-del-data-act-aplicados-en-este-plan">Principios del Data Act aplicados en este plan<a class="headerlink" href="#principios-del-data-act-aplicados-en-este-plan" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Principio / Artículo del Data Act</th>
+<th>Cómo lo implementa nuestra arquitectura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Anonimización y agregación de datos personales</strong> (Art. 20(2) y considerandos sobre compartición B2G): cuando los datos puestos a disposición de un organismo público contienen datos personales, deben anonimizarse o agregarse.</td>
+<td>Capas <strong>Silver</strong> y <strong>Gold</strong>: generalización de edad y CIE-10, k-anonimato (k≥5) en municipio y etnia, y agregación a nivel departamento/nacional <strong>antes</strong> de cualquier acceso externo.</td>
+</tr>
+<tr>
+<td><strong>Minimización de datos y protección desde el diseño y por defecto</strong> (<em>data minimisation</em>, <em>data protection by design and by default</em>).</td>
+<td>Supresión de variables no analíticas (<code>diaocu</code>, <code>ciuodif</code>, <code>pnadif</code>, <code>mnadif</code>) y exposición del mínimo nivel de detalle necesario por perfil de usuario.</td>
+</tr>
+<tr>
+<td><strong>B2G — necesidad excepcional / interés público</strong> (Cap. V, Art. 15): emergencias de salud pública y estadística oficial.</td>
+<td>El análisis <strong>pre/post-COVID</strong> y la entrega a PNUD/MSPAS se tratan como compartición de interés público; el dato crudo permanece <strong>inmutable</strong> y solo se comparten vistas anonimizadas/agregadas.</td>
+</tr>
+<tr>
+<td><strong>Transmisión únicamente de datos no personales o anonimizados a terceros</strong> (considerandos del Art. 5).</td>
+<td>La capa <strong>Gold</strong> (pública / dashboards) no contiene ningún dato individual ni columna de etnia; solo cifras agregadas sin posibilidad de reidentificación.</td>
+</tr>
+<tr>
+<td><strong>Supleción del GDPR</strong>: el Data Act no sustituye al GDPR, sino que se aplica <strong>junto a él</strong>.</td>
+<td>Se mantienen como base el principio de proporcionalidad (GDPR art. 5) y la protección de datos étnicos (Convenio 169 OIT), descritos en el <a href="../">Marco Ético</a>.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Por qué el Data Act y no solo el GDPR</p>
+<p>El GDPR regula <em>cómo se protegen</em> los datos personales; el <strong>Data Act regula <em>cómo se comparten y reutilizan</em> los datos</strong> —incluido el flujo hacia organismos públicos—, exigiendo anonimización y agregación como <strong>condición</strong> de esa compartición. Por eso el Data Act es el instrumento que da fundamento directo a este plan de anonimización/agregación por capas.</p>
+</div>
 <hr />
 <h2 id="arquitectura-de-capas">Arquitectura de Capas<a class="headerlink" href="#arquitectura-de-capas" title="Permanent link">&para;</a></h2>
 <table>
@@ -901,6 +1006,10 @@
 </table>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>BRONZE ──[ETL Fase 2]──► SANDBOX ──[Vistas SQL]──► SILVER ──[Agregación]──► GOLD
 </code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Correspondencia con el Data Act</p>
+<p>Esta arquitectura por capas es la implementación técnica del mandato del Data Act: el dato personal individual nunca abandona Bronze/Sandbox; toda compartición (interna o B2G) ocurre sobre Silver/Gold, donde la anonimización y la agregación ya fueron aplicadas.</p>
+</div>
 <hr />
 <h2 id="tecnicas-aplicadas">Técnicas Aplicadas<a class="headerlink" href="#tecnicas-aplicadas" title="Permanent link">&para;</a></h2>
 <h3 id="tecnica-1-generalizacion-de-edad">Técnica 1 — Generalización de Edad<a class="headerlink" href="#tecnica-1-generalizacion-de-edad" title="Permanent link">&para;</a></h3>
@@ -988,7 +1097,7 @@
 </code></pre></div>
 <hr />
 <h3 id="tecnica-5-supresion-de-variables-no-analiticas">Técnica 5 — Supresión de Variables No Analíticas<a class="headerlink" href="#tecnica-5-supresion-de-variables-no-analiticas" title="Permanent link">&para;</a></h3>
-<p>Columnas que no aportan valor analítico significativo pero sí riesgo de reidentificación se eliminan desde Silver o Gold.</p>
+<p>Columnas que no aportan valor analítico significativo pero sí riesgo de reidentificación se eliminan desde Silver o Gold. Esta supresión materializa el principio de <strong>minimización de datos</strong> del Data Act y del GDPR.</p>
 <table>
 <thead>
 <tr>
@@ -1175,6 +1284,14 @@
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="referencia-normativa">Referencia normativa<a class="headerlink" href="#referencia-normativa" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Reglamento (UE) 2023/2854 (Data Act)</strong> — Parlamento Europeo y Consejo, 13 de diciembre de 2023. En vigor desde el 11/01/2024, aplicable desde el 12/09/2025. Capítulo V (compartición B2G por necesidad excepcional), Art. 15 y Art. 20(2) (costos de anonimización, pseudonimización y agregación).</li>
+<li><strong>Reglamento (UE) 2016/679 (GDPR)</strong> — principio de proporcionalidad y minimización (art. 5); protección de datos por diseño y por defecto (art. 25).</li>
+<li><strong>Convenio 169 OIT</strong> — protección de datos de pueblos indígenas (<code>perdif</code>, <code>puedif</code>).</li>
+<li><strong>OPS/OMS</strong> — estándares de rangos etarios y buenas prácticas en microdatos de mortalidad.</li>
+</ul>
 
 
 
