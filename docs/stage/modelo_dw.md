@@ -483,13 +483,75 @@ Actualizar estadísticas regularmente post-insert para optimizador de consultas.
 
 ---
 
+## 11. Extensión: Constelación de hechos — `dw_fact_indicador_pais_anio`
+
+El notebook `constelacion.ipynb` extiende el DW a un **modelo de constelación de hechos** (galaxy schema) añadiendo una segunda tabla de hechos independiente para benchmarking regional con indicadores de la OMS y el Banco Mundial.
+
+### Estructura
+
+```sql
+CREATE TABLE dw_fact_indicador_pais_anio (
+    anio              NUMBER(4,0),
+    pais_iso3         VARCHAR2(3),
+    fuente            VARCHAR2(20),
+    indicador_codigo  VARCHAR2(50),
+    indicador_nombre  VARCHAR2(200),
+    valor             NUMBER
+);
+```
+
+### Campos
+
+| Campo | Tipo | Descripción |
+|---|---|---|
+| `anio` | NUMBER(4,0) | Año del indicador |
+| `pais_iso3` | VARCHAR2(3) | Código ISO 3166-1 alfa-3 del país (ej. `GTM`, `CRI`, `HND`) |
+| `fuente` | VARCHAR2(20) | Origen del dato: `WHO_OMS` o `WORLDBANK` |
+| `indicador_codigo` | VARCHAR2(50) | Código del indicador (ej. `WHOSIS_000001` para OMS; `SP.DYN.CDRT.IN` para World Bank) |
+| `indicador_nombre` | VARCHAR2(200) | Descripción del indicador (disponible solo para World Bank; NULL para OMS) |
+| `valor` | NUMBER | Valor numérico del indicador |
+
+### Grano
+
+Un indicador específico (`indicador_codigo`) para un país (`pais_iso3`) en un año (`anio`). El grano es **indicador × país × año**.
+
+### Cardinalidad
+
+| Fuente | Filas |
+|---|---:|
+| WHO_OMS | 1,708 |
+| WORLDBANK | 450 |
+| **Total** | **2,158** |
+
+### Relación con el modelo estrella
+
+`dw_fact_indicador_pais_anio` **no tiene FK hacia `fact_defunciones` ni hacia las dimensiones del esquema estrella**. Es un hecho satélite independiente. La conexión analítica con las defunciones de Guatemala se realiza en la capa de consulta filtrando por `pais_iso3 = 'GTM'` y haciendo JOIN sobre `anio`.
+
+```
+fact_defunciones           ─────────────  Modelo Estrella (grano: defunción, Guatemala 2015–2024)
+fact_indicador_pais_anio   ─────────────  Hecho satélite (grano: indicador × país × año, Centroamérica)
+
+        │ ambas tablas forman la constelación de hechos (galaxy schema)
+        │ JOIN posible: anio ↔ anio  y  pais_iso3 = 'GTM' ↔ dim_geografia
+```
+
+### Tablas de Stage que la alimentan
+
+| Tabla Stage | Filas | Fuente Bronze |
+|---|---:|---|
+| `stage.oms_indicadores` | 1,708 | `bronze.json_oms` |
+| `stage.worldbank_indicadores` | 450 | `bronze.json_worldbank` |
+
+---
+
 ## Conclusión
 
-El modelo estrella presentado:
+El modelo presentado combina un **esquema estrella** (`fact_defunciones` + 7 dimensiones) con una **constelación de hechos** (`fact_indicador_pais_anio`) que habilita benchmarking regional:
 - **Habilita análisis multidimensional** sin necesidad de preaagregación
 - **Preserva flexibilidad:** nuevas preguntas sin rediseño
 - **Documenta decisiones:** cada dimensión tiene justificación en EDA
 - **Soporta anonimización:** diseñado compatible con k-anonimato
 - **Responde al encargo:** análisis pre/post-COVID con desagregación geográfica, étnica, por edad y causa
+- **Benchmarking regional:** indicadores OMS/World Bank para Centroamérica disponibles en `fact_indicador_pais_anio`
 
 Está listo para entrega en Databricks (nube) y PostgreSQL (réplica local).
