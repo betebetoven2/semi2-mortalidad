@@ -1312,6 +1312,75 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#11-extension-constelacion-de-hechos-dw_fact_indicador_pais_anio" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Extensión: Constelación de hechos — dw_fact_indicador_pais_anio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Extensión: Constelación de hechos — dw_fact_indicador_pais_anio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#campos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Campos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grano" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grano
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacion-con-el-modelo-estrella" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relación con el modelo estrella
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tablas-de-stage-que-la-alimentan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tablas de Stage que la alimentan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusión
@@ -2075,6 +2144,75 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#11-extension-constelacion-de-hechos-dw_fact_indicador_pais_anio" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Extensión: Constelación de hechos — dw_fact_indicador_pais_anio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Extensión: Constelación de hechos — dw_fact_indicador_pais_anio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#campos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Campos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grano" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grano
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacion-con-el-modelo-estrella" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relación con el modelo estrella
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tablas-de-stage-que-la-alimentan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tablas de Stage que la alimentan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       Conclusión
@@ -2695,13 +2833,124 @@ Disparidades en mortalidad observadas por pueblo pueden reflejar tanto realidad 
 <h3 id="estadisticas">Estadísticas<a class="headerlink" href="#estadisticas" title="Permanent link">&para;</a></h3>
 <p>Actualizar estadísticas regularmente post-insert para optimizador de consultas.</p>
 <hr />
+<h2 id="11-extension-constelacion-de-hechos-dw_fact_indicador_pais_anio">11. Extensión: Constelación de hechos — <code>dw_fact_indicador_pais_anio</code><a class="headerlink" href="#11-extension-constelacion-de-hechos-dw_fact_indicador_pais_anio" title="Permanent link">&para;</a></h2>
+<p>El notebook <code>constelacion.ipynb</code> extiende el DW a un <strong>modelo de constelación de hechos</strong> (galaxy schema) añadiendo una segunda tabla de hechos independiente para benchmarking regional con indicadores de la OMS y el Banco Mundial.</p>
+<h3 id="estructura_8">Estructura<a class="headerlink" href="#estructura_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dw_fact_indicador_pais_anio</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">anio</span><span class="w">              </span><span class="nb">NUMBER</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="n">pais_iso3</span><span class="w">         </span><span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="n">fuente</span><span class="w">            </span><span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="n">indicador_codigo</span><span class="w">  </span><span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="n">indicador_nombre</span><span class="w">  </span><span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="n">valor</span><span class="w">             </span><span class="nb">NUMBER</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="campos_1">Campos<a class="headerlink" href="#campos_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anio</code></td>
+<td>NUMBER(4,0)</td>
+<td>Año del indicador</td>
+</tr>
+<tr>
+<td><code>pais_iso3</code></td>
+<td>VARCHAR2(3)</td>
+<td>Código ISO 3166-1 alfa-3 del país (ej. <code>GTM</code>, <code>CRI</code>, <code>HND</code>)</td>
+</tr>
+<tr>
+<td><code>fuente</code></td>
+<td>VARCHAR2(20)</td>
+<td>Origen del dato: <code>WHO_OMS</code> o <code>WORLDBANK</code></td>
+</tr>
+<tr>
+<td><code>indicador_codigo</code></td>
+<td>VARCHAR2(50)</td>
+<td>Código del indicador (ej. <code>WHOSIS_000001</code> para OMS; <code>SP.DYN.CDRT.IN</code> para World Bank)</td>
+</tr>
+<tr>
+<td><code>indicador_nombre</code></td>
+<td>VARCHAR2(200)</td>
+<td>Descripción del indicador (disponible solo para World Bank; NULL para OMS)</td>
+</tr>
+<tr>
+<td><code>valor</code></td>
+<td>NUMBER</td>
+<td>Valor numérico del indicador</td>
+</tr>
+</tbody>
+</table>
+<h3 id="grano">Grano<a class="headerlink" href="#grano" title="Permanent link">&para;</a></h3>
+<p>Un indicador específico (<code>indicador_codigo</code>) para un país (<code>pais_iso3</code>) en un año (<code>anio</code>). El grano es <strong>indicador × país × año</strong>.</p>
+<h3 id="cardinalidad_7">Cardinalidad<a class="headerlink" href="#cardinalidad_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Fuente</th>
+<th style="text-align: right;">Filas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WHO_OMS</td>
+<td style="text-align: right;">1,708</td>
+</tr>
+<tr>
+<td>WORLDBANK</td>
+<td style="text-align: right;">450</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>2,158</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="relacion-con-el-modelo-estrella">Relación con el modelo estrella<a class="headerlink" href="#relacion-con-el-modelo-estrella" title="Permanent link">&para;</a></h3>
+<p><code>dw_fact_indicador_pais_anio</code> <strong>no tiene FK hacia <code>fact_defunciones</code> ni hacia las dimensiones del esquema estrella</strong>. Es un hecho satélite independiente. La conexión analítica con las defunciones de Guatemala se realiza en la capa de consulta filtrando por <code>pais_iso3 = 'GTM'</code> y haciendo JOIN sobre <code>anio</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>fact_defunciones           ─────────────  Modelo Estrella (grano: defunción, Guatemala 2015–2024)
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>fact_indicador_pais_anio   ─────────────  Hecho satélite (grano: indicador × país × año, Centroamérica)
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>        │ ambas tablas forman la constelación de hechos (galaxy schema)
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>        │ JOIN posible: anio ↔ anio  y  pais_iso3 = &#39;GTM&#39; ↔ dim_geografia
+</code></pre></div>
+<h3 id="tablas-de-stage-que-la-alimentan">Tablas de Stage que la alimentan<a class="headerlink" href="#tablas-de-stage-que-la-alimentan" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tabla Stage</th>
+<th style="text-align: right;">Filas</th>
+<th>Fuente Bronze</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stage.oms_indicadores</code></td>
+<td style="text-align: right;">1,708</td>
+<td><code>bronze.json_oms</code></td>
+</tr>
+<tr>
+<td><code>stage.worldbank_indicadores</code></td>
+<td style="text-align: right;">450</td>
+<td><code>bronze.json_worldbank</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>El modelo estrella presentado:
+<p>El modelo presentado combina un <strong>esquema estrella</strong> (<code>fact_defunciones</code> + 7 dimensiones) con una <strong>constelación de hechos</strong> (<code>fact_indicador_pais_anio</code>) que habilita benchmarking regional:
 - <strong>Habilita análisis multidimensional</strong> sin necesidad de preaagregación
 - <strong>Preserva flexibilidad:</strong> nuevas preguntas sin rediseño
 - <strong>Documenta decisiones:</strong> cada dimensión tiene justificación en EDA
 - <strong>Soporta anonimización:</strong> diseñado compatible con k-anonimato
-- <strong>Responde al encargo:</strong> análisis pre/post-COVID con desagregación geográfica, étnica, por edad y causa</p>
+- <strong>Responde al encargo:</strong> análisis pre/post-COVID con desagregación geográfica, étnica, por edad y causa
+- <strong>Benchmarking regional:</strong> indicadores OMS/World Bank para Centroamérica disponibles en <code>fact_indicador_pais_anio</code></p>
 <p>Está listo para entrega en Databricks (nube) y PostgreSQL (réplica local).</p>
 
 
