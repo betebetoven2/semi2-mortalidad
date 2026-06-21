@@ -547,36 +547,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vista-de-alto-nivel" class="md-nav__link">
+  <a href="#diagrama-de-despliegue" class="md-nav__link">
     <span class="md-ellipsis">
-      Vista de Alto Nivel
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#arquitectura-completa" class="md-nav__link">
-    <span class="md-ellipsis">
-      Arquitectura Completa
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#detalle-de-scripts-y-flujo-de-datos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Detalle de Scripts y Flujo de Datos
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#infraestructura-fisica" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infraestructura Física
+      Diagrama de Despliegue
     </span>
   </a>
   
@@ -921,36 +894,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vista-de-alto-nivel" class="md-nav__link">
+  <a href="#diagrama-de-despliegue" class="md-nav__link">
     <span class="md-ellipsis">
-      Vista de Alto Nivel
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#arquitectura-completa" class="md-nav__link">
-    <span class="md-ellipsis">
-      Arquitectura Completa
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#detalle-de-scripts-y-flujo-de-datos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Detalle de Scripts y Flujo de Datos
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#infraestructura-fisica" class="md-nav__link">
-    <span class="md-ellipsis">
-      Infraestructura Física
+      Diagrama de Despliegue
     </span>
   </a>
   
@@ -1018,24 +964,12 @@
 <h2 id="diagramas-del-pipeline">Diagramas del Pipeline<a class="headerlink" href="#diagramas-del-pipeline" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Diagrama editable</p>
-<p>El diagrama de arquitectura de 4 capas (fuente editable en Draw.io) está disponible en:
-<a class="md-button" href="https://drive.google.com/file/d/1krHaKEFT6kIuaiG1bwl5x-DGgsBc4ZcA/view">Ver diagrama de 4 capas en Drive</a></p>
+<p>El diagrama de despliegue completo (fuente editable en Draw.io) está disponible en:
+<a class="md-button" href="https://drive.google.com/file/d/1ZBLCwNPHmoYifQkdKYU534cK6Du8h2IO/view?usp=sharing">Ver diagrama de despliegue en Drive</a></p>
 </div>
-<h3 id="vista-de-alto-nivel">Vista de Alto Nivel<a class="headerlink" href="#vista-de-alto-nivel" title="Permanent link">&para;</a></h3>
-<p><img alt="Diagrama de alto nivel" src="../images/Diagrama-Alto-Nivel.svg" /></p>
-<p>Las fuentes públicas son consumidas por un orquestador siempre activo (<em>Always-On</em>) que distribuye los datos hacia almacenamiento local (NAS) y en nube (S3/Databricks).</p>
-<hr />
-<h3 id="arquitectura-completa">Arquitectura Completa<a class="headerlink" href="#arquitectura-completa" title="Permanent link">&para;</a></h3>
-<p><img alt="Diagrama de arquitectura" src="../images/Diagrama-Arquitectura.svg" /></p>
-<p>El nodo perimetral (Raspberry Pi 5, LAN) ejecuta los scrapers, audita cada operación en PostgreSQL, persiste los archivos raw en el NAS Samba y los transfiere a AWS S3, desde donde Databricks lee las tablas Delta.</p>
-<hr />
-<h3 id="detalle-de-scripts-y-flujo-de-datos">Detalle de Scripts y Flujo de Datos<a class="headerlink" href="#detalle-de-scripts-y-flujo-de-datos" title="Permanent link">&para;</a></h3>
-<p><img alt="Diagrama de desarrollo" src="../images/Diagrama-Desarrollo.svg" /></p>
-<p>Cada script de descarga (<code>download_*.py</code>) pasa por <code>scraper_base.py</code>, que registra la auditoría en PostgreSQL. Los archivos crudos van al NAS y de ahí a S3 <code>raw/</code>, para finalmente materializarse en tablas Delta en Databricks <code>bronze</code>.</p>
-<hr />
-<h3 id="infraestructura-fisica">Infraestructura Física<a class="headerlink" href="#infraestructura-fisica" title="Permanent link">&para;</a></h3>
-<p><img alt="Diagrama físico" src="../images/Diagrama-F%C3%ADsico.svg" /></p>
-<p>Red local <code>192.168.1.0/24</code>: Raspberry Pi 5 (<code>192.168.1.10</code>) con sesión tmux + Docker PostgreSQL; Lenovo Server NAS (<code>192.168.1.11</code>) montado por Samba. Conectividad hacia AWS S3 (<code>mortalidad-gtm-2026</code>, <code>us-east-1</code>) y Databricks Free Edition.</p>
+<h3 id="diagrama-de-despliegue">Diagrama de Despliegue<a class="headerlink" href="#diagrama-de-despliegue" title="Permanent link">&para;</a></h3>
+<p><img alt="Diagrama de despliegue" src="../images/Diagrama_Despliegue.drawio.svg" /></p>
+<p>El diagrama muestra la arquitectura de despliegue de extremo a extremo. Las fuentes públicas (INE, OMS, World Bank) son consumidas vía HTTPS por los scrapers Python (<code>scraper_base.py</code> + <code>download_*.py</code>) orquestados en la Raspberry Pi 5 (<code>192.168.1.10</code>, sesión tmux Always-On). La auditoría de cada operación de ingesta se registra en PostgreSQL (Docker, <code>sandbox</code> + <code>sandbox_log_carga</code>). Los archivos raw (<code>.xlsx</code>, <code>.sav</code>) se persisten en el NAS Lenovo (<code>192.168.1.11</code>, Samba/SMB); los archivos convertidos (<code>.parquet</code>) se transfieren a AWS S3 (<code>mortalidad-gtm-2026</code>, <code>us-east-1</code>) mediante boto3. Desde S3, Databricks Serverless lee los datos vía Delta/Auto Loader y ejecuta el Job <strong><code>Job-Bronze-to-DW</code></strong>, que orquesta cuatro notebooks en secuencia: creación de auditoría DW → ETL Bronze→Stage → ETL Stage→DW → constelación de indicadores internacionales (OMS/World Bank).</p>
 <hr />
 <h2 id="metadatos-de-linaje-inyectados-en-cada-fila">Metadatos de Linaje Inyectados en Cada Fila<a class="headerlink" href="#metadatos-de-linaje-inyectados-en-cada-fila" title="Permanent link">&para;</a></h2>
 <p>Cada registro en todas las tablas Sandbox contiene tres columnas de trazabilidad que el script de ingesta inyecta automáticamente:</p>

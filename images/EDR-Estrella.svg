@@ -1,5 +1,5 @@
 
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  width="1165" height="574">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  width="1247" height="501">
 <defs id="dmw_defs" >
 <svg id="fk_sym" viewBox="0 0 48.665 48.665" style="enable-background:new 0 0 48.665 48.665;" >
 <g>
@@ -22,69 +22,72 @@
 <path fill="black" d="M660.224 422.656c6.976 16.192-0.512 35.008-16.768 42.048-16.128 6.976-34.944-0.448-41.984-16.768-8.448-19.776-20.736-37.696-36.224-53.248-64.64-64.64-177.344-64.64-241.92 0l-145.216 145.28c-66.688 66.688-66.688 175.232 0 241.984 66.688 66.688 175.104 66.752 241.92 0l92.8-92.864c12.48-12.48 32.768-12.48 45.248 0s12.48 32.768 0 45.248l-92.8 92.864c-91.648 91.648-240.832 91.52-332.416 0-91.712-91.648-91.712-240.832 0-332.48l145.216-145.28c44.352-44.416 103.424-68.864 166.272-68.864s121.792 24.448 166.208 68.864c21.248 21.312 38.016 45.952 49.664 73.216zM891.136 401.344l-145.216 145.216c-88.768 88.832-243.712 88.832-332.416 0-21.312-21.312-38.080-45.952-49.728-73.216-7.040-16.256 0.448-35.072 16.704-42.048 16.064-6.784 35.008 0.512 41.984 16.768 8.512 19.776 20.8 37.696 36.288 53.248 64.64 64.64 177.344 64.64 241.92 0l145.216-145.216c66.688-66.688 66.688-175.232 0-241.984-66.752-66.624-175.168-66.688-241.92 0l-92.8 92.864c-12.48 12.48-32.768 12.48-45.248 0s-12.48-32.768 0-45.248l92.8-92.864c45.824-45.824 105.984-68.736 166.208-68.736s120.448 22.912 166.272 68.736c91.584 91.648 91.584 240.768-0.064 332.48z" />
 </g>
 </svg>
-<clipPath clipPathUnits="userSpaceOnUse" id="clipPath3_0_">
-<rect x="0" y="0" width="249" height="112" />
-</clipPath>
 <clipPath clipPathUnits="userSpaceOnUse" id="clipPath6_0_">
-<rect x="0" y="0" width="218" height="91" />
+<rect x="0" y="0" width="184" height="74" />
 </clipPath>
-<clipPath clipPathUnits="userSpaceOnUse" id="clipPath7_0_">
-<rect x="0" y="0" width="183" height="116" />
-</clipPath>
-<clipPath clipPathUnits="userSpaceOnUse" id="clipPath2_0_">
-<rect x="0" y="0" width="195" height="102" />
-</clipPath>
-<clipPath clipPathUnits="userSpaceOnUse" id="clipPath8_0_">
-<rect x="0" y="0" width="300" height="345" />
-</clipPath>
-<clipPath clipPathUnits="userSpaceOnUse" id="clipPath5_0_">
-<rect x="0" y="0" width="242" height="110" />
+<clipPath clipPathUnits="userSpaceOnUse" id="clipPath9_0_">
+<rect x="0" y="0" width="216" height="256" />
 </clipPath>
 <clipPath clipPathUnits="userSpaceOnUse" id="clipPath4_0_">
 <rect x="0" y="0" width="218" height="102" />
 </clipPath>
+<clipPath clipPathUnits="userSpaceOnUse" id="clipPath7_0_">
+<rect x="0" y="0" width="183" height="116" />
+</clipPath>
+<clipPath clipPathUnits="userSpaceOnUse" id="clipPath8_0_">
+<rect x="0" y="0" width="225" height="110" />
+</clipPath>
+<clipPath clipPathUnits="userSpaceOnUse" id="clipPath3_0_">
+<rect x="0" y="0" width="219" height="74" />
+</clipPath>
 <clipPath clipPathUnits="userSpaceOnUse" id="clipPath1_0_">
 <rect x="0" y="0" width="213" height="116" />
 </clipPath>
+<clipPath clipPathUnits="userSpaceOnUse" id="clipPath2_0_">
+<rect x="0" y="0" width="195" height="102" />
+</clipPath>
+<clipPath clipPathUnits="userSpaceOnUse" id="clipPath5_0_">
+<rect x="0" y="0" width="196" height="74" />
+</clipPath>
 </defs>
 <g stroke-linecap="butt" >
-<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M923 123 L730 123" />
-<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="923 123 917 126 917 120" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
-<path stroke-dasharray="none" d="M730.0 117.0 L742.0 123.0 L730.0 129.0 M742.5999994277954 117.0 L742.5999994277954 129.0" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
+<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M802 176 L663 176" />
+<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="802 176 796 179 796 173" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
+<path stroke-dasharray="none" d="M663.0 170.0 L675.0 176.0 L663.0 182.0 M675.5999994277954 170.0 L675.5999994277954 182.0" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
 </g>
 <g stroke-linecap="butt" >
-<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M906 442 L730 336" />
-<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="906 442 900 441 902 437" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
-<path stroke-dasharray="none" d="M733.0 331.0 L740.0 342.0 L727.0 341.0 M743.5 337.2999997138977 L737.5 347.2999997138977" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
+<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M244 178 L447 178" />
+<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="244 178 250 175 250 181" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
+<path stroke-dasharray="none" d="M447.0 184.0 L435.0 178.0 L447.0 172.0 M434.4000005722046 184.0 L434.4000005722046 172.0" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
 </g>
 <g stroke-linecap="butt" >
-<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M346 446 L430 374" />
-<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="346 446 349 441 351 445" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
-<path stroke-dasharray="none" d="M433.0 378.0 L422.0 380.0 L427.0 370.0 M424.6000003814697 384.2999997138977 L418.6000003814697 376.2999997138977" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
+<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M815 57 L663 57" />
+<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="815 57 809 60 809 54" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
+<path stroke-dasharray="none" d="M663.0 51.0 L675.0 57.0 L663.0 63.0 M675.5999994277954 51.0 L675.5999994277954 63.0" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
 </g>
 <g stroke-linecap="butt" >
-<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M900 269 L730 269" />
-<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="900 269 894 272 894 266" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
-<path stroke-dasharray="none" d="M730.0 263.0 L742.0 269.0 L730.0 275.0 M742.5999994277954 263.0 L742.5999994277954 275.0" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
+<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M245 352 L447 204" />
+<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="245 352 248 347 250 351" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
+<path stroke-dasharray="none" d="M450.0 208.0 L439.0 210.0 L444.0 200.0 M441.6000003814697 214.2999997138977 L435.6000003814697 206.2999997138977" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
 </g>
 <g stroke-linecap="butt" >
-<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M316 100 L430 100" />
-<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="316 100 322 97 322 103" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
-<path stroke-dasharray="none" d="M430.0 106.0 L418.0 100.0 L430.0 94.0 M417.4000005722046 106.0 L417.4000005722046 94.0" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
+<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M545 385 L545 277" />
+<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="545 385 542 379 548 379" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
+<path stroke-dasharray="none" d="M551.0 277.0 L545.0 289.0 L539.0 277.0 M551.0 289.5999994277954 L539.0 289.5999994277954" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
 </g>
 <g stroke-linecap="butt" >
-<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M582 472 L582 419" />
-<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="582 472 579 466 585 466" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
-<path stroke-dasharray="none" d="M588.0 419.0 L582.0 431.0 L576.0 419.0 M588.0 431.5999994277954 L576.0 431.5999994277954" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
+<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M819 395 L663 249" />
+<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="819 395 813 393 817 389" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
+<path stroke-dasharray="none" d="M667.0 245.0 L671.0 257.0 L659.0 253.0 M675.3999996185303 253.39999961853027 L667.3999996185303 261.3999996185303" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
 </g>
 <g stroke-linecap="butt" >
-<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M219 241 L430 241" />
-<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="219 241 225 238 225 244" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
-<path stroke-dasharray="none" d="M430.0 247.0 L418.0 241.0 L430.0 235.0 M417.4000005722046 247.0 L417.4000005722046 235.0" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
+<path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" d="M274 68 L447 68" />
+<polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="274 68 280 65 280 71" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
+<path stroke-dasharray="none" d="M447.0 74.0 L435.0 68.0 L447.0 62.0 M434.4000005722046 74.0 L434.4000005722046 62.0" fill="white" stroke-width="1" stroke-opacity="1.0" stroke="rgb(0,0,0)" />
 </g>
-<g  fill="rgb(231,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath1_0_)" transform="translate(172,446)" >
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath1_0_)" transform="translate(430,385)" >
 <rect x="0" y="0" width="212" height="115" />
-<text id="F2AF90F3-DD3D8CA4CA7F" x="63" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+<text id="C6FE2715-7E7C172277F6" x="63" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 dim_causa_cie10
 </text>
 <line x1="0" y1="18" x2="211" y2="18" fill="none" stroke="rgb(0,0,255)"/>
@@ -142,9 +145,9 @@ NUMBER
 pk_dim_causa (id_causa)
 </text>
 </g>
-<g  fill="rgb(231,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath2_0_)" transform="translate(485,472)" >
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath2_0_)" transform="translate(777,395)" >
 <rect x="0" y="0" width="194" height="101" />
-<text id="66F10B69-FBBBE9952F59" x="62" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+<text id="DE943C06-9C2DBD0770F7" x="62" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 dim_geografia
 </text>
 <line x1="0" y1="18" x2="193" y2="18" fill="none" stroke="rgb(0,0,255)"/>
@@ -193,12 +196,12 @@ VARCHAR2 (20)
 pk_dim_geografia (id_geografia)
 </text>
 </g>
-<g  fill="rgb(231,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath3_0_)" transform="translate(900,213)" >
-<rect x="0" y="0" width="248" height="111" />
-<text id="1ED5EEF7-5E972DF9BE49" x="81" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath3_0_)" transform="translate(55,31)" >
+<rect x="0" y="0" width="218" height="73" />
+<text id="B737789F-B9723E449FC6" x="66" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 dim_grupo_etario
 </text>
-<line x1="0" y1="18" x2="247" y2="18" fill="none" stroke="rgb(0,0,255)"/>
+<line x1="0" y1="18" x2="217" y2="18" fill="none" stroke="rgb(0,0,255)"/>
 <text x="16" y="32" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 *
 </text>
@@ -220,15 +223,15 @@ grupo_edad
 <text x="121" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 VARCHAR2 (20)
 </text>
-<line x1="0" y1="52" x2="247" y2="52" fill="none" stroke="rgb(0,0,255)"/>
+<line x1="0" y1="52" x2="217" y2="52" fill="none" stroke="rgb(0,0,255)"/>
 <use xlink:href="#pk_sym" x="4" y="59" width="8" height="8" fill-opacity="1.0"/>
 <text x="16" y="66" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 pk_dim_grupo_etario (id_grupo_etario)
 </text>
 </g>
-<g  fill="rgb(231,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath4_0_)" transform="translate(883,442)" >
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath4_0_)" transform="translate(802,125)" >
 <rect x="0" y="0" width="217" height="101" />
-<text id="93CF1E04-AAA4C9791A7E" x="84" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+<text id="18A516A7-8A01DBA81A5C" x="84" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 dim_lugar
 </text>
 <line x1="0" y1="18" x2="216" y2="18" fill="none" stroke="rgb(0,0,255)"/>
@@ -277,12 +280,12 @@ VARCHAR2 (5)
 pk_dim_lugar (id_lugar)
 </text>
 </g>
-<g  fill="rgb(231,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath5_0_)" transform="translate(923,63)" >
-<rect x="0" y="0" width="241" height="109" />
-<text id="83F9BA81-6A37B13D3FB4" x="92" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath5_0_)" transform="translate(815,20)" >
+<rect x="0" y="0" width="195" height="73" />
+<text id="FD115B65-AD763EEB9431" x="69" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 dim_pueblo
 </text>
-<line x1="0" y1="18" x2="240" y2="18" fill="none" stroke="rgb(0,0,255)"/>
+<line x1="0" y1="18" x2="194" y2="18" fill="none" stroke="rgb(0,0,255)"/>
 <text x="16" y="32" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 *
 </text>
@@ -304,18 +307,18 @@ pueblo_desc
 <text x="107" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 VARCHAR2 (20)
 </text>
-<line x1="0" y1="52" x2="240" y2="52" fill="none" stroke="rgb(0,0,255)"/>
+<line x1="0" y1="52" x2="194" y2="52" fill="none" stroke="rgb(0,0,255)"/>
 <use xlink:href="#pk_sym" x="4" y="59" width="8" height="8" fill-opacity="1.0"/>
 <text x="16" y="66" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 pk_dim_pueblo (id_pueblo)
 </text>
 </g>
-<g  fill="rgb(231,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath6_0_)" transform="translate(98,36)" >
-<rect x="0" y="0" width="217" height="90" />
-<text id="5D479048-66B9B459C061" x="85" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath6_0_)" transform="translate(60,141)" >
+<rect x="0" y="0" width="183" height="73" />
+<text id="06E6E582-D5B47B2A5DC3" x="68" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 dim_sexo
 </text>
-<line x1="0" y1="18" x2="216" y2="18" fill="none" stroke="rgb(0,0,255)"/>
+<line x1="0" y1="18" x2="182" y2="18" fill="none" stroke="rgb(0,0,255)"/>
 <text x="16" y="32" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 *
 </text>
@@ -337,15 +340,15 @@ sexo_desc
 <text x="95" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 VARCHAR2 (15)
 </text>
-<line x1="0" y1="52" x2="216" y2="52" fill="none" stroke="rgb(0,0,255)"/>
+<line x1="0" y1="52" x2="182" y2="52" fill="none" stroke="rgb(0,0,255)"/>
 <use xlink:href="#pk_sym" x="4" y="59" width="8" height="8" fill-opacity="1.0"/>
 <text x="16" y="66" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 pk_dim_sexo (id_sexo)
 </text>
 </g>
-<g  fill="rgb(231,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath7_0_)" transform="translate(36,183)" >
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath7_0_)" transform="translate(66,352)" >
 <rect x="0" y="0" width="182" height="115" />
-<text id="628FDBF7-8494485AFDBF" x="63" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+<text id="4FB17B5C-9988F94B0F35" x="63" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 dim_tiempo
 </text>
 <line x1="0" y1="18" x2="181" y2="18" fill="none" stroke="rgb(0,0,255)"/>
@@ -403,12 +406,73 @@ VARCHAR2 (10)
 pk_dim_tiempo (id_tiempo)
 </text>
 </g>
-<g  fill="rgb(231,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath8_0_)" transform="translate(430,74)" >
-<rect x="0" y="0" width="299" height="344" />
-<text id="72AFA781-E7EFE95AFB56" x="108" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath8_0_)" transform="translate(1022,271)" >
+<rect x="0" y="0" width="224" height="109" />
+<text id="57193AD6-2C8C0547AAC3" x="40" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
+dw_fact_indicador_pais_anio
+</text>
+<line x1="0" y1="18" x2="223" y2="18" fill="none" stroke="rgb(0,0,255)"/>
+<text x="16" y="32" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="32" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+anio
+</text>
+<text x="130" y="32" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+NUMBER (4)
+</text>
+<text x="16" y="46" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="46" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+pais_iso3
+</text>
+<text x="130" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+VARCHAR2 (3)
+</text>
+<text x="16" y="60" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="60" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+fuente
+</text>
+<text x="130" y="60" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+VARCHAR2 (20)
+</text>
+<text x="16" y="74" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="74" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+indicador_codigo
+</text>
+<text x="130" y="74" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+VARCHAR2 (50)
+</text>
+<text x="16" y="88" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="88" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+indicador_nombre
+</text>
+<text x="130" y="88" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+VARCHAR2 (200)
+</text>
+<text x="16" y="102" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="102" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+valor
+</text>
+<text x="130" y="102" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+NUMBER
+</text>
+</g>
+<g  fill="rgb(230,230,230)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath9_0_)" transform="translate(447,21)" >
+<rect x="0" y="0" width="215" height="255" />
+<text id="092CB233-E4C5DA71A1AC" x="66" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 fact_defunciones
 </text>
-<line x1="0" y1="18" x2="298" y2="18" fill="none" stroke="rgb(0,0,255)"/>
+<line x1="0" y1="18" x2="214" y2="18" fill="none" stroke="rgb(0,0,255)"/>
 <text x="16" y="32" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 *
 </text>
@@ -511,32 +575,32 @@ cantidad
 <text x="121" y="144" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 INTEGER
 </text>
-<line x1="0" y1="150" x2="298" y2="150" fill="none" stroke="rgb(0,0,255)"/>
-<use xlink:href="#fk_sym" x="4" y="157" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#F2AF90F3-DD3D8CA4CA7F" >
+<line x1="0" y1="150" x2="214" y2="150" fill="none" stroke="rgb(0,0,255)"/>
+<use xlink:href="#fk_sym" x="4" y="157" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#C6FE2715-7E7C172277F6" >
 <text x="16" y="164" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 fk_fact_causa (id_causa)
 </text></a>
-<use xlink:href="#fk_sym" x="4" y="171" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#66F10B69-FBBBE9952F59" >
+<use xlink:href="#fk_sym" x="4" y="171" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#DE943C06-9C2DBD0770F7" >
 <text x="16" y="178" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 fk_fact_geografia (id_geografia)
 </text></a>
-<use xlink:href="#fk_sym" x="4" y="185" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#1ED5EEF7-5E972DF9BE49" >
+<use xlink:href="#fk_sym" x="4" y="185" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#B737789F-B9723E449FC6" >
 <text x="16" y="192" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 fk_fact_grupo_etario (id_grupo_etario)
 </text></a>
-<use xlink:href="#fk_sym" x="4" y="199" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#93CF1E04-AAA4C9791A7E" >
+<use xlink:href="#fk_sym" x="4" y="199" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#18A516A7-8A01DBA81A5C" >
 <text x="16" y="206" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 fk_fact_lugar (id_lugar)
 </text></a>
-<use xlink:href="#fk_sym" x="4" y="213" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#83F9BA81-6A37B13D3FB4" >
+<use xlink:href="#fk_sym" x="4" y="213" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#FD115B65-AD763EEB9431" >
 <text x="16" y="220" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 fk_fact_pueblo (id_pueblo)
 </text></a>
-<use xlink:href="#fk_sym" x="4" y="227" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#5D479048-66B9B459C061" >
+<use xlink:href="#fk_sym" x="4" y="227" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#06E6E582-D5B47B2A5DC3" >
 <text x="16" y="234" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 fk_fact_sexo (id_sexo)
 </text></a>
-<use xlink:href="#fk_sym" x="4" y="241" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#628FDBF7-8494485AFDBF" >
+<use xlink:href="#fk_sym" x="4" y="241" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#4FB17B5C-9988F94B0F35" >
 <text x="16" y="248" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 fk_fact_tiempo (id_tiempo)
 </text></a>
