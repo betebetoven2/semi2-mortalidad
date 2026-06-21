@@ -114,3 +114,12 @@ CREATE TABLE fact_defunciones (
     CONSTRAINT fk_fact_lugar
         FOREIGN KEY (id_lugar)        REFERENCES dim_lugar (id_lugar)
 );
+
+CREATE TABLE dw_fact_indicador_pais_anio (
+    anio              NUMBER(4,0),
+    pais_iso3         VARCHAR2(3),
+    fuente            VARCHAR2(20),
+    indicador_codigo  VARCHAR2(50),
+    indicador_nombre  VARCHAR2(200),
+    valor             NUMBER
+);

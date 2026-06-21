@@ -3,7 +3,8 @@
 > **Proyecto:** Plataforma Analítica de Mortalidad End-to-End — PNUD / MSPAS
 > **Fase 2:** Transformación, arquitectura por capas y almacenamiento
 > **Plataforma:** Databricks (Lakehouse, Serverless) · Modelo dimensional en Oracle SQL Developer Data Modeler
-> **Alcance de este documento:** tramo **Bronze → Stage → DW (modelo estrella)** y la generación del ERD. No cubre ML ni BI (Fase 3).
+> **Carpeta de entregables:** `scrips-stage-DW-workflows/`
+> **Alcance de este documento:** tramo **Bronze → Stage → DW (modelo estrella + constelación)** y la generación del ERD. No cubre ML ni BI (Fase 3).
 
 Este README es la **guía maestra** para reproducir y documentar el proceso ETL. Está dirigido a quien continúe la documentación formal del proyecto: contiene el contexto, las decisiones de diseño con su justificación, los pasos exactos de ejecución y los resultados esperados para validar cada etapa.
 
@@ -14,15 +15,18 @@ Este README es la **guía maestra** para reproducir y documentar el proceso ETL.
 El pipeline toma microdatos crudos de defunciones del INE Guatemala (2015–2024) y los lleva, por capas, hasta un modelo dimensional analítico:
 
 ```
-Bronze (crudo, Delta)  →  Stage (conformado, limpio)  →  DW (modelo estrella)  →  ERD (Data Modeler)
-   [ya existía]              etl_bronze_to_stage           etl_stage_to_dw         dw_modelo_estrella.sql
+Bronze (crudo, Delta)  →  Stage (conformado, limpio)  →  DW (estrella + constelación)  →  ERD (Data Modeler)
+   [ya existía]              2-etl_bronze_to_stage         3-etl_stage_to_dw              dw_modelo_estrella.sql
+                             4-constelacion (Stage)        4-constelacion (fact_indicador)
+                             1-creacion_auditoria ─────────────────────────────────────► dw.etl_control_log
 ```
 
 | Capa | Qué contiene | Quién la crea |
 |---|---|---|
 | **Bronze** | Datos crudos sin validar, todas las columnas como `string`. Origen S3 vía Delta. | Fase 1 (ya existe) |
-| **Stage** | Una tabla `stage.defunciones` limpia, tipada, estandarizada (919,231 filas). | `etl_bronze_to_stage.ipynb` |
-| **DW** | Esquema estrella: 1 tabla de hechos + 7 dimensiones. | `etl_stage_to_dw.ipynb` |
+| **Stage** | `stage.defunciones` (919,231 filas, limpia/tipada) + `stage.oms_indicadores` + `stage.worldbank_indicadores` + `stage.dim_diccionario`. | `2-etl_bronze_to_stage.ipynb`, `4-constelacion.ipynb` |
+| **DW** | Estrella: `fact_defunciones` + 7 dimensiones. Constelación: `fact_indicador_pais_anio`. Log de control: `dw.etl_control_log`. | `3-etl_stage_to_dw.ipynb`, `4-constelacion.ipynb` |
+| **Auditoría DW** | `dw.etl_control_log`: registro de cada ejecución (notebook, fechas, filas, estado). | `1-creacion_auditoria.ipynb` |
 | **ERD** | Diagrama entidad-relación del modelo estrella. | `dw_modelo_estrella.sql` + Data Modeler |
 
 **Marco metodológico:** arquitectura *medallion* (Bronze→Silver→Gold), CRISP-DM (*Data Understanding* → *Data Preparation*), modelado dimensional de Kimball, y las 6 dimensiones de calidad de datos (Completitud, Unicidad, Validez, Consistencia, Exactitud, Vigencia).
@@ -33,12 +37,15 @@ Bronze (crudo, Delta)  →  Stage (conformado, limpio)  →  DW (modelo estrella
 
 ## 2. Estructura de archivos del entregable
 
+Los notebooks están numerados según su orden de ejecución dentro del Job `Job-Bronze-to-DW` en Databricks.
+
 | Archivo | Tipo | Descripción |
 |---|---|---|
-| `etl_bronze_to_stage.ipynb` | Notebook Databricks | ETL de limpieza y conformación. Produce `stage.defunciones`. |
-| `etl_stage_to_dw.ipynb` | Notebook Databricks | ETL dimensional. Produce las 8 tablas `dw.*`. |
-| `consultas_prueba_dw.ipynb` | Notebook Databricks | 7 consultas analíticas de validación del DW. |
-| `dw_modelo_estrella.sql` | DDL SQL | Definición del modelo estrella con PK/FK, para importar en Data Modeler. |
+| `1-creacion_auditoria.ipynb` | Notebook Databricks | Crea la tabla `dw.etl_control_log` para trazabilidad de ejecuciones. Correr **una sola vez**. |
+| `2-etl_bronze_to_stage.ipynb` | Notebook Databricks | ETL de limpieza y conformación. Produce `stage.defunciones` (919,231 filas). |
+| `3-etl_stage_to_dw.ipynb` | Notebook Databricks | ETL dimensional. Produce las 8 tablas del esquema estrella (`dw.*`). |
+| `4-constelacion.ipynb` | Notebook Databricks | Constelación de hechos: produce `stage.oms_indicadores`, `stage.worldbank_indicadores`, `stage.dim_diccionario` y `dw.fact_indicador_pais_anio`. |
+| `dw_modelo_estrella.sql` | DDL SQL | Definición del modelo estrella con PK/FK, para importar en Data Modeler y generar el ERD. |
 | `reporte_bronze_a_stage_v2_fase2.md` | Reporte EDA | Perfilamiento de Bronze y justificación de cada regla de limpieza. **Fuente de verdad de las decisiones.** |
 | `README.md` | Este archivo | Guía maestra de reproducción y documentación. |
 
@@ -163,6 +170,29 @@ Grano del hecho: **una defunción**. Una tabla de hechos central rodeada de 7 di
 - Las FKs demográficas usan `COALESCE(..., 9)` para apuntar a filas "Ignorado"/"No especificado" en lugar de quedar huérfanas.
 - `periodo` se conserva como *degenerate dimension* en el hecho.
 
+### 6.1 Constelación de hechos: indicadores internacionales (`4-constelacion.ipynb`)
+
+El notebook `4-constelacion.ipynb` extiende el DW a un **modelo de constelación de hechos** (galaxy schema) añadiendo una segunda tabla de hechos independiente para benchmarking regional con fuentes OMS y World Bank.
+
+```
+fact_defunciones (grano: una defunción, Guatemala 2015–2024)
+fact_indicador_pais_anio (grano: indicador × país × año, Centroamérica)
+         ↑ tablas de hechos independientes, sin FK entre ellas
+```
+
+**Tablas producidas:**
+
+| Tabla | Filas | Fuente | Descripción |
+|---|---:|---|---|
+| `stage.oms_indicadores` | 1,708 | `bronze.json_oms` | Indicadores OMS/GHO limpios: `anio`, `valor`, `SpatialDim`, `IndicatorCode`. |
+| `stage.worldbank_indicadores` | 450 | `bronze.json_worldbank` | Indicadores Banco Mundial: `anio`, `valor`, `pais_iso3`, `indicador_id`, `indicador_desc`. |
+| `stage.dim_diccionario` | 1,836 | `bronze.gdrive_docs` | Diccionario de variables INE: `variable`, `codigo`, `etiqueta`. Construido con `Window.last()` para propagación de variable. |
+| `dw.fact_indicador_pais_anio` | 2,158 | OMS + World Bank | Unión `UNION ALL` de los dos conjuntos; columna `fuente` identifica el origen. |
+
+**Grano de `fact_indicador_pais_anio`:** un indicador específico (`indicador_codigo`) para un país ISO-3 (`pais_iso3`) en un año (`anio`). No tiene FK a `fact_defunciones`; es un hecho satélite para análisis comparativo regional.
+
+**Nota:** cada ejecución del notebook registra su resultado en `dw.etl_control_log` con el campo `nota`: *"Fact constellation independiente, grano pais-anio, sin FK a fact_defunciones"*.
+
 ---
 
 ## 7. Cómo reproducir el proceso (paso a paso)
@@ -191,18 +221,21 @@ spark.sql("SHOW SCHEMAS IN workspace").show()   # debe listar: bronze, default, 
 
 ### 7.3 Orden de ejecución
 
-1. **Importar** los notebooks en Workspace (no en Catalog): `Workspace → Import`.
+Los notebooks están numerados según el orden del Job `Job-Bronze-to-DW` en Databricks. Para ejecución manual, seguir el mismo orden:
+
+1. **Importar** los 4 notebooks en Workspace (no en Catalog): `Workspace → Import`.
 2. **Conectar** cada notebook al compute Serverless (círculo verde).
-3. Ejecutar **`etl_bronze_to_stage.ipynb`** celda por celda, en orden. Revisar el checklist final.
-4. Solo si el checklist pasa, ejecutar **`etl_stage_to_dw.ipynb`**. Revisar la integridad referencial.
-5. (Opcional) Ejecutar **`consultas_prueba_dw.ipynb`** para validar analíticamente.
-6. Importar **`dw_modelo_estrella.sql`** en Oracle Data Modeler para el ERD (§8).
+3. Ejecutar **`1-creacion_auditoria.ipynb`** una sola vez. Crea la tabla `dw.etl_control_log`. Si ya existe, el `CREATE TABLE IF NOT EXISTS` no hace nada.
+4. Ejecutar **`2-etl_bronze_to_stage.ipynb`** celda por celda, en orden. Revisar el checklist final (§7.4).
+5. Solo si el checklist pasa, ejecutar **`3-etl_stage_to_dw.ipynb`**. Revisar la integridad referencial (§7.4).
+6. Ejecutar **`4-constelacion.ipynb`**. Produce las tablas de Stage y la fact constellation. Puede correr en paralelo con el paso 5 (no tiene dependencia sobre `stage.defunciones`).
+7. Importar **`dw_modelo_estrella.sql`** en Oracle Data Modeler para el ERD (§8).
 
 > **Nota sobre Spark "perezoso":** las transformaciones no se ejecutan hasta que una acción (`.count()`, `.show()`, `saveAsTable`) las fuerza. Por eso un error de una celda puede aparecer en una celda posterior. Si algo falla, revisar la celda donde se *definió* la operación, no solo donde estalló.
 
 ### 7.4 Resultados esperados (criterios de aceptación)
 
-**Checklist de `etl_bronze_to_stage`:**
+**Checklist de `2-etl_bronze_to_stage`:**
 ```
 [1] filas totales: 919,231          (esperado ~919,231)
 [2] dominio sexo: [1, 2]            (esperado [1, 2])
@@ -212,12 +245,21 @@ spark.sql("SHOW SCHEMAS IN workspace").show()   # debe listar: bronze, default, 
     periodo: PRE_COVID=413,838 | POST_COVID=505,393
 ```
 
-**Carga de `etl_stage_to_dw`:**
+**Carga de `3-etl_stage_to_dw`:**
 ```
 fact_defunciones: 919,231 | dim_tiempo: 120 | dim_geografia: 1,348
 dim_causa_cie10: 3,087 | dim_sexo: 3 | dim_grupo_etario: 8
 dim_pueblo: 6 | dim_lugar: 129
 Integridad referencial: 0 huérfanos en las 7 dimensiones.
+```
+
+**Carga de `4-constelacion`:**
+```
+stage.oms_indicadores:        1,708  filas
+stage.worldbank_indicadores:    450  filas
+stage.dim_diccionario:        1,836  filas
+dw.fact_indicador_pais_anio:  2,158  filas  (WHO_OMS: 1,708 | WORLDBANK: 450)
+dw.etl_control_log:           1 fila nueva por ejecución (notebook='constelacion', estado='EXITOSO')
 ```
 
 ---
@@ -234,12 +276,46 @@ Estos puntos deben constar en la documentación y tenerse en cuenta para la Fase
 
 ---
 
+## 9. Orquestación con Databricks Jobs
+
+El diagrama de despliegue ([ver en Drive](https://drive.google.com/file/d/1ZBLCwNPHmoYifQkdKYU534cK6Du8h2IO/view?usp=sharing)) muestra el Job **`Job-Bronze-to-DW`** definido en Databricks Serverless. Este job contiene cuatro tareas que ejecutan los notebooks en secuencia:
+
+| Tarea Databricks | Notebook | Dependencia |
+|---|---|---|
+| `Job-Auditoria` | `1-creacion_auditoria.ipynb` | Ninguna (primera tarea) |
+| `Job-ETLBronze-Stage` | `2-etl_bronze_to_stage.ipynb` | `Job-Auditoria` |
+| `Job-ETLStage-DW` | `3-etl_stage_to_dw.ipynb` | `Job-ETLBronze-Stage` |
+| `Job-Constelacion` | `4-constelacion.ipynb` | `Job-ETLBronze-Stage` (puede correr en paralelo con `Job-ETLStage-DW`) |
+
+**Flujo de datos dentro del Job:**
+
+```
+[S3] Delta / Auto Loader ──► Bronze
+                               │
+                               ├──► Job-Auditoria ──────────────► dw.etl_control_log
+                               │
+                               ├──► Job-ETLBronze-Stage ─────────► stage.defunciones
+                               │         │
+                               │         ├──► Job-ETLStage-DW ──► dw.fact_defunciones + 7 dims
+                               │         │
+                               │         └──► Job-Constelacion ──► stage.oms_indicadores
+                               │                                    stage.worldbank_indicadores
+                               │                                    stage.dim_diccionario
+                               │                                    dw.fact_indicador_pais_anio
+                               │
+                              [Bronze → Stage → DW]
+```
+
+> **Trazabilidad:** al término de cada ejecución, cada notebook escribe una fila en `dw.etl_control_log` con `notebook`, `fecha_inicio`, `fecha_fin`, `estado`, `filas_salida` e `es_idempotente`. Todos los notebooks son idempotentes (`overwrite`/`CREATE TABLE IF NOT EXISTS`).
+
+---
+
 ## 10. Trabajo pendiente / próximos pasos
 
 - **Capa anonimizada (Gold):** construir `stage.defunciones_anon` o vistas con k-anonimato (k≥5) sobre `Puedif` y generalización de CIE-10. El EDA confirma factibilidad: municipio+año+etnia suprime <1% a k=5. Fundamento legal: GDPR (minimización, Considerando 26) + k-anonimato (Sweeney 2002).
-- **Decodificación a etiquetas:** unir las dimensiones con `stage.dim_diccionario` para mostrar descripciones legibles (Maya, Hospital público, etc.) en lugar de códigos.
+- **Decodificación a etiquetas:** las dimensiones ya pueden unirse con `stage.dim_diccionario` (disponible desde `4-constelacion.ipynb`) para mostrar descripciones legibles (Maya, Hospital público, etc.) en lugar de códigos.
 - **Réplica nube + local:** el DW debe quedar accesible en ambos entornos (requisito Fase 2).
-- **Tablas de referencia OMS/World Bank:** `stage.oms_indicadores` y `stage.worldbank_indicadores` (ver §9.5 del reporte EDA) para benchmarking internacional.
+- **Benchmarking internacional:** `stage.oms_indicadores` y `stage.worldbank_indicadores` ya están disponibles (Fase 2 completa). Cruzar con `fact_defunciones` mediante `anio` y `pais_iso3 = 'GTM'` para análisis comparativo centroamericano.
 
 ---
 
@@ -255,7 +331,10 @@ Estos puntos deben constar en la documentación y tenerse en cuenta para la Fase
 | **Centinela** | Código que representa "Ignorado"/faltante (9, 99, 999 según la columna). |
 | **k-anonimato** | Técnica de privacidad: cada combinación de cuasi-identificadores aparece ≥ k veces. |
 | **Serverless** | Compute de Databricks sin clúster dedicado; read-only sobre Bronze, sin credenciales S3. |
+| **Constelación de hechos** | Extensión del esquema estrella con múltiples tablas de hechos independientes (galaxy schema). Aquí: `fact_defunciones` + `fact_indicador_pais_anio`. |
+| **etl_control_log** | Tabla de auditoría del DW (`dw.etl_control_log`). Registra notebook, fechas, filas producidas y estado de cada ejecución. |
+| **Job-Bronze-to-DW** | Databricks Job que orquesta los 4 notebooks del pipeline de Fase 2 en secuencia y/o en paralelo. |
 
 ---
 
-*Documento de referencia para la documentación formal del proceso ETL Bronze → Stage → DW (Fase 2). Las decisiones de limpieza están justificadas en `reporte_bronze_a_stage_v2_fase2.md`.*
+*Documento de referencia para la documentación formal del proceso ETL Bronze → Stage → DW + Constelación (Fase 2). Notebooks y DDL en `scrips-stage-DW-workflows/`. Las decisiones de limpieza están justificadas en `reporte_bronze_a_stage_v2_fase2.md`.*

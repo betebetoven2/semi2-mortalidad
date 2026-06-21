@@ -7,38 +7,14 @@ El **linaje de datos** (*data lineage*) describe el recorrido completo de cada r
 ## Diagramas del Pipeline
 
 !!! info "Diagrama editable"
-    El diagrama de arquitectura de 4 capas (fuente editable en Draw.io) está disponible en:
-    [Ver diagrama de 4 capas en Drive](https://drive.google.com/file/d/1krHaKEFT6kIuaiG1bwl5x-DGgsBc4ZcA/view){ .md-button }
+    El diagrama de despliegue completo (fuente editable en Draw.io) está disponible en:
+    [Ver diagrama de despliegue en Drive](https://drive.google.com/file/d/1ZBLCwNPHmoYifQkdKYU534cK6Du8h2IO/view?usp=sharing){ .md-button }
 
-### Vista de Alto Nivel
+### Diagrama de Despliegue
 
-![Diagrama de alto nivel](../images/Diagrama-Alto-Nivel.svg)
+![Diagrama de despliegue](../images/Diagrama_Despliegue.drawio.svg)
 
-Las fuentes públicas son consumidas por un orquestador siempre activo (*Always-On*) que distribuye los datos hacia almacenamiento local (NAS) y en nube (S3/Databricks).
-
----
-
-### Arquitectura Completa
-
-![Diagrama de arquitectura](../images/Diagrama-Arquitectura.svg)
-
-El nodo perimetral (Raspberry Pi 5, LAN) ejecuta los scrapers, audita cada operación en PostgreSQL, persiste los archivos raw en el NAS Samba y los transfiere a AWS S3, desde donde Databricks lee las tablas Delta.
-
----
-
-### Detalle de Scripts y Flujo de Datos
-
-![Diagrama de desarrollo](../images/Diagrama-Desarrollo.svg)
-
-Cada script de descarga (`download_*.py`) pasa por `scraper_base.py`, que registra la auditoría en PostgreSQL. Los archivos crudos van al NAS y de ahí a S3 `raw/`, para finalmente materializarse en tablas Delta en Databricks `bronze`.
-
----
-
-### Infraestructura Física
-
-![Diagrama físico](../images/Diagrama-Físico.svg)
-
-Red local `192.168.1.0/24`: Raspberry Pi 5 (`192.168.1.10`) con sesión tmux + Docker PostgreSQL; Lenovo Server NAS (`192.168.1.11`) montado por Samba. Conectividad hacia AWS S3 (`mortalidad-gtm-2026`, `us-east-1`) y Databricks Free Edition.
+El diagrama muestra la arquitectura de despliegue de extremo a extremo. Las fuentes públicas (INE, OMS, World Bank) son consumidas vía HTTPS por los scrapers Python (`scraper_base.py` + `download_*.py`) orquestados en la Raspberry Pi 5 (`192.168.1.10`, sesión tmux Always-On). La auditoría de cada operación de ingesta se registra en PostgreSQL (Docker, `sandbox` + `sandbox_log_carga`). Los archivos raw (`.xlsx`, `.sav`) se persisten en el NAS Lenovo (`192.168.1.11`, Samba/SMB); los archivos convertidos (`.parquet`) se transfieren a AWS S3 (`mortalidad-gtm-2026`, `us-east-1`) mediante boto3. Desde S3, Databricks Serverless lee los datos vía Delta/Auto Loader y ejecuta el Job **`Job-Bronze-to-DW`**, que orquesta cuatro notebooks en secuencia: creación de auditoría DW → ETL Bronze→Stage → ETL Stage→DW → constelación de indicadores internacionales (OMS/World Bank).
 
 ---
 
