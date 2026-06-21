@@ -2,7 +2,7 @@
 
 ## Resumen ejecutivo
 
-El perfilamiento de la capa Bronze identificó siete hallazgos fundamentales (H1–H7) que alteran decisiones de diseño del pipeline. Estos hallazgos provienen de análisis sobre las 6 dimensiones de calidad de datos y están documentados en detalle en el reporte técnico *Reporte de Perfilamiento y Guía de Construcción Bronze → Stage (Fase 2)*.
+El perfilamiento de la capa Bronze identificó siete hallazgos fundamentales (H1–H7) que alteran decisiones de diseño del pipeline. Estos hallazgos provienen de análisis sobre las 6 dimensiones de calidad de datos y están documentados en detalle en el reporte técnico *Reporte de Perfilamiento y Guía de Construcción Bronze → Stage*.
 
 Cada hallazgo tiene impacto directo en la construcción de la capa Stage y en la justificación del modelo dimensional del Data Warehouse.
 

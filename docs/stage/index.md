@@ -1,8 +1,8 @@
-# Transformación Fase 2 — Bronze a Data Warehouse
+# Capa Stage — Bronze a Data Warehouse
 
 ## Introducción
 
-Esta sección documenta la **Fase 2** del proyecto: *Transformación, arquitectura por capas y almacenamiento*. El pipeline de datos integra la zona de aterrizaje (Bronze) con la capa de conformación (Stage) y culmina en un repositorio analítico dimensional (Data Warehouse) desplegado en la nube y replicado localmente.
+Esta sección documenta la **Capa Stage** del pipeline: *Transformación, arquitectura por capas y almacenamiento*. El pipeline de datos integra la zona de aterrizaje (Bronze) con la capa de conformación (Stage) y culmina en un repositorio analítico dimensional (Data Warehouse) desplegado en la nube y replicado localmente.
 
 La documentación está organizada en tres ejes:
 
