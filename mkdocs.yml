@@ -39,6 +39,11 @@ nav:
   - Linaje de Datos:
       - Arquitectura del Pipeline: lineage/index.md
       - Diccionario de Tablas: lineage/tablas.md
+  - Transformación Fase 2:
+      - Información General: transformacion/index.md
+      - Hallazgos del EDA: transformacion/hallazgos_eda.md
+      - Reglas de Conformidad: transformacion/reglas_stage.md
+      - Modelo Dimensional: transformacion/modelo_dw.md
   - Ética y Gobernanza:
       - Marco Ético: etica/index.md
       - Plan de Anonimización: etica/anonimizacion.md
