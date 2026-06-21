@@ -33,17 +33,17 @@ theme:
 
 nav:
   - Inicio: index.md
-  - Procedencia:
-      - Catálogo de Fuentes: procedencia/index.md
-      - RENAP — Solicitud Formal: procedencia/renap.md
+  - Fuentes de Datos:
+      - Catálogo de Fuentes: fuentes/index.md
+      - RENAP — Solicitud Formal: fuentes/renap.md
   - Linaje de Datos:
-      - Arquitectura del Pipeline: lineage/index.md
-      - Diccionario de Tablas: lineage/tablas.md
-  - Transformación Fase 2:
-      - Información General: transformacion/index.md
-      - Hallazgos del EDA: transformacion/hallazgos_eda.md
-      - Reglas de Conformidad: transformacion/reglas_stage.md
-      - Modelo Dimensional: transformacion/modelo_dw.md
+      - Arquitectura del Pipeline: linaje/index.md
+      - Diccionario de Tablas: linaje/tablas.md
+  - Capa Stage:
+      - Información General: stage/index.md
+      - Hallazgos del EDA: stage/hallazgos_eda.md
+      - Reglas de Conformidad: stage/reglas_stage.md
+      - Modelo Dimensional: stage/modelo_dw.md
   - Ética y Gobernanza:
       - Marco Ético: etica/index.md
       - Plan de Anonimización: etica/anonimizacion.md
