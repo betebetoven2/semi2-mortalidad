@@ -88,7 +88,7 @@ Las cinco tablas se cargaron en Bronze con **todas las columnas como `string`** 
 | `Escodif` | Escolaridad | `Ciuodif` | Ocupación (CIUO) |
 | `Areag` | Área urbano/rural (**solo legacy 2015–2017**) | | |
 
-> ⚠️ **Atención (H3):** en el plan de anonimización original `perdif` aparece como "etnia". Es incorrecto: **`Perdif` = unidad de edad**, **`Puedif` = pueblo/etnia**. Evidencia en §5.1.
+>  **Atención (H3):** en el plan de anonimización original `perdif` aparece como "etnia". Es incorrecto: **`Perdif` = unidad de edad**, **`Puedif` = pueblo/etnia**. Evidencia en §5.1.
 
 ---
 
@@ -99,7 +99,7 @@ Las cinco tablas se cargaron en Bronze con **todas las columnas como `string`** 
 - `json_oms`: 100% vacías → `Dim3`, `Dim3Type`, `Comments`, `DataSourceDim`, `DataSourceDimType`; `Dim2`/`Dim2Type` 38.64%.
 - `json_worldbank`: 100% vacías → `unit`, `obs_status`; `value` 40% faltante.
 
-> ⚠️ **La cifra de 0% es engañosa.** El chequeo midió solo centinelas **textuales**. Como los microdatos del INE están en **código numérico**, el "ignorado" real se expresa como código (`9`/`99`/`999`) y se mide tras cruzar con el diccionario (§9.2).
+>  **La cifra de 0% es engañosa.** El chequeo midió solo centinelas **textuales**. Como los microdatos del INE están en **código numérico**, el "ignorado" real se expresa como código (`9`/`99`/`999`) y se mide tras cruzar con el diccionario (§9.2).
 
 **Reglas:** **R-COMP-1** centinelas → `NULL`, **por columna según el diccionario** (no en bloque): `9`=Ignorado en categóricas (`Puedif`, `Escodif`, `Asist`, `Ocur`, `Cerdef`, `Ecidif`), `999`=Ignorado en `Edadif`; **no** nulificar `9` en `Mes` (=Septiembre) ni en `Día`/`Edadif` (valores reales). **R-COMP-2** eliminar columnas 100% vacías; **R-COMP-3** documentar cobertura parcial de `Ciuodif`/`Escodif`, sin imputar en Stage.
 

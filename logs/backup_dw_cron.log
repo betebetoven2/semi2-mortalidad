@@ -32,3 +32,47 @@
   OK  workspace.dw.dim_lugar: 129 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_lugar_20260621_000258.parquet
 [EmailNotifier] Enviado: '✅ Backup DW - OK: Backup del DW completado correctamente' -> albertoha2000@gmail.com
 [2026-06-21 00:03:17.516570] Lote 10 finalizado: EXITOSO (14 ok, 0 fallidas)
+[2026-06-21 04:00:01.500583] Iniciando backup_dw.py (test=False)
+  OK  workspace.bronze.xlsx_ine: 674,064 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/xlsx_ine_20260621_040048.parquet
+  OK  workspace.bronze.sav_ine_legacy: 245,167 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/sav_ine_legacy_20260621_040125.parquet
+  OK  workspace.bronze.json_oms: 1,708 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/json_oms_20260621_040135.parquet
+  OK  workspace.bronze.json_worldbank: 450 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/json_worldbank_20260621_040138.parquet
+  OK  workspace.bronze.gdrive_docs: 1,837 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/gdrive_docs_20260621_040140.parquet
+  OK  workspace.stage.defunciones: 919,231 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/defunciones_20260621_040205.parquet
+  OK  workspace.stage.oms_indicadores: 1,708 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/oms_indicadores_20260621_040234.parquet
+  OK  workspace.stage.worldbank_indicadores: 450 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/worldbank_indicadores_20260621_040236.parquet
+  OK  workspace.stage.dim_diccionario: 1,836 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_diccionario_20260621_040237.parquet
+  OK  workspace.dw.fact_defunciones: 919,231 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/fact_defunciones_20260621_040247.parquet
+  OK  workspace.dw.dim_tiempo: 120 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_tiempo_20260621_040305.parquet
+  OK  workspace.dw.dim_geografia: 1,348 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_geografia_20260621_040307.parquet
+  OK  workspace.dw.dim_causa_cie10: 3,087 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_causa_cie10_20260621_040308.parquet
+  OK  workspace.dw.dim_sexo: 3 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_sexo_20260621_040310.parquet
+  OK  workspace.dw.dim_grupo_etario: 8 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_grupo_etario_20260621_040311.parquet
+  OK  workspace.dw.dim_pueblo: 6 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_pueblo_20260621_040312.parquet
+  OK  workspace.dw.dim_lugar: 129 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_lugar_20260621_040314.parquet
+  OK  workspace.dw.fact_indicador_pais_anio: 2,158 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/fact_indicador_pais_anio_20260621_040315.parquet
+  OK  workspace.dw.etl_control_log: 6 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/etl_control_log_20260621_040317.parquet
+[EmailNotifier] Enviado: '✅ Backup DW - OK: Backup del DW completado correctamente' -> albertoha2000@gmail.com
+[2026-06-21 04:03:19.827718] Lote 17 finalizado: EXITOSO (19 ok, 0 fallidas)
+[2026-06-21 08:00:01.587655] Iniciando backup_dw.py (test=False)
+  OK  workspace.bronze.xlsx_ine: 674,064 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/xlsx_ine_20260621_080044.parquet
+  OK  workspace.bronze.sav_ine_legacy: 245,167 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/sav_ine_legacy_20260621_080123.parquet
+  OK  workspace.bronze.json_oms: 1,708 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/json_oms_20260621_080138.parquet
+  OK  workspace.bronze.json_worldbank: 450 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/json_worldbank_20260621_080141.parquet
+  OK  workspace.bronze.gdrive_docs: 1,837 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/gdrive_docs_20260621_080142.parquet
+  OK  workspace.stage.defunciones: 919,231 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/defunciones_20260621_080158.parquet
+  OK  workspace.stage.oms_indicadores: 1,708 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/oms_indicadores_20260621_080229.parquet
+  OK  workspace.stage.worldbank_indicadores: 450 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/worldbank_indicadores_20260621_080230.parquet
+  OK  workspace.stage.dim_diccionario: 1,836 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_diccionario_20260621_080231.parquet
+  OK  workspace.dw.fact_defunciones: 919,231 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/fact_defunciones_20260621_080241.parquet
+  OK  workspace.dw.dim_tiempo: 120 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_tiempo_20260621_080302.parquet
+  OK  workspace.dw.dim_geografia: 1,348 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_geografia_20260621_080303.parquet
+  OK  workspace.dw.dim_causa_cie10: 3,087 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_causa_cie10_20260621_080305.parquet
+  OK  workspace.dw.dim_sexo: 3 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_sexo_20260621_080306.parquet
+  OK  workspace.dw.dim_grupo_etario: 8 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_grupo_etario_20260621_080307.parquet
+  OK  workspace.dw.dim_pueblo: 6 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_pueblo_20260621_080309.parquet
+  OK  workspace.dw.dim_lugar: 129 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_lugar_20260621_080310.parquet
+  OK  workspace.dw.fact_indicador_pais_anio: 2,158 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/fact_indicador_pais_anio_20260621_080311.parquet
+  OK  workspace.dw.etl_control_log: 6 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/etl_control_log_20260621_080312.parquet
+[EmailNotifier] Enviado: '✅ Backup DW - OK: Backup del DW completado correctamente' -> albertoha2000@gmail.com
+[2026-06-21 08:03:15.077347] Lote 18 finalizado: EXITOSO (19 ok, 0 fallidas)
