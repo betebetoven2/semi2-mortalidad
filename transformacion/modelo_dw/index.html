@@ -1,0 +1,2765 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación de gobernanza, linaje y ética — Seminario de Sistemas 2 | USAC 2026">
+      
+      
+        <meta name="author" content="Grupo 3">
+      
+      
+      
+        <link rel="prev" href="../reglas_stage/">
+      
+      
+        <link rel="next" href="../../etica/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Modelo Dimensional - Plataforma Analítica de Mortalidad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modelo-dimensional-data-warehouse-estrella" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Plataforma Analítica de Mortalidad" class="md-header__button md-logo" aria-label="Plataforma Analítica de Mortalidad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Plataforma Analítica de Mortalidad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modelo Dimensional
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../procedencia/" class="md-tabs__link">
+          
+  
+  Procedencia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lineage/" class="md-tabs__link">
+          
+  
+  Linaje de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Transformación Fase 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../etica/" class="md-tabs__link">
+          
+  
+  Ética y Gobernanza
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Plataforma Analítica de Mortalidad" class="md-nav__button md-logo" aria-label="Plataforma Analítica de Mortalidad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Plataforma Analítica de Mortalidad
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Procedencia
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Procedencia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../procedencia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Catálogo de Fuentes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../procedencia/renap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RENAP — Solicitud Formal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linaje de Datos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Linaje de Datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lineage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arquitectura del Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lineage/tablas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diccionario de Tablas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Transformación Fase 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Transformación Fase 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Información General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hallazgos_eda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hallazgos del EDA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reglas_stage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reglas de Conformidad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Modelo Dimensional
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Modelo Dimensional
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-entidad-relacion-modelo-estrella" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama Entidad-Relación: Modelo Estrella
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-decisiones-de-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Decisiones de diseño
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Decisiones de diseño">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-grano-del-hecho" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Grano del hecho
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-medida-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Medida principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-identificadores-de-llave" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Identificadores de llave
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tabla-de-hechos-fact_defunciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Tabla de hechos: fact_defunciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Tabla de hechos: fact_defunciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#campos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Campos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad-de-fact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad de fact
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dimension-dim_tiempo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Dimensión: dim_tiempo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Dimensión: dim_tiempo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jerarquía temporal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dimension-dim_geografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Dimensión: dim_geografia
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Dimensión: dim_geografia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-geografica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jerarquía geográfica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-dimension-dim_causa_cie10" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Dimensión: dim_causa_cie10
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Dimensión: dim_causa_cie10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-cie-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jerarquía CIE-10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caveat-mal-definida-capitulo-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caveat: Mal definida (Capítulo R)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dimension-dim_sexo" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Dimensión: dim_sexo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Dimensión: dim_sexo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dimension-dim_grupo_etario" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Dimensión: dim_grupo_etario
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Dimensión: dim_grupo_etario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupos-etarios-estandar-ops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grupos etarios (estándar OPS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nota-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nota técnica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-dimension-dim_pueblo" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Dimensión: dim_pueblo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Dimensión: dim_pueblo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pueblos-clasificacion-ine-guatemala" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pueblos (clasificación INE Guatemala)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caveat-cobertura-hallazgo-h7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caveat: Cobertura (Hallazgo H7)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-dimension-dim_lugar" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Dimensión: dim_lugar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Dimensión: dim_lugar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-id_lugar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de id_lugar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-analisis-multidimensional-ejemplos-de-consultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Análisis multidimensional: Ejemplos de consultas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Análisis multidimensional: Ejemplos de consultas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-1-mortalidad-por-ano-prepost-covid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo 1: Mortalidad por año pre/post-COVID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-2-top-10-causas-de-muerte-comparativa-prepost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo 2: Top 10 causas de muerte, comparativa pre/post
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-3-mortalidad-por-pueblo-controlando-por-edad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo 3: Mortalidad por pueblo, controlando por edad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-justificacion-del-modelo-para-analisis-prepost-covid" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Justificación del modelo para análisis pre/post-COVID
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-particionamiento-y-optimizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Particionamiento y optimización
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Particionamiento y optimización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#particionamiento-fisico-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Particionamiento físico (recomendado)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Índices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estadisticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estadísticas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusión
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ética y Gobernanza
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Ética y Gobernanza
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../etica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Marco Ético
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../etica/anonimizacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan de Anonimización
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-entidad-relacion-modelo-estrella" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama Entidad-Relación: Modelo Estrella
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-decisiones-de-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Decisiones de diseño
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Decisiones de diseño">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-grano-del-hecho" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Grano del hecho
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-medida-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Medida principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-identificadores-de-llave" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Identificadores de llave
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-tabla-de-hechos-fact_defunciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Tabla de hechos: fact_defunciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Tabla de hechos: fact_defunciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#campos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Campos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad-de-fact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad de fact
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dimension-dim_tiempo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Dimensión: dim_tiempo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Dimensión: dim_tiempo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jerarquía temporal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dimension-dim_geografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Dimensión: dim_geografia
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Dimensión: dim_geografia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-geografica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jerarquía geográfica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-dimension-dim_causa_cie10" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Dimensión: dim_causa_cie10
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Dimensión: dim_causa_cie10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-cie-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jerarquía CIE-10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caveat-mal-definida-capitulo-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caveat: Mal definida (Capítulo R)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dimension-dim_sexo" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Dimensión: dim_sexo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Dimensión: dim_sexo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dimension-dim_grupo_etario" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Dimensión: dim_grupo_etario
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Dimensión: dim_grupo_etario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupos-etarios-estandar-ops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grupos etarios (estándar OPS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nota-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nota técnica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-dimension-dim_pueblo" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Dimensión: dim_pueblo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Dimensión: dim_pueblo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pueblos-clasificacion-ine-guatemala" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pueblos (clasificación INE Guatemala)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caveat-cobertura-hallazgo-h7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caveat: Cobertura (Hallazgo H7)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-dimension-dim_lugar" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Dimensión: dim_lugar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Dimensión: dim_lugar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposito_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-id_lugar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de id_lugar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-analisis-multidimensional-ejemplos-de-consultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Análisis multidimensional: Ejemplos de consultas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Análisis multidimensional: Ejemplos de consultas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-1-mortalidad-por-ano-prepost-covid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo 1: Mortalidad por año pre/post-COVID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-2-top-10-causas-de-muerte-comparativa-prepost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo 2: Top 10 causas de muerte, comparativa pre/post
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-3-mortalidad-por-pueblo-controlando-por-edad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo 3: Mortalidad por pueblo, controlando por edad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-justificacion-del-modelo-para-analisis-prepost-covid" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Justificación del modelo para análisis pre/post-COVID
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-particionamiento-y-optimizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Particionamiento y optimización
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Particionamiento y optimización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#particionamiento-fisico-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Particionamiento físico (recomendado)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Índices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estadisticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estadísticas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusión
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="modelo-dimensional-data-warehouse-estrella">Modelo Dimensional — Data Warehouse Estrella<a class="headerlink" href="#modelo-dimensional-data-warehouse-estrella" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
+<p>El Data Warehouse implementa un esquema estrella (Kimball) optimizado para análisis multidimensional de mortalidad. El modelo transforma la tabla conformada <code>stage.defunciones</code> (919,231 registros) en una estructura dimensional que soporta consultas pre/post-COVID eficientemente.</p>
+<p><strong>Arquitectura:</strong>
+- 1 tabla de hechos: <code>fact_defunciones</code>
+- 7 tablas de dimensión: tiempo, geografía, causa, sexo, grupo etario, pueblo, lugar
+- Grano: una defunción
+- Medida principal: cantidad (=1, en escala atómica)</p>
+<h3 id="diagrama-entidad-relacion-modelo-estrella">Diagrama Entidad-Relación: Modelo Estrella<a class="headerlink" href="#diagrama-entidad-relacion-modelo-estrella" title="Permanent link">&para;</a></h3>
+<p><img alt="Diagrama EDR Modelo Estrella" src="../../images/EDR-Estrella.svg" /></p>
+<hr />
+<h2 id="1-decisiones-de-diseno">1. Decisiones de diseño<a class="headerlink" href="#1-decisiones-de-diseno" title="Permanent link">&para;</a></h2>
+<h3 id="11-grano-del-hecho">1.1 Grano del hecho<a class="headerlink" href="#11-grano-del-hecho" title="Permanent link">&para;</a></h3>
+<p><strong>Nivel de granularidad:</strong> Una fila = una defunción individual</p>
+<p><strong>Justificación:</strong>
+- Preserva máxima flexibilidad analítica (agregación desde el átomo)
+- Permite medidas aditivas: suma de cantidad = total de defunciones
+- Habilita jerarquías en dimensiones (por ej: mes → trimestre → año)</p>
+<p><strong>Alternativa rechazada:</strong>
+Hecho preaagregado por departamento/mes sería más compacto pero eliminaría capacidad de análisis ad-hoc (ej: por municipio, por etnia, etc.).</p>
+<hr />
+<h3 id="12-medida-principal">1.2 Medida principal<a class="headerlink" href="#12-medida-principal" title="Permanent link">&para;</a></h3>
+<p><strong>Medida:</strong> <code>cantidad</code> (siempre = 1)</p>
+<p><strong>Valores aditivos:</strong> SUM por cualquier combinación de dimensiones</p>
+<p><strong>Ventajas:</strong>
+- Simple: evita errores de conversión de unidades
+- Coherente con OLAP (cúbos de análisis)
+- Reproducible: cantidad = COUNT(*)</p>
+<hr />
+<h3 id="13-identificadores-de-llave">1.3 Identificadores de llave<a class="headerlink" href="#13-identificadores-de-llave" title="Permanent link">&para;</a></h3>
+<p><strong>Estrategia:</strong> Llaves naturales derivadas del negocio, no artificiales</p>
+<ul>
+<li><code>id_tiempo</code>: AAAAMM (concatenación de año-mes)</li>
+<li><code>id_geografia</code>: depto(2dígitos) + municipio(4dígitos) = 6 dígitos</li>
+<li><code>id_causa</code>: código CIE-10 completo (ej: "U071", "R992")</li>
+<li><code>id_sexo</code>: código INE (1, 2, 9)</li>
+<li><code>id_grupo_etario</code>: código OPS (0–6, 9)</li>
+<li><code>id_pueblo</code>: código INE (1–5, 9)</li>
+<li><code>id_lugar</code>: concatenación de sitio + asistencia + certificador</li>
+</ul>
+<p><strong>Ventaja:</strong> Las llaves contienen significado (no son opacos números secuenciales), facilitando debugging y auditoría.</p>
+<hr />
+<h2 id="2-tabla-de-hechos-fact_defunciones">2. Tabla de hechos: fact_defunciones<a class="headerlink" href="#2-tabla-de-hechos-fact_defunciones" title="Permanent link">&para;</a></h2>
+<h3 id="estructura">Estructura<a class="headerlink" href="#estructura" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">id_tiempo</span><span class="w">        </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- FK: AAAAMM</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">id_geografia</span><span class="w">     </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- FK: depto+muni</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">id_causa</span><span class="w">         </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w">    </span><span class="c1">-- FK: CIE-10</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">id_sexo</span><span class="w">          </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- FK: 1,2,9</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">id_grupo_etario</span><span class="w">  </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- FK: 0..6,9</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">id_pueblo</span><span class="w">        </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- FK: 1..5,9</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">id_lugar</span><span class="w">         </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- FK: sitio+asist+cert</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">periodo</span><span class="w">          </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w">   </span><span class="c1">-- Degenerate: PRE_COVID/POST_COVID</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="n">cantidad</span><span class="w">         </span><span class="nb">INT</span><span class="w">            </span><span class="c1">-- Medida (=1)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="campos">Campos<a class="headerlink" href="#campos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Rol</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id_tiempo</code></td>
+<td>INT</td>
+<td>FK</td>
+<td>Concatenación AAAAMM para índices eficientes</td>
+</tr>
+<tr>
+<td><code>id_geografia</code></td>
+<td>INT</td>
+<td>FK</td>
+<td>Depto(2) + municipio(4), ej: 010101 (Guat., Guatemala)</td>
+</tr>
+<tr>
+<td><code>id_causa</code></td>
+<td>VARCHAR(8)</td>
+<td>FK</td>
+<td>Código CIE-10 sin punto; conserva jerarquía en dim</td>
+</tr>
+<tr>
+<td><code>id_sexo</code></td>
+<td>INT</td>
+<td>FK</td>
+<td>1=Hombre, 2=Mujer, 9=Ignorado</td>
+</tr>
+<tr>
+<td><code>id_grupo_etario</code></td>
+<td>INT</td>
+<td>FK</td>
+<td>OPS: 0=&lt;1año, 1=1-4años, ..., 6=≥65años, 9=Ign.</td>
+</tr>
+<tr>
+<td><code>id_pueblo</code></td>
+<td>INT</td>
+<td>FK</td>
+<td>1=Indígena, 2=Ladino, 3=Xinca, 4=Garifuna, 5=Otro, 9=Ign.</td>
+</tr>
+<tr>
+<td><code>id_lugar</code></td>
+<td>INT</td>
+<td>FK</td>
+<td>Composite: sitio + asistencia + certificador</td>
+</tr>
+<tr>
+<td><code>periodo</code></td>
+<td>VARCHAR(10)</td>
+<td>Degenerate</td>
+<td>PRE_COVID (≤2019) o POST_COVID (≥2020)</td>
+</tr>
+<tr>
+<td><code>cantidad</code></td>
+<td>INT</td>
+<td>Medida</td>
+<td>Siempre 1 (entidades agregables)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardinalidad-de-fact">Cardinalidad de fact<a class="headerlink" href="#cardinalidad-de-fact" title="Permanent link">&para;</a></h3>
+<p><strong>Registros esperados:</strong> 919,231 (equivalente a filas en <code>stage.defunciones</code>)</p>
+<p><strong>Índices recomendados:</strong>
+- Clave primaria compuesta: (id_tiempo, id_geografia, id_causa, id_sexo, id_grupo_etario, id_pueblo, id_lugar)
+- O: índice en (id_tiempo, id_causa) para análisis frecuentes</p>
+<hr />
+<h2 id="3-dimension-dim_tiempo">3. Dimensión: dim_tiempo<a class="headerlink" href="#3-dimension-dim_tiempo" title="Permanent link">&para;</a></h2>
+<h3 id="proposito">Propósito<a class="headerlink" href="#proposito" title="Permanent link">&para;</a></h3>
+<p>Responder preguntas temporales: ¿defunciones por mes? ¿comparar 2015 vs 2023? ¿tendencias por trimestre?</p>
+<h3 id="estructura_1">Estructura<a class="headerlink" href="#estructura_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dim_tiempo</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">id_tiempo</span><span class="w">   </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- PK: AAAAMM</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">anio</span><span class="w">        </span><span class="nb">INT</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">mes</span><span class="w">         </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- 1..12</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">trimestre</span><span class="w">   </span><span class="nb">INT</span><span class="p">,</span><span class="w">           </span><span class="c1">-- 1..4, derivado</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">periodo</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">    </span><span class="c1">-- PRE_COVID o POST_COVID</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="ejemplos-de-datos">Ejemplos de datos<a class="headerlink" href="#ejemplos-de-datos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>id_tiempo</th>
+<th>anio</th>
+<th>mes</th>
+<th>trimestre</th>
+<th>periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201501</td>
+<td>2015</td>
+<td>1</td>
+<td>1</td>
+<td>PRE_COVID</td>
+</tr>
+<tr>
+<td>201512</td>
+<td>2015</td>
+<td>12</td>
+<td>4</td>
+<td>PRE_COVID</td>
+</tr>
+<tr>
+<td>202001</td>
+<td>2020</td>
+<td>1</td>
+<td>1</td>
+<td>POST_COVID</td>
+</tr>
+<tr>
+<td>202412</td>
+<td>2024</td>
+<td>12</td>
+<td>4</td>
+<td>POST_COVID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jerarquia-temporal">Jerarquía temporal<a class="headerlink" href="#jerarquia-temporal" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Año → Trimestre → Mes → (Día disponible en fact con granularidad atómica)
+</code></pre></div>
+<h3 id="cardinalidad">Cardinalidad<a class="headerlink" href="#cardinalidad" title="Permanent link">&para;</a></h3>
+<p>12 meses × 10 años = 120 registros (máximo)</p>
+<hr />
+<h2 id="4-dimension-dim_geografia">4. Dimensión: dim_geografia<a class="headerlink" href="#4-dimension-dim_geografia" title="Permanent link">&para;</a></h2>
+<h3 id="proposito_1">Propósito<a class="headerlink" href="#proposito_1" title="Permanent link">&para;</a></h3>
+<p>Análisis por ubicación geográfica: ¿defunciones por departamento? ¿municipio? ¿urbano vs rural?</p>
+<h3 id="estructura_2">Estructura<a class="headerlink" href="#estructura_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dim_geografia</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">id_geografia</span><span class="w">  </span><span class="nb">INT</span><span class="p">,</span><span class="w">         </span><span class="c1">-- PK: depto(2) + muni(4)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">codigo_depto</span><span class="w">  </span><span class="nb">INT</span><span class="p">,</span><span class="w">         </span><span class="c1">-- 1..22</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">codigo_muni</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w">  </span><span class="c1">-- 0101..2201 (lpad)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">area</span><span class="w">          </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w">  </span><span class="c1">-- urbano/rural (solo 2015-2017)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="ejemplos">Ejemplos<a class="headerlink" href="#ejemplos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>id_geografia</th>
+<th>codigo_depto</th>
+<th>codigo_muni</th>
+<th>area</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10101</td>
+<td>1</td>
+<td>0101</td>
+<td>urbano</td>
+</tr>
+<tr>
+<td>10102</td>
+<td>1</td>
+<td>0102</td>
+<td>urbano</td>
+</tr>
+<tr>
+<td>101031</td>
+<td>1</td>
+<td>0103</td>
+<td>rural</td>
+</tr>
+<tr>
+<td>222201</td>
+<td>22</td>
+<td>2201</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardinalidad_1">Cardinalidad<a class="headerlink" href="#cardinalidad_1" title="Permanent link">&para;</a></h3>
+<p>~334 municipios × 2 clasificaciones área = ~668 registros</p>
+<p><strong>Limitación:</strong> <code>area</code> es NULL para 2018–2024 (disponible solo 2015–2017).</p>
+<h3 id="jerarquia-geografica">Jerarquía geográfica<a class="headerlink" href="#jerarquia-geografica" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>País (Guatemala) → Departamento → Municipio → [Área urbano/rural]
+</code></pre></div>
+<hr />
+<h2 id="5-dimension-dim_causa_cie10">5. Dimensión: dim_causa_cie10<a class="headerlink" href="#5-dimension-dim_causa_cie10" title="Permanent link">&para;</a></h2>
+<h3 id="proposito_2">Propósito<a class="headerlink" href="#proposito_2" title="Permanent link">&para;</a></h3>
+<p>Análisis por causa de defunción: ¿mortalidad por capítulo CIE? ¿por categoría específica? ¿COVID-19 vs otras causas?</p>
+<h3 id="estructura_3">Estructura<a class="headerlink" href="#estructura_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dim_causa_cie10</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">id_causa</span><span class="w">        </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w">  </span><span class="c1">-- PK: código completo</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">codigo_completo</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w">  </span><span class="c1">-- Redundante para claridad</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">categoria_3</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w">  </span><span class="c1">-- Categoría (3 chars)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">capitulo_1</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w">  </span><span class="c1">-- Capítulo (1 char)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="n">mal_definida</span><span class="w">    </span><span class="nb">BOOLEAN</span><span class="w">      </span><span class="c1">-- Flag: capítulo R</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="ejemplos_1">Ejemplos<a class="headerlink" href="#ejemplos_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>id_causa</th>
+<th>codigo_completo</th>
+<th>categoria_3</th>
+<th>capitulo_1</th>
+<th>mal_definida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U071</td>
+<td>U071</td>
+<td>U07</td>
+<td>U</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>I219</td>
+<td>I219</td>
+<td>I21</td>
+<td>I</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>R992</td>
+<td>R992</td>
+<td>R99</td>
+<td>R</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>E149</td>
+<td>E149</td>
+<td>E14</td>
+<td>E</td>
+<td>FALSE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jerarquia-cie-10">Jerarquía CIE-10<a class="headerlink" href="#jerarquia-cie-10" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Capítulo (1 char: A..Z) → Categoría (3 chars) → Código completo (4+ chars)
+</code></pre></div>
+<p>Ejemplo: Capítulo U (COVID-19) → U07 (COVID-19) → U071 (COVID-19, confirmado por laboratorio).</p>
+<h3 id="cardinalidad_2">Cardinalidad<a class="headerlink" href="#cardinalidad_2" title="Permanent link">&para;</a></h3>
+<p>~2,600 códigos únicos en período de estudio</p>
+<h3 id="caveat-mal-definida-capitulo-r">Caveat: Mal definida (Capítulo R)<a class="headerlink" href="#caveat-mal-definida-capitulo-r" title="Permanent link">&para;</a></h3>
+<p>Aproximadamente 13.5% de defunciones tienen causa mal definida (capítulo R: síntomas, signos, hallazgos anormales). El flag <code>mal_definida=TRUE</code> permite:
+- Análisis de calidad de datos
+- Filtrado opcional (causa raíz = excluir mal definidas)</p>
+<hr />
+<h2 id="6-dimension-dim_sexo">6. Dimensión: dim_sexo<a class="headerlink" href="#6-dimension-dim_sexo" title="Permanent link">&para;</a></h2>
+<h3 id="proposito_3">Propósito<a class="headerlink" href="#proposito_3" title="Permanent link">&para;</a></h3>
+<p>Análisis por género: ¿diferencias en mortalidad por sexo? ¿por causa y sexo?</p>
+<h3 id="estructura_4">Estructura<a class="headerlink" href="#estructura_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dim_sexo</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="n">id_sexo</span><span class="w">    </span><span class="nb">INT</span><span class="p">,</span><span class="w">          </span><span class="c1">-- PK: 1, 2, 9</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">sexo_desc</span><span class="w">  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w">   </span><span class="c1">-- Descripción</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="datos">Datos<a class="headerlink" href="#datos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>id_sexo</th>
+<th>sexo_desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Hombre</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mujer</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ignorado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardinalidad_3">Cardinalidad<a class="headerlink" href="#cardinalidad_3" title="Permanent link">&para;</a></h3>
+<p>3 registros (categoría pequeña)</p>
+<hr />
+<h2 id="7-dimension-dim_grupo_etario">7. Dimensión: dim_grupo_etario<a class="headerlink" href="#7-dimension-dim_grupo_etario" title="Permanent link">&para;</a></h2>
+<h3 id="proposito_4">Propósito<a class="headerlink" href="#proposito_4" title="Permanent link">&para;</a></h3>
+<p>Análisis por edad: ¿mortalidad infantil? ¿personas adultas mayores? ¿pirámide etaria?</p>
+<h3 id="estructura_5">Estructura<a class="headerlink" href="#estructura_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dim_grupo_etario</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">id_grupo_etario</span><span class="w">  </span><span class="nb">INT</span><span class="p">,</span><span class="w">          </span><span class="c1">-- PK: 0..6, 9</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">grupo_edad</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w">   </span><span class="c1">-- Descripción OPS</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="grupos-etarios-estandar-ops">Grupos etarios (estándar OPS)<a class="headerlink" href="#grupos-etarios-estandar-ops" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>grupo_edad</th>
+<th>Rango</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Menor de 1 año</td>
+<td>&lt;1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 a 4 años</td>
+<td>1-4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5 a 9 años</td>
+<td>5-9</td>
+</tr>
+<tr>
+<td>3</td>
+<td>10 a 19 años</td>
+<td>10-19</td>
+</tr>
+<tr>
+<td>4</td>
+<td>20 a 49 años</td>
+<td>20-49</td>
+</tr>
+<tr>
+<td>5</td>
+<td>50 a 64 años</td>
+<td>50-64</td>
+</tr>
+<tr>
+<td>6</td>
+<td>65 años y más</td>
+<td>≥65</td>
+</tr>
+<tr>
+<td>9</td>
+<td>No especificado</td>
+<td>Ignorado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardinalidad_4">Cardinalidad<a class="headerlink" href="#cardinalidad_4" title="Permanent link">&para;</a></h3>
+<p>8 registros</p>
+<h3 id="nota-tecnica">Nota técnica<a class="headerlink" href="#nota-tecnica" title="Permanent link">&para;</a></h3>
+<p>El grupo "Menor de 1 año" incluye:
+- Registros con <code>Perdif=1</code> (edad en días)
+- Registros con <code>Perdif=2</code> (edad en meses)
+- Registros con <code>edad_anios=0</code></p>
+<p>Esta consolidación corrige el Hallazgo H4 del EDA (edades en unidades mixtas).</p>
+<hr />
+<h2 id="8-dimension-dim_pueblo">8. Dimensión: dim_pueblo<a class="headerlink" href="#8-dimension-dim_pueblo" title="Permanent link">&para;</a></h2>
+<h3 id="proposito_5">Propósito<a class="headerlink" href="#proposito_5" title="Permanent link">&para;</a></h3>
+<p>Análisis por pueblo/etnia: ¿mortalidad diferenciada por grupos étnicos? ¿disparidades étnicas en causas?</p>
+<h3 id="estructura_6">Estructura<a class="headerlink" href="#estructura_6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dim_pueblo</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">id_pueblo</span><span class="w">    </span><span class="nb">INT</span><span class="p">,</span><span class="w">          </span><span class="c1">-- PK: 1..5, 9</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">pueblo_desc</span><span class="w">  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w">   </span><span class="c1">-- Descripción</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="pueblos-clasificacion-ine-guatemala">Pueblos (clasificación INE Guatemala)<a class="headerlink" href="#pueblos-clasificacion-ine-guatemala" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>pueblo_desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Indígena</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ladino</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Xinca</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Garifuna</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Otro</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ignorado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardinalidad_5">Cardinalidad<a class="headerlink" href="#cardinalidad_5" title="Permanent link">&para;</a></h3>
+<p>6 registros</p>
+<h3 id="caveat-cobertura-hallazgo-h7">Caveat: Cobertura (Hallazgo H7)<a class="headerlink" href="#caveat-cobertura-hallazgo-h7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>16–19% de registros tienen pueblo=Ignorado (convertido a NULL en Stage)</li>
+<li>Análisis por pueblo con garantía de n ≥ 5 (para privacidad k-anonimato)</li>
+<li>Grupos minoritarios (Xinca, Garifuna) pueden tener baja representación</li>
+</ul>
+<p><strong>Implicación ética:</strong>
+Disparidades en mortalidad observadas por pueblo pueden reflejar tanto realidad epidemiológica como sesgo en recolección de datos.</p>
+<hr />
+<h2 id="9-dimension-dim_lugar">9. Dimensión: dim_lugar<a class="headerlink" href="#9-dimension-dim_lugar" title="Permanent link">&para;</a></h2>
+<h3 id="proposito_6">Propósito<a class="headerlink" href="#proposito_6" title="Permanent link">&para;</a></h3>
+<p>Análisis por contexto de ocurrencia: ¿defunciones en hospital vs hogar? ¿con asistencia médica? ¿quién certificó?</p>
+<h3 id="estructura_7">Estructura<a class="headerlink" href="#estructura_7" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dim_lugar</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">id_lugar</span><span class="w">           </span><span class="nb">INT</span><span class="p">,</span><span class="w">          </span><span class="c1">-- PK: composite</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">tipo_lugar</span><span class="w">         </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w">   </span><span class="c1">-- Sitio de ocurrencia</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="n">asistencia_medica</span><span class="w">  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w">   </span><span class="c1">-- Recibió asistencia</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="n">certificador</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w">    </span><span class="c1">-- Quién certificó</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="componentes">Componentes<a class="headerlink" href="#componentes" title="Permanent link">&para;</a></h3>
+<p><strong>Sitio de ocurrencia (<code>Ocur</code>):</strong>
+- 1: Hospital / Clínica
+- 2: Domicilio
+- 3: Vía pública
+- 4: Otro lugar
+- 9: Ignorado</p>
+<p><strong>Asistencia médica (<code>Asist</code>):</strong>
+- 1: Sí, médico
+- 2: Sí, paramédico
+- 3: No
+- 9: Ignorado</p>
+<p><strong>Certificador (<code>Cerdef</code>):</strong>
+- 1: Médico
+- 2: Paramédico
+- 3: Autoridad civil
+- 9: Ignorado</p>
+<h3 id="ejemplo-de-id_lugar">Ejemplo de id_lugar<a class="headerlink" href="#ejemplo-de-id_lugar" title="Permanent link">&para;</a></h3>
+<p>ID construido como concatenación: <code>Ocur</code> (1 dígito) + <code>Asist</code> (1 dígito) + <code>Cerdef</code> (1 dígito)</p>
+<p>Ej: 111 = Hospital + Asistencia médica + Médico certificador</p>
+<h3 id="cardinalidad_6">Cardinalidad<a class="headerlink" href="#cardinalidad_6" title="Permanent link">&para;</a></h3>
+<p>5 × 4 × 4 = 80 combinaciones posibles (muchas pueden estar vacías)</p>
+<hr />
+<h2 id="10-analisis-multidimensional-ejemplos-de-consultas">10. Análisis multidimensional: Ejemplos de consultas<a class="headerlink" href="#10-analisis-multidimensional-ejemplos-de-consultas" title="Permanent link">&para;</a></h2>
+<h3 id="ejemplo-1-mortalidad-por-ano-prepost-covid">Ejemplo 1: Mortalidad por año pre/post-COVID<a class="headerlink" href="#ejemplo-1-mortalidad-por-ano-prepost-covid" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">anio</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">periodo</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">cantidad</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_defunciones</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="w"> </span><span class="n">f</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_tiempo</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">id_tiempo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id_tiempo</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">anio</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">periodo</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">anio</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="ejemplo-2-top-10-causas-de-muerte-comparativa-prepost">Ejemplo 2: Top 10 causas de muerte, comparativa pre/post<a class="headerlink" href="#ejemplo-2-top-10-causas-de-muerte-comparativa-prepost" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">codigo_completo</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">capitulo_1</span><span class="p">,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">periodo</span><span class="p">,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">cantidad</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">muertes</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="k">FROM</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="w"> </span><span class="n">f</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_causa_cie10</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">id_causa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">id_causa</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_tiempo</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">id_tiempo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id_tiempo</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">mal_definida</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FALSE</span><span class="w">  </span><span class="c1">-- Excluir causas mal definidas</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">codigo_completo</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">capitulo_1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">periodo</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">periodo</span><span class="p">,</span><span class="w"> </span><span class="n">muertes</span><span class="w"> </span><span class="k">DESC</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="ejemplo-3-mortalidad-por-pueblo-controlando-por-edad">Ejemplo 3: Mortalidad por pueblo, controlando por edad<a class="headerlink" href="#ejemplo-3-mortalidad-por-pueblo-controlando-por-edad" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">pueblo_desc</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="n">grupo_edad</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">cantidad</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">defunciones</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="w"> </span><span class="n">f</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_pueblo</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">id_pueblo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">id_pueblo</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_grupo_etario</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">id_grupo_etario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">id_grupo_etario</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">id_pueblo</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="mi">9</span><span class="w">  </span><span class="c1">-- Excluir ignorado</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">pueblo_desc</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">grupo_edad</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">cantidad</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="c1">-- Caveat: n &gt;= 5</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">pueblo_desc</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">id_grupo_etario</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="11-justificacion-del-modelo-para-analisis-prepost-covid">11. Justificación del modelo para análisis pre/post-COVID<a class="headerlink" href="#11-justificacion-del-modelo-para-analisis-prepost-covid" title="Permanent link">&para;</a></h2>
+<p>El modelo dimensional responde las preguntas estratégicas del cliente (MSPAS):</p>
+<table>
+<thead>
+<tr>
+<th>Pregunta</th>
+<th>Dimensiones</th>
+<th>Filtro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>¿Cómo cambió mortalidad por departamento?</td>
+<td>Geografía, Tiempo</td>
+<td>periodo IN (PRE_COVID, POST_COVID)</td>
+</tr>
+<tr>
+<td>¿Qué causas aumentaron post-COVID?</td>
+<td>Causa, Tiempo</td>
+<td>periodo y causa != mal_definida</td>
+</tr>
+<tr>
+<td>¿Diferencias por género?</td>
+<td>Sexo, Tiempo</td>
+<td>todas las combinaciones</td>
+</tr>
+<tr>
+<td>¿Impacto en menores de edad?</td>
+<td>Grupo etario, Tiempo, Causa</td>
+<td>grupo_etario = 0 ó 1</td>
+</tr>
+<tr>
+<td>¿Disparidades étnicas?</td>
+<td>Pueblo, Causa, Tiempo</td>
+<td>pueblo &lt;&gt; 9 con n &gt;= 5</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-particionamiento-y-optimizacion">12. Particionamiento y optimización<a class="headerlink" href="#12-particionamiento-y-optimizacion" title="Permanent link">&para;</a></h2>
+<h3 id="particionamiento-fisico-recomendado">Particionamiento físico (recomendado)<a class="headerlink" href="#particionamiento-fisico-recomendado" title="Permanent link">&para;</a></h3>
+<p>Particionar <code>fact_defunciones</code> por <code>id_tiempo</code> (año/mes):
+- Mejora scan de rangos temporales frecuentes
+- Facilita mantenimiento y purga histórica</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="p">(</span><span class="k">YEAR</span><span class="p">(</span><span class="n">id_tiempo</span><span class="p">));</span>
+</code></pre></div>
+<h3 id="indices">Índices<a class="headerlink" href="#indices" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_fact_tiempo</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="p">(</span><span class="n">id_tiempo</span><span class="p">);</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_fact_causa</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="p">(</span><span class="n">id_causa</span><span class="p">);</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_fact_geografia</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="p">(</span><span class="n">id_geografia</span><span class="p">);</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_fact_sexo</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">fact_defunciones</span><span class="p">(</span><span class="n">id_sexo</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="estadisticas">Estadísticas<a class="headerlink" href="#estadisticas" title="Permanent link">&para;</a></h3>
+<p>Actualizar estadísticas regularmente post-insert para optimizador de consultas.</p>
+<hr />
+<h2 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>El modelo estrella presentado:
+- <strong>Habilita análisis multidimensional</strong> sin necesidad de preaagregación
+- <strong>Preserva flexibilidad:</strong> nuevas preguntas sin rediseño
+- <strong>Documenta decisiones:</strong> cada dimensión tiene justificación en EDA
+- <strong>Soporta anonimización:</strong> diseñado compatible con k-anonimato
+- <strong>Responde al encargo:</strong> análisis pre/post-COVID con desagregación geográfica, étnica, por edad y causa</p>
+<p>Está listo para entrega en Databricks (nube) y PostgreSQL (réplica local).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

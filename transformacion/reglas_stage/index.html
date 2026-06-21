@@ -1,0 +1,1746 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación de gobernanza, linaje y ética — Seminario de Sistemas 2 | USAC 2026">
+      
+      
+        <meta name="author" content="Grupo 3">
+      
+      
+      
+        <link rel="prev" href="../hallazgos_eda/">
+      
+      
+        <link rel="next" href="../modelo_dw/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Reglas de Conformidad - Plataforma Analítica de Mortalidad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reglas-de-conformidad-bronze-a-stage" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Plataforma Analítica de Mortalidad" class="md-header__button md-logo" aria-label="Plataforma Analítica de Mortalidad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Plataforma Analítica de Mortalidad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reglas de Conformidad
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../procedencia/" class="md-tabs__link">
+          
+  
+  Procedencia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lineage/" class="md-tabs__link">
+          
+  
+  Linaje de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Transformación Fase 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../etica/" class="md-tabs__link">
+          
+  
+  Ética y Gobernanza
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Plataforma Analítica de Mortalidad" class="md-nav__button md-logo" aria-label="Plataforma Analítica de Mortalidad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Plataforma Analítica de Mortalidad
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Procedencia
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Procedencia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../procedencia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Catálogo de Fuentes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../procedencia/renap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RENAP — Solicitud Formal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linaje de Datos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Linaje de Datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lineage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arquitectura del Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lineage/tablas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diccionario de Tablas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Transformación Fase 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Transformación Fase 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Información General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hallazgos_eda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hallazgos del EDA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Reglas de Conformidad
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Reglas de Conformidad
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-completitud-r-comp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Completitud (R-COMP)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Completitud (R-COMP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-comp-1-normalizacion-de-centinelas-por-columna" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-COMP-1: Normalización de centinelas por columna
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-comp-2-eliminacion-de-columnas-100-vacias" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-COMP-2: Eliminación de columnas 100% vacías
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-comp-3-documentacion-de-cobertura-parcial" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-COMP-3: Documentación de cobertura parcial
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-unicidad-r-uniq" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Unicidad (R-UNIQ)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Unicidad (R-UNIQ)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-uniq-1-deduplicacion-selectiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-UNIQ-1: Deduplicación selectiva
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-uniq-2-reestructuracion-del-diccionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-UNIQ-2: Reestructuración del diccionario
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-validez-r-valid" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Validez (R-VALID)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Validez (R-VALID)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-valid-1-normalizacion-de-artefacto-float-correccion-fundamental" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-VALID-1: Normalización de artefacto float (Corrección fundamental)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-valid-2-recuperacion-de-ceros-iniciales-en-geografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-VALID-2: Recuperación de ceros iniciales en geografía
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-valid-3-validacion-de-dominio-sexo" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-VALID-3: Validación de dominio — Sexo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-valid-4-validacion-y-estandarizacion-de-causa-cie-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-VALID-4: Validación y estandarización de causa CIE-10
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-consistencia-r-cons" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Consistencia (R-CONS)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Consistencia (R-CONS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-cons-1-construccion-de-fecha-de-ocurrencia-validada" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-CONS-1: Construcción de fecha de ocurrencia validada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-cons-2-primacia-de-ocurrencia-sobre-registro" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-CONS-2: Primacía de "ocurrencia" sobre "registro"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-cons-3-metadatos-de-linaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-CONS-3: Metadatos de linaje
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-exactitud-correcciones-semanticas-c1-a-c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Exactitud (Correcciones semánticas — C1 a C6)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Exactitud (Correcciones semánticas — C1 a C6)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c1-separacion-de-pueblo-etnia-de-periodo-de-edad" class="md-nav__link">
+    <span class="md-ellipsis">
+      C1: Separación de pueblo (etnia) de período de edad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2-normalizacion-de-edad-a-anos" class="md-nav__link">
+    <span class="md-ellipsis">
+      C2: Normalización de edad a años
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c3-unificacion-y-normalizacion-pre-k-anonimato" class="md-nav__link">
+    <span class="md-ellipsis">
+      C3: Unificación y normalización pre-k-anonimato
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c4-limitacion-de-analisis-urbanorural" class="md-nav__link">
+    <span class="md-ellipsis">
+      C4: Limitación de análisis urbano/rural
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-flag-de-causa-mal-definida" class="md-nav__link">
+    <span class="md-ellipsis">
+      C5: Flag de causa mal definida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c6-cobertura-documentada-de-etnia" class="md-nav__link">
+    <span class="md-ellipsis">
+      C6: Cobertura documentada de etnia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vigencia-temporalidad-r-temp" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Vigencia / Temporalidad (R-TEMP)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Vigencia / Temporalidad (R-TEMP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marca-de-periodo-pre-covid-vs-post-covid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Marca de período: PRE-COVID vs POST-COVID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-final-de-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado final de Stage
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo_dw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modelo Dimensional
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ética y Gobernanza
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Ética y Gobernanza
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../etica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Marco Ético
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../etica/anonimizacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan de Anonimización
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-completitud-r-comp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Completitud (R-COMP)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Completitud (R-COMP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-comp-1-normalizacion-de-centinelas-por-columna" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-COMP-1: Normalización de centinelas por columna
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-comp-2-eliminacion-de-columnas-100-vacias" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-COMP-2: Eliminación de columnas 100% vacías
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-comp-3-documentacion-de-cobertura-parcial" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-COMP-3: Documentación de cobertura parcial
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-unicidad-r-uniq" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Unicidad (R-UNIQ)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Unicidad (R-UNIQ)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-uniq-1-deduplicacion-selectiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-UNIQ-1: Deduplicación selectiva
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-uniq-2-reestructuracion-del-diccionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-UNIQ-2: Reestructuración del diccionario
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-validez-r-valid" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Validez (R-VALID)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Validez (R-VALID)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-valid-1-normalizacion-de-artefacto-float-correccion-fundamental" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-VALID-1: Normalización de artefacto float (Corrección fundamental)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-valid-2-recuperacion-de-ceros-iniciales-en-geografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-VALID-2: Recuperación de ceros iniciales en geografía
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-valid-3-validacion-de-dominio-sexo" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-VALID-3: Validación de dominio — Sexo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-valid-4-validacion-y-estandarizacion-de-causa-cie-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-VALID-4: Validación y estandarización de causa CIE-10
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-consistencia-r-cons" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Consistencia (R-CONS)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Consistencia (R-CONS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-cons-1-construccion-de-fecha-de-ocurrencia-validada" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-CONS-1: Construcción de fecha de ocurrencia validada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-cons-2-primacia-de-ocurrencia-sobre-registro" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-CONS-2: Primacía de "ocurrencia" sobre "registro"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-cons-3-metadatos-de-linaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-CONS-3: Metadatos de linaje
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-exactitud-correcciones-semanticas-c1-a-c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Exactitud (Correcciones semánticas — C1 a C6)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Exactitud (Correcciones semánticas — C1 a C6)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c1-separacion-de-pueblo-etnia-de-periodo-de-edad" class="md-nav__link">
+    <span class="md-ellipsis">
+      C1: Separación de pueblo (etnia) de período de edad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2-normalizacion-de-edad-a-anos" class="md-nav__link">
+    <span class="md-ellipsis">
+      C2: Normalización de edad a años
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c3-unificacion-y-normalizacion-pre-k-anonimato" class="md-nav__link">
+    <span class="md-ellipsis">
+      C3: Unificación y normalización pre-k-anonimato
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c4-limitacion-de-analisis-urbanorural" class="md-nav__link">
+    <span class="md-ellipsis">
+      C4: Limitación de análisis urbano/rural
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-flag-de-causa-mal-definida" class="md-nav__link">
+    <span class="md-ellipsis">
+      C5: Flag de causa mal definida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c6-cobertura-documentada-de-etnia" class="md-nav__link">
+    <span class="md-ellipsis">
+      C6: Cobertura documentada de etnia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vigencia-temporalidad-r-temp" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Vigencia / Temporalidad (R-TEMP)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Vigencia / Temporalidad (R-TEMP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marca-de-periodo-pre-covid-vs-post-covid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Marca de período: PRE-COVID vs POST-COVID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-final-de-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado final de Stage
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="reglas-de-conformidad-bronze-a-stage">Reglas de Conformidad — Bronze a Stage<a class="headerlink" href="#reglas-de-conformidad-bronze-a-stage" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
+<p>La transformación de Bronze a Stage implementa 12 reglas de conformidad, organizadas en 6 categorías de calidad de datos. Cada regla tiene:
+- Código identificador (R- para "Regla" general, C- para "Caveat" o corrección específica)
+- Fundamento técnico basado en EDA
+- Implementación en SQL/PySpark
+- Validación esperada</p>
+<p>El resultado es <code>stage.defunciones</code>: una tabla única (919,231 registros, 2015–2024) limpia, tipada, estandarizada y lista para modelado dimensional.</p>
+<hr />
+<h2 id="1-completitud-r-comp">1. Completitud (R-COMP)<a class="headerlink" href="#1-completitud-r-comp" title="Permanent link">&para;</a></h2>
+<h3 id="r-comp-1-normalizacion-de-centinelas-por-columna">R-COMP-1: Normalización de centinelas por columna<a class="headerlink" href="#r-comp-1-normalizacion-de-centinelas-por-columna" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Convierte códigos de "Ignorado" / "No especificado" a NULL de forma selectiva, respetando la semántica de cada columna.</p>
+<p><strong>Regla:</strong>
+- Columnas categóricas con código <code>9</code> para "Ignorado": <code>Puedif</code>, <code>Escodif</code>, <code>Asist</code>, <code>Ocur</code>, <code>Cerdef</code>, <code>Ecidif</code>
+  - <code>9</code> → NULL
+- Columna edad: <code>Edadif=999</code> (edad desconocida) → NULL
+- <strong>NO aplicar:</strong> <code>9</code> en <code>Mes</code> (que es Septiembre) o en <code>Día</code> (9 es un día válido)</p>
+<p><strong>Impacto:</strong>
+- Mejora k-anonimato: valores "Ignorado" no son cuasi-identificadores útiles
+- Precisión en análisis agregados (GROUP BY sin ruido)</p>
+<p><strong>Ejemplo PySpark:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">sentinela_9</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Puedif&quot;</span><span class="p">,</span> <span class="s2">&quot;Escodif&quot;</span><span class="p">,</span> <span class="s2">&quot;Asist&quot;</span><span class="p">,</span> <span class="s2">&quot;Ocur&quot;</span><span class="p">,</span> <span class="s2">&quot;Cerdef&quot;</span><span class="p">,</span> <span class="s2">&quot;Ecidif&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">sentinela_9</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> 
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">col</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">col</span><span class="p">)))</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;Edadif&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Edadif&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;999&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Edadif&quot;</span><span class="p">)))</span>
+</code></pre></div></p>
+<hr />
+<h3 id="r-comp-2-eliminacion-de-columnas-100-vacias">R-COMP-2: Eliminación de columnas 100% vacías<a class="headerlink" href="#r-comp-2-eliminacion-de-columnas-100-vacias" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+En <code>bronze.json_oms</code> y <code>bronze.json_worldbank</code>, existen columnas completamente vacías (<code>Dim3</code>, <code>DataSourceDim</code>, etc.).</p>
+<p><strong>Regla:</strong>
+Descartar columnas con 100% de valores faltantes o nulos.</p>
+<p><strong>Impacto:</strong>
+Simplifica esquema de Stage; reduce confusión en diccionario de datos.</p>
+<hr />
+<h3 id="r-comp-3-documentacion-de-cobertura-parcial">R-COMP-3: Documentación de cobertura parcial<a class="headerlink" href="#r-comp-3-documentacion-de-cobertura-parcial" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Columnas con faltantes parciales (<code>Ciuodif</code>, <code>Escodif</code> con 14.78% faltante en xlsx) se documentan sin imputación.</p>
+<p><strong>Regla:</strong>
+- <strong>No imputar</strong> en Stage; marcar en metadatos
+- Dejar NULL tal como está
+- Reportar sesgo potencial en análisis</p>
+<p><strong>Impacto:</strong>
+Transparencia en auditoría; decisiones sobre análisis no sesgado.</p>
+<hr />
+<h2 id="2-unicidad-r-uniq">2. Unicidad (R-UNIQ)<a class="headerlink" href="#2-unicidad-r-uniq" title="Permanent link">&para;</a></h2>
+<h3 id="r-uniq-1-deduplicacion-selectiva">R-UNIQ-1: Deduplicación selectiva<a class="headerlink" href="#r-uniq-1-deduplicacion-selectiva" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+A diferencia de tablas de entidades (clientes, productos), las defunciones son eventos. Dos registros idénticos pueden representar dos muertes reales (coincidencia); no se deduplican globalmente.</p>
+<p><strong>Regla:</strong>
+- <strong>No ejecutar</strong> <code>dropDuplicates()</code> global
+- Marcar registro con flag <code>dup_exacto</code> si es completamente idéntico a otro
+- Mantener ambos en Stage para auditoría</p>
+<p><strong>Evidencia EDA:</strong>
+- xlsx: 167 duplicados exactos (0.02%)
+- legacy: 79 duplicados exactos (0.03%)</p>
+<p><strong>Impacto:</strong>
+Preserva integridad de datos de mortalidad; permite auditoría posterior.</p>
+<hr />
+<h3 id="r-uniq-2-reestructuracion-del-diccionario">R-UNIQ-2: Reestructuración del diccionario<a class="headerlink" href="#r-uniq-2-reestructuracion-del-diccionario" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+La tabla <code>bronze.gdrive_docs</code> contiene el diccionario CIE-10 con 64.94% de duplicados exactos (artefacto de estructura).</p>
+<p><strong>Regla:</strong>
+- Reestructurar tabla de diccionario (no es hecho; es dimensión)
+- Eliminar duplicados con <code>SELECT DISTINCT</code>
+- Crear tabla <code>stage.dim_diccionario</code> de referencia para validaciones</p>
+<p><strong>Impacto:</strong>
+Diccionario limpio para joins con <code>Caudef</code> sin amplificación de filas.</p>
+<hr />
+<h2 id="3-validez-r-valid">3. Validez (R-VALID)<a class="headerlink" href="#3-validez-r-valid" title="Permanent link">&para;</a></h2>
+<h3 id="r-valid-1-normalizacion-de-artefacto-float-correccion-fundamental">R-VALID-1: Normalización de artefacto float (Corrección fundamental)<a class="headerlink" href="#r-valid-1-normalizacion-de-artefacto-float-correccion-fundamental" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Los datos legacy (SAV, 2015–2017) guardaron valores numéricos como punto flotante: <code>"1.0"</code>, <code>"0101.0"</code>.</p>
+<p><strong>Regla:</strong>
+Aplicar <strong>antes de cualquier otro procesamiento</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">norm_float</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">):</span>  <span class="c1"># Excluir metadata</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>            <span class="k">continue</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="n">col</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>            <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">trim</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">col</span><span class="p">)))</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>             <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">regexp_replace</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">col</span><span class="p">),</span> <span class="sa">r</span><span class="s2">&quot;\.0$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)))</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></p>
+<p><strong>Impacto:</strong>
+- Sexo: {<code>"1.0"</code>, <code>"2.0"</code>} → {<code>1</code>, <code>2</code>}
+- Municipios: <code>"0101.0"</code> → <code>"0101"</code> (sin pérdida de ceros)
+- Prerequisito para k-anonimato y joins</p>
+<hr />
+<h3 id="r-valid-2-recuperacion-de-ceros-iniciales-en-geografia">R-VALID-2: Recuperación de ceros iniciales en geografía<a class="headerlink" href="#r-valid-2-recuperacion-de-ceros-iniciales-en-geografia" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Municipios en el legacy se pueden haber perdido ceros iniciales durante conversión.</p>
+<p><strong>Regla (R-CARD-1):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">LPAD</span><span class="p">(</span><span class="n">municipio</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="w">  </span><span class="c1">-- Garantiza formato &#39;0101&#39;...&#39;2201&#39;</span>
+</code></pre></div></p>
+<p><strong>Impacto:</strong>
+Garantiza joins correctos con catálogos de municipios en dim_geografia.</p>
+<hr />
+<h3 id="r-valid-3-validacion-de-dominio-sexo">R-VALID-3: Validación de dominio — Sexo<a class="headerlink" href="#r-valid-3-validacion-de-dominio-sexo" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Sexo debe estar en {1=Hombre, 2=Mujer}. Cualquier otro valor es error de codificación.</p>
+<p><strong>Regla:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;sexo&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Sexo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Sexo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">))</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>     <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+</code></pre></div></p>
+<p><strong>Impacto:</strong>
+- Elimina ruido; facilita análisis por género
+- ~100% de validez en datos (solo desviaciones mínimas)</p>
+<hr />
+<h3 id="r-valid-4-validacion-y-estandarizacion-de-causa-cie-10">R-VALID-4: Validación y estandarización de causa CIE-10<a class="headerlink" href="#r-valid-4-validacion-y-estandarizacion-de-causa-cie-10" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+El 100% de <code>Caudef</code> está en formato CIE-10. Se estandariza (mayúsculas, trim) y se preserva jerarquía.</p>
+<p><strong>Regla:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;caudef&quot;</span><span class="p">,</span> 
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">F</span><span class="o">.</span><span class="n">trim</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Caudef&quot;</span><span class="p">))))</span>
+</code></pre></div></p>
+<p><strong>Jerarquía preservada en dim_causa_cie10:</strong>
+- Nivel 4: Código completo (ej: U071, R992)
+- Nivel 3: Categoría (ej: U07, R99)
+- Nivel 1: Capítulo (ej: U, R)</p>
+<p><strong>Impacto:</strong>
+Habilita análisis multidimensional por capítulo, categoría o código específico.</p>
+<hr />
+<h2 id="4-consistencia-r-cons">4. Consistencia (R-CONS)<a class="headerlink" href="#4-consistencia-r-cons" title="Permanent link">&para;</a></h2>
+<h3 id="r-cons-1-construccion-de-fecha-de-ocurrencia-validada">R-CONS-1: Construcción de fecha de ocurrencia validada<a class="headerlink" href="#r-cons-1-construccion-de-fecha-de-ocurrencia-validada" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Los campos <code>Diaocu</code>, <code>Mesocu</code>, <code>Añoocu</code> pueden tener errores de fecha (30 de febrero, etc.).</p>
+<p><strong>Regla:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">fecha_ocurrencia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TRY_TO_DATE</span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">CONCAT</span><span class="p">(</span><span class="n">LPAD</span><span class="p">(</span><span class="n">Diaocu</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LPAD</span><span class="p">(</span><span class="n">Mesocu</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Añoocu</span><span class="p">),</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="s1">&#39;dd-MM-yyyy&#39;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">)</span>
+</code></pre></div></p>
+<ul>
+<li>Conversión segura: fechas inválidas → NULL</li>
+<li>Detecta errores de tipeo (ej: mes=13)</li>
+</ul>
+<p><strong>Impacto:</strong>
+Garantiza integridad temporal para análisis time-series.</p>
+<hr />
+<h3 id="r-cons-2-primacia-de-ocurrencia-sobre-registro">R-CONS-2: Primacía de "ocurrencia" sobre "registro"<a class="headerlink" href="#r-cons-2-primacia-de-ocurrencia-sobre-registro" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Existen dos marcas de tiempo: ocurrencia de defunción vs. registro administrativo. Para epidemiología, importa la <strong>ocurrencia</strong>.</p>
+<p><strong>Regla:</strong>
+- Dimensión temporal: construida desde <code>Año/Mes/Día de ocurrencia</code> (R-CONS-1)
+- Conservar <code>Año/Mes de registro</code> en linaje para auditoría
+- Partición de fact: por año de ocurrencia</p>
+<p><strong>Impacto:</strong>
+Análisis correcto de tendencias pre/post-COVID (evita sesgo por rezagos administrativos).</p>
+<hr />
+<h3 id="r-cons-3-metadatos-de-linaje">R-CONS-3: Metadatos de linaje<a class="headerlink" href="#r-cons-3-metadatos-de-linaje" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Las columnas <code>_anio</code>, <code>_archivo_origen</code>, <code>_fuente</code> se preservan sin modificación (transporte de linaje).</p>
+<p><strong>Regla:</strong>
+- No tocar columnas que comienzan con <code>_</code>
+- Conservarlas en Stage para trazabilidad
+- Están disponibles para auditoría (git blame + esta tabla)</p>
+<p><strong>Impacto:</strong>
+Toda fila puede rastrearse a su archivo de origen y año de ingesta.</p>
+<hr />
+<h2 id="5-exactitud-correcciones-semanticas-c1-a-c6">5. Exactitud (Correcciones semánticas — C1 a C6)<a class="headerlink" href="#5-exactitud-correcciones-semanticas-c1-a-c6" title="Permanent link">&para;</a></h2>
+<h3 id="c1-separacion-de-pueblo-etnia-de-periodo-de-edad">C1: Separación de pueblo (etnia) de período de edad<a class="headerlink" href="#c1-separacion-de-pueblo-etnia-de-periodo-de-edad" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+<code>Perdif</code> (período de edad: 1=días, 2=meses, 3=años) fue mal interpretado como etnia.</p>
+<p><strong>Corrección:</strong>
+- <code>Puedif</code> = pueblo/etnia real
+- <code>Perdif</code> = unidad de edad (no se nulifica; es necesaria para normalizar <code>Edadif</code>)</p>
+<p><strong>Impacto en Stage:</strong>
+- Columna <code>Puedif</code> tal cual (con sentinela 9→NULL por R-COMP-1)
+- Columna <code>edad_anios</code> derivada de <code>Edadif</code> + <code>Perdif</code> (ver C2)</p>
+<hr />
+<h3 id="c2-normalizacion-de-edad-a-anos">C2: Normalización de edad a años<a class="headerlink" href="#c2-normalizacion-de-edad-a-anos" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+<code>Edadif</code> tiene 3 unidades posibles según <code>Perdif</code>. Normalizar a años evita sesgos.</p>
+<p><strong>Regla:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;edad_anios&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Perdif&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Edadif&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">))</span>  <span class="c1"># ya está en años</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Perdif&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># días/meses → NULL, se marca como &lt;1 año en dim_grupo_etario</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Perdif&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>  <span class="c1"># ignorado</span>
+</code></pre></div></p>
+<p><strong>Grupo etario derivado:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;grupo_etario&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">((</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;Perdif&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;edad_anios&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;0-Menor de 1 año&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>     <span class="o">.</span><span class="n">when</span><span class="p">((</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;edad_anios&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;edad_anios&quot;</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;1-1 a 4 años&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>     <span class="o">...</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;edad_anios&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">65</span><span class="p">,</span> <span class="s2">&quot;6-65 y más años&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>     <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+</code></pre></div></p>
+<p><strong>Impacto:</strong>
+- ~46,000 registros infantiles (días/meses) se clasifican correctamente en &lt;1 año
+- Mortalidad infantil se analiza de forma precisa</p>
+<hr />
+<h3 id="c3-unificacion-y-normalizacion-pre-k-anonimato">C3: Unificación y normalización pre-k-anonimato<a class="headerlink" href="#c3-unificacion-y-normalizacion-pre-k-anonimato" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Antes de cualquier técnica de anonimización, converger artefactos y estandarizar:
+- Floats normalizados (R-VALID-1)
+- Centinelas a NULL (R-COMP-1)
+- Ceros iniciales recuperados (R-VALID-2)</p>
+<p><strong>Prerequisito:</strong>
+k-anonimato requiere quasiidentificadores limpios.</p>
+<hr />
+<h3 id="c4-limitacion-de-analisis-urbanorural">C4: Limitación de análisis urbano/rural<a class="headerlink" href="#c4-limitacion-de-analisis-urbanorural" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+<code>Areag</code> solo existe 2015–2017 (Hallazgo H5).</p>
+<p><strong>Regla:</strong>
+- Se incluye en <code>dim_geografia</code> como nullable
+- Análisis urbano/rural: solo 2015–2017, o imputación consciente con caveat</p>
+<p><strong>Impacto en Stage:</strong>
+Columna Areag se preserva; NULL para 2018–2024.</p>
+<hr />
+<h3 id="c5-flag-de-causa-mal-definida">C5: Flag de causa mal definida<a class="headerlink" href="#c5-flag-de-causa-mal-definida" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+~13.5% de defunciones tienen <code>Caudef</code> en capítulo R (síntomas, signos, hallazgos anormales — mal definido).</p>
+<p><strong>Regla en Stage:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;es_mal_definida&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;caudef&quot;</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>     <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="kc">False</span><span class="p">))</span>
+</code></pre></div></p>
+<p><strong>Impacto:</strong>
+Permite análisis filtrado (excluyendo causas mal definidas) para estudios de precisión epidemiológica.</p>
+<hr />
+<h3 id="c6-cobertura-documentada-de-etnia">C6: Cobertura documentada de etnia<a class="headerlink" href="#c6-cobertura-documentada-de-etnia" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Etnia (<code>Puedif</code>) tiene ~16–19% "Ignorado" (Hallazgo H7).</p>
+<p><strong>Regla:</strong>
+- Se convierte a NULL por R-COMP-1
+- Se reporta % de faltantes por año en metadatos
+- Análisis por etnia: solo con n ≥ 5</p>
+<p><strong>Impacto:</strong>
+Análisis desagregado étnico con garantía de privacidad y representatividad.</p>
+<hr />
+<h2 id="6-vigencia-temporalidad-r-temp">6. Vigencia / Temporalidad (R-TEMP)<a class="headerlink" href="#6-vigencia-temporalidad-r-temp" title="Permanent link">&para;</a></h2>
+<h3 id="marca-de-periodo-pre-covid-vs-post-covid">Marca de período: PRE-COVID vs POST-COVID<a class="headerlink" href="#marca-de-periodo-pre-covid-vs-post-covid" title="Permanent link">&para;</a></h3>
+<p><strong>Descripción:</strong>
+Para análisis comparativo, se marca cada registro con su período.</p>
+<p><strong>Regla:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;periodo&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;anio&quot;</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2019</span><span class="p">,</span> <span class="s2">&quot;PRE_COVID&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>     <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;anio&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2020</span><span class="p">,</span> <span class="s2">&quot;POST_COVID&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>     <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+</code></pre></div></p>
+<p><strong>Períodos definidos:</strong>
+- PRE-COVID: 2015–2019 (245,167 registros)
+- POST-COVID: 2020–2024 (674,064 registros)</p>
+<p><strong>Impacto:</strong>
+Habilita análisis de comparación pre/post en todas las dimensiones.</p>
+<hr />
+<h2 id="resultado-final-de-stage">Resultado final de Stage<a class="headerlink" href="#resultado-final-de-stage" title="Permanent link">&para;</a></h2>
+<p>Al aplicar estas 12 reglas, se obtiene:</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Garantía</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registros</td>
+<td>919,231 filas, sin deduplicación destructiva</td>
+</tr>
+<tr>
+<td>Esquema</td>
+<td>Tipado, normalizado, 40+ columnas conformadas</td>
+</tr>
+<tr>
+<td>Calidad</td>
+<td>Completo, único (con marcas), válido, consistente, exacto, vigente</td>
+</tr>
+<tr>
+<td>Linaje</td>
+<td>Conservado en metadatos (<code>_anio</code>, <code>_archivo_origen</code>, <code>_fuente</code>)</td>
+</tr>
+<tr>
+<td>Anonimización</td>
+<td>Prerequisito: centinelas nulificados, quasiidentificadores limpios</td>
+</tr>
+<tr>
+<td>Auditoría</td>
+<td>Reproducible mediante código comentado (git blame disponible)</td>
+</tr>
+</tbody>
+</table>
+<p>La tabla <code>stage.defunciones</code> está lista para modelado dimensional.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
