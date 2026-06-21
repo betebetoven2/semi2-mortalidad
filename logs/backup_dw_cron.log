@@ -15,3 +15,20 @@
   OK  workspace.dw.dim_lugar: 129 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/test/dim_lugar_20260620_224133.parquet
 [EmailNotifier] Enviado: '✅ Backup DW - OK: Backup del DW completado correctamente' -> albertoha2000@gmail.com
 [2026-06-20 22:41:35.013348] Lote 9 finalizado: EXITOSO (14 ok, 0 fallidas)
+[2026-06-21 00:00:02.340551] Iniciando backup_dw.py (test=False)
+  OK  workspace.bronze.xlsx_ine: 674,064 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/xlsx_ine_20260621_000058.parquet
+  OK  workspace.bronze.sav_ine_legacy: 245,167 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/sav_ine_legacy_20260621_000134.parquet
+  OK  workspace.bronze.json_oms: 1,708 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/json_oms_20260621_000150.parquet
+  OK  workspace.bronze.json_worldbank: 450 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/json_worldbank_20260621_000152.parquet
+  OK  workspace.bronze.gdrive_docs: 1,837 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/gdrive_docs_20260621_000153.parquet
+  OK  workspace.stage.defunciones: 919,231 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/defunciones_20260621_000211.parquet
+  OK  workspace.dw.fact_defunciones: 919,231 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/fact_defunciones_20260621_000244.parquet
+  OK  workspace.dw.dim_tiempo: 120 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_tiempo_20260621_000251.parquet
+  OK  workspace.dw.dim_geografia: 1,348 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_geografia_20260621_000252.parquet
+  OK  workspace.dw.dim_causa_cie10: 3,087 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_causa_cie10_20260621_000254.parquet
+  OK  workspace.dw.dim_sexo: 3 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_sexo_20260621_000255.parquet
+  OK  workspace.dw.dim_grupo_etario: 8 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_grupo_etario_20260621_000256.parquet
+  OK  workspace.dw.dim_pueblo: 6 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_pueblo_20260621_000257.parquet
+  OK  workspace.dw.dim_lugar: 129 filas -> /mnt/extra/cys/cys_u/semi2/backup_dw/dim_lugar_20260621_000258.parquet
+[EmailNotifier] Enviado: '✅ Backup DW - OK: Backup del DW completado correctamente' -> albertoha2000@gmail.com
+[2026-06-21 00:03:17.516570] Lote 10 finalizado: EXITOSO (14 ok, 0 fallidas)

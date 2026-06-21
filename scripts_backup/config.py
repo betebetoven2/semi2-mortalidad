@@ -39,6 +39,8 @@ TABLAS_DW = [
     "workspace.dw.dim_grupo_etario",
     "workspace.dw.dim_pueblo",
     "workspace.dw.dim_lugar",
+    "workspace.dw.fact_indicador_pais_anio",
+    "workspace.dw.etl_control_log",
 ]
 TABLAS_BRONZE = [
     "workspace.bronze.xlsx_ine",
@@ -49,7 +51,10 @@ TABLAS_BRONZE = [
 ]
 
 TABLAS_STAGE = [
-    "workspace.stage.defunciones"
+    "workspace.stage.defunciones",
+    "workspace.stage.oms_indicadores",
+    "workspace.stage.worldbank_indicadores",
+    "workspace.stage.dim_diccionario",
 ]
 
 TABLAS_TODAS = TABLAS_BRONZE + TABLAS_STAGE + TABLAS_DW
