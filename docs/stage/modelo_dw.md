@@ -527,13 +527,6 @@ Un indicador específico (`indicador_codigo`) para un país (`pais_iso3`) en un 
 
 `dw_fact_indicador_pais_anio` **no tiene FK hacia `fact_defunciones` ni hacia las dimensiones del esquema estrella**. Es un hecho satélite independiente. La conexión analítica con las defunciones de Guatemala se realiza en la capa de consulta filtrando por `pais_iso3 = 'GTM'` y haciendo JOIN sobre `anio`.
 
-```
-fact_defunciones           ─────────────  Modelo Estrella (grano: defunción, Guatemala 2015–2024)
-fact_indicador_pais_anio   ─────────────  Hecho satélite (grano: indicador × país × año, Centroamérica)
-
-        │ ambas tablas forman la constelación de hechos (galaxy schema)
-        │ JOIN posible: anio ↔ anio  y  pais_iso3 = 'GTM' ↔ dim_geografia
-```
 
 ### Tablas de Stage que la alimentan
 
