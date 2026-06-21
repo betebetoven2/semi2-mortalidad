@@ -1,0 +1,4 @@
+[2026-06-20 22:43:27.568827] Iniciando backup_auditoria.py (schema semi2)
+  OK  schema semi2 -> /mnt/extra/cys/cys_u/semi2/backup_auditoria_semi2/semi2_20260620_224327.dump (21.7 KB)
+[EmailNotifier] Enviado: '✅ Backup DW - OK: Backup del schema de auditoria (semi2) completado' -> albertoha2000@gmail.com
+[2026-06-20 22:43:29.521321] Finalizado
