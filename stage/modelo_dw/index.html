@@ -2914,12 +2914,6 @@ Disparidades en mortalidad observadas por pueblo pueden reflejar tanto realidad 
 </table>
 <h3 id="relacion-con-el-modelo-estrella">Relación con el modelo estrella<a class="headerlink" href="#relacion-con-el-modelo-estrella" title="Permanent link">&para;</a></h3>
 <p><code>dw_fact_indicador_pais_anio</code> <strong>no tiene FK hacia <code>fact_defunciones</code> ni hacia las dimensiones del esquema estrella</strong>. Es un hecho satélite independiente. La conexión analítica con las defunciones de Guatemala se realiza en la capa de consulta filtrando por <code>pais_iso3 = 'GTM'</code> y haciendo JOIN sobre <code>anio</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>fact_defunciones           ─────────────  Modelo Estrella (grano: defunción, Guatemala 2015–2024)
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>fact_indicador_pais_anio   ─────────────  Hecho satélite (grano: indicador × país × año, Centroamérica)
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>        │ ambas tablas forman la constelación de hechos (galaxy schema)
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>        │ JOIN posible: anio ↔ anio  y  pais_iso3 = &#39;GTM&#39; ↔ dim_geografia
-</code></pre></div>
 <h3 id="tablas-de-stage-que-la-alimentan">Tablas de Stage que la alimentan<a class="headerlink" href="#tablas-de-stage-que-la-alimentan" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
