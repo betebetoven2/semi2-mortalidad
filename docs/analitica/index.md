@@ -25,36 +25,7 @@ La tercera y última fase de la plataforma cierra el ciclo *end-to-end*: sobre e
 
 ## Flujo de la Fase
 
-```
-Repositorio DW — capa Gold / Fact-Dimensiones  (Fase 2)
-        │
-        ▼
-┌─────────────────────────────────┐
-│  Notebook 1 — Feature           │  Join de 7 dimensiones → tablas ML
-│  Engineering                    │  ml.dataset_defunciones
-│                                 │  ml.dataset_mensual_depto_causa
-└────────┬────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────┐
-│  Notebook 2 — Regresión         │  AUC 0.617 | Acc 0.587 | F1 0.666
-│  Logística (clasificación)      │
-├─────────────────────────────────┤
-│  Notebook 3 — Regresión Ridge   │  R² 0.523 | RMSE 26.83 | MAE 13.47
-│  (pronóstico mensual)           │
-└────────┬────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────┐
-│  Visualización BI               │  Power BI + herramienta alternativa
-└────────┬────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────┐
-│  Análisis comparativo y         │
-│  Recomendaciones de política    │
-└─────────────────────────────────┘
-```
+![Diagrama de la fase ML](../images/diagrama_ml_fase2.drawio.svg)
 
 ---
 
