@@ -7,7 +7,7 @@ El encargo exige demostrar **interoperabilidad real entre herramientas de BI**, 
 | Herramienta | Vistas entregadas | Fuente de datos |
 |---|---|---|
 | **Power BI** | 2 dashboards (Power Query + DAX) | Conexión directa al DW |
-| **Herramienta alternativa** | 2 dashboards | Conexión directa al DW |
+| **Databricks SQL Editor** | 2 dashboards | Conexión directa al DW |
 
 ---
 
@@ -47,23 +47,107 @@ CALCULATE(
 
 Comparativa de mortalidad entre los dos períodos desagregada por capítulo CIE-10, con énfasis en el capítulo U (COVID-19 directo) y el capítulo J (enfermedades respiratorias generales). Incluye gráfico de barras agrupadas, tabla de variación porcentual y filtros por departamento y año.
 
+![Dashboard Power BI — Vista 1](../images/powerbi1.png)
+
 ### Vista 2 — Tendencia Mensual y Exceso de Mortalidad
 
 Serie de tiempo de defunciones mensuales observadas vs. defunciones esperadas según el modelo Ridge, con área sombreada para el exceso o déficit. Permite identificar visualmente el valor atípico de mayo de 2024 y el patrón de normalización post-pandemia en 2023.
 
+![Dashboard Power BI — Vista 2](../images/powerbi2.png)
+
 ---
 
-## Herramienta Alternativa
+## Databricks SQL Editor
 
-Las dos vistas adicionales replican los mismos análisis core conectándose al mismo DW, lo que constituye la demostración de interoperabilidad: **la misma fuente de verdad, dos plataformas distintas**.
+Las dos vistas adicionales se construyen directamente sobre el **editor de visualizaciones nativo de Databricks** (Databricks SQL Editor), ejecutando consultas sobre el mismo DW. Esto constituye la demostración de interoperabilidad: **la misma fuente de verdad, dos plataformas distintas**.
 
-### Vista 3 — Distribución Geográfica de Mortalidad
+### Vista 3 — Mortalidad en Guatemala (2015–2024)
 
-Mapa de calor departamental con la tasa de defunciones por 100,000 habitantes, comparando pre y post-COVID. Permite identificar departamentos con mayor impacto diferencial de la pandemia.
+Dashboard con tres visualizaciones sobre `workspace.ml.dataset_mensual_depto_causa`:
 
-### Vista 4 — Segmentación por Grupo Etario y Sexo
+**Mapa de calor de defunciones mensuales** — distribución mes × año. El pico más oscuro corresponde a octubre de 2022 (7,744 defunciones), evidenciando el efecto rezagado de la pandemia en la mortalidad guatemalteca.
 
-Pirámide de mortalidad por grupo etario y sexo, filtrable por período y capítulo de causa. Complementa el análisis de los coeficientes del modelo logístico con una representación visual directamente interpretable por el cliente.
+```sql
+SELECT 
+  anio,
+  mes,
+  SUM(defunciones) AS total_defunciones
+FROM workspace.ml.dataset_mensual_depto_causa
+GROUP BY anio, mes
+ORDER BY anio, mes
+```
+
+**Barras horizontales Pre/Post-COVID por capítulo CIE-10** — compara el volumen total de defunciones por capítulo entre ambos períodos. Los capítulos con mayor volumen absoluto son I (enfermedades del sistema circulatorio) y R (síntomas y signos no clasificados).
+
+```sql
+SELECT 
+  capitulo_1,
+  periodo,
+  SUM(defunciones) AS total_defunciones
+FROM workspace.ml.dataset_mensual_depto_causa
+GROUP BY capitulo_1, periodo
+ORDER BY total_defunciones DESC
+LIMIT 20
+```
+
+**Diagrama de dispersión de variación porcentual** — cruza el volumen total de defunciones (eje X) contra la variación porcentual pre/post COVID (eje Y) por capítulo CIE-10. Los capítulos con mayor variación positiva corresponden a causas directamente vinculadas al COVID-19 o a disrupciones en la atención médica durante la pandemia.
+
+```sql
+SELECT
+  capitulo_1,
+  SUM(CASE WHEN periodo = 'PRE_COVID' THEN defunciones ELSE 0 END) AS pre_covid,
+  SUM(CASE WHEN periodo = 'POST_COVID' THEN defunciones ELSE 0 END) AS post_covid,
+  SUM(defunciones) AS total,
+  ROUND(
+    (SUM(CASE WHEN periodo = 'POST_COVID' THEN defunciones ELSE 0 END) -
+     SUM(CASE WHEN periodo = 'PRE_COVID' THEN defunciones ELSE 0 END)) /
+    NULLIF(SUM(CASE WHEN periodo = 'PRE_COVID' THEN defunciones ELSE 0 END), 0) * 100, 2
+  ) AS variacion_pct
+FROM workspace.ml.dataset_mensual_depto_causa
+GROUP BY capitulo_1
+ORDER BY total DESC
+```
+
+![Dashboard Databricks — Vista 3](../images/dashboard1.jpeg)
+
+### Vista 4 — Comparativa Regional Centroamérica
+
+Dashboard con tres visualizaciones sobre `workspace.dw.fact_indicador_pais_anio`, usando el indicador `SP.DYN.CDRT.IN` (tasa de mortalidad cruda por cada 1,000 habitantes, Banco Mundial):
+
+**Serie temporal por país** — líneas 2015–2024 para CRI, GTM, HND, NIC, PAN y SLV. Se observa un incremento generalizado en 2020–2021 con posterior descenso hacia niveles prepandemia.
+
+```sql
+SELECT
+  pais_iso3,
+  anio,
+  ROUND(AVG(valor), 2) AS tasa_mortalidad
+FROM workspace.dw.fact_indicador_pais_anio
+WHERE anio BETWEEN 2015 AND 2024
+  AND indicador_codigo = 'SP.DYN.CDRT.IN'
+GROUP BY pais_iso3, anio
+ORDER BY pais_iso3, anio
+```
+
+**Mapa de calor países × años** — refuerza la lectura anterior en formato matricial. Nicaragua (NIC) y El Salvador (SLV) presentan consistentemente las tasas más altas de la región.
+
+*(Misma consulta que la serie temporal.)*
+
+**Barras apiladas impacto COVID (2019 vs. 2021)** — compara la tasa de mortalidad de 2019 (línea base prepandemia) contra 2021 (pico pandémico) para cada país. El Salvador registra el mayor incremento absoluto entre ambos años.
+
+```sql
+SELECT
+  pais_iso3,
+  anio,
+  ROUND(AVG(valor), 2) AS tasa_mortalidad
+FROM workspace.dw.fact_indicador_pais_anio
+WHERE indicador_codigo = 'SP.DYN.CDRT.IN'
+  AND anio IN (2019, 2021)
+GROUP BY pais_iso3, anio
+HAVING tasa_mortalidad IS NOT NULL
+ORDER BY pais_iso3, anio
+```
+
+![Dashboard Databricks — Vista 4](../images/dashboard2.jpeg)
 
 ---
 
