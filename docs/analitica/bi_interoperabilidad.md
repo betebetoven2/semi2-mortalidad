@@ -74,18 +74,6 @@ Pirámide de mortalidad por grupo etario y sexo, filtrable por período y capít
 
 El flujo completo de interoperabilidad es:
 
-```
-Fuente original
-      │
-      ▼
-Pipeline Databricks (Fase 2)
-      │   Sandbox → Stage → Gold / Fact-Dimensiones
-      ▼
-Data Warehouse (nube + local)
-      │
-      ├──▶  Power BI ──▶ Vista 1, Vista 2
-      │
-      └──▶  Herramienta alternativa ──▶ Vista 3, Vista 4
-```
+![Diagrama del pipeline de datos](../images/pipeline_datos.drawio.svg)
 
 Ambas conexiones apuntan al mismo esquema del DW. No existe una copia intermedia de datos ni una exportación manual entre herramientas.
