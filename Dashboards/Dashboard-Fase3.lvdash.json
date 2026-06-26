@@ -1,0 +1,566 @@
+{
+  "datasets": [
+    {
+      "name": "mortalidad_mensual",
+      "displayName": "Heatmap año x mes",
+      "queryLines": [
+        "SELECT \n",
+        "  anio,\n",
+        "  mes,\n",
+        "  SUM(defunciones) AS total_defunciones\n",
+        "FROM workspace.ml.dataset_mensual_depto_causa\n",
+        "GROUP BY anio, mes\n",
+        "ORDER BY anio, mes"
+      ]
+    },
+    {
+      "name": "60457572",
+      "displayName": "Capitulos CIE-10",
+      "queryLines": [
+        "SELECT \r\n",
+        "  capitulo_1,\r\n",
+        "  periodo,\r\n",
+        "  SUM(defunciones) AS total_defunciones\r\n",
+        "FROM workspace.ml.dataset_mensual_depto_causa\r\n",
+        "GROUP BY capitulo_1, periodo\r\n",
+        "ORDER BY total_defunciones DESC\r\n",
+        "LIMIT 20"
+      ]
+    },
+    {
+      "name": "19f0e005",
+      "displayName": "Scatter causas pre/post",
+      "queryLines": [
+        "SELECT\r\n",
+        "  capitulo_1,\r\n",
+        "  SUM(CASE WHEN periodo = 'PRE_COVID' THEN defunciones ELSE 0 END) AS pre_covid,\r\n",
+        "  SUM(CASE WHEN periodo = 'POST_COVID' THEN defunciones ELSE 0 END) AS post_covid,\r\n",
+        "  SUM(defunciones) AS total,\r\n",
+        "  ROUND(\r\n",
+        "    (SUM(CASE WHEN periodo = 'POST_COVID' THEN defunciones ELSE 0 END) -\r\n",
+        "     SUM(CASE WHEN periodo = 'PRE_COVID' THEN defunciones ELSE 0 END)) /\r\n",
+        "    NULLIF(SUM(CASE WHEN periodo = 'PRE_COVID' THEN defunciones ELSE 0 END), 0) * 100, 2\r\n",
+        "  ) AS variacion_pct\r\n",
+        "FROM workspace.ml.dataset_mensual_depto_causa\r\n",
+        "GROUP BY capitulo_1\r\n",
+        "ORDER BY total DESC"
+      ]
+    },
+    {
+      "name": "bd2335d1",
+      "displayName": "Multiline",
+      "queryLines": [
+        "SELECT\r\n",
+        "  pais_iso3,\r\n",
+        "  anio,\r\n",
+        "  ROUND(AVG(valor), 2) AS valor_promedio\r\n",
+        "FROM workspace.dw.fact_indicador_pais_anio\r\n",
+        "WHERE anio BETWEEN 2015 AND 2024\r\n",
+        "  AND indicador_codigo = 'SP.DYN.CDRT.IN'\r\n",
+        "GROUP BY pais_iso3, anio\r\n",
+        "ORDER BY anio, pais_iso3"
+      ]
+    },
+    {
+      "name": "a1882caf",
+      "displayName": "Ranking paises",
+      "queryLines": [
+        "SELECT\r\n",
+        "  pais_iso3,\r\n",
+        "  anio,\r\n",
+        "  ROUND(AVG(valor), 2) AS tasa_mortalidad\r\n",
+        "FROM workspace.dw.fact_indicador_pais_anio\r\n",
+        "WHERE indicador_codigo = 'SP.DYN.CDRT.IN'\r\n",
+        "  AND anio IN (2019, 2021)\r\n",
+        "GROUP BY pais_iso3, anio\r\n",
+        "HAVING tasa_mortalidad IS NOT NULL\r\n",
+        "ORDER BY pais_iso3, anio"
+      ]
+    },
+    {
+      "name": "c264d015",
+      "displayName": "KPIS Comparativos",
+      "queryLines": [
+        "SELECT\r\n",
+        "  pais_iso3,\r\n",
+        "  anio,\r\n",
+        "  ROUND(AVG(valor), 2) AS tasa_mortalidad\r\n",
+        "FROM workspace.dw.fact_indicador_pais_anio\r\n",
+        "WHERE anio BETWEEN 2015 AND 2024\r\n",
+        "  AND indicador_codigo = 'SP.DYN.CDRT.IN'\r\n",
+        "GROUP BY pais_iso3, anio\r\n",
+        "ORDER BY pais_iso3, anio"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "11414479",
+      "displayName": "Exceso de Mortalidad",
+      "layout": [
+        {
+          "widget": {
+            "name": "03623032",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "mortalidad_mensual",
+                  "fields": [
+                    {
+                      "name": "total_defunciones",
+                      "expression": "`total_defunciones`"
+                    },
+                    {
+                      "name": "anio",
+                      "expression": "`anio`"
+                    },
+                    {
+                      "name": "mes",
+                      "expression": "`mes`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Densidad de defunciones mensuales en Guatemala (2015 - 2024)",
+                "showTitle": true
+              },
+              "widgetType": "heatmap",
+              "encodings": {
+                "x": {
+                  "fieldName": "anio",
+                  "displayName": "Año",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "mes",
+                  "displayName": "Mes",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "total_defunciones",
+                  "displayName": "Total de Defunciones",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "d69c262b",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "60457572",
+                  "fields": [
+                    {
+                      "name": "periodo",
+                      "expression": "`periodo`"
+                    },
+                    {
+                      "name": "total_defunciones",
+                      "expression": "`total_defunciones`"
+                    },
+                    {
+                      "name": "capitulo_1",
+                      "expression": "`capitulo_1`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Defunciones por capítulo CIE-10: Pre y Post COVID",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "total_defunciones",
+                  "displayName": "Total de defunciones",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "capitulo_1",
+                  "displayName": "Causa CIE-10",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "periodo",
+                  "displayName": "Período",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "PRE_COVID",
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 7
+                        }
+                      },
+                      {
+                        "value": "POST_COVID",
+                        "color": "#62A9BE"
+                      }
+                    ]
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "variacion-mortalidad-pre-post-covid-capitulo-cie-10",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "19f0e005",
+                  "fields": [
+                    {
+                      "name": "capitulo_1",
+                      "expression": "`capitulo_1`"
+                    },
+                    {
+                      "name": "pre_covid",
+                      "expression": "`pre_covid`"
+                    },
+                    {
+                      "name": "post_covid",
+                      "expression": "`post_covid`"
+                    },
+                    {
+                      "name": "total",
+                      "expression": "`total`"
+                    },
+                    {
+                      "name": "variacion_pct",
+                      "expression": "`variacion_pct`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": "Variación de mortalidad pre/post COVID-19 por capítulo CIE-10"
+              },
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "total",
+                  "displayName": "Cantidad de Defunciones",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "variacion_pct",
+                  "displayName": "Variación Porcentual",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "extra": [
+                  {
+                    "fieldName": "capitulo_1",
+                    "displayName": "Causa CIE-10"
+                  },
+                  {
+                    "fieldName": "pre_covid",
+                    "displayName": "Pre COVID"
+                  },
+                  {
+                    "fieldName": "post_covid",
+                    "displayName": "Post COVID"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "615c1dca",
+      "displayName": "Comparativa Regional",
+      "layout": [
+        {
+          "widget": {
+            "name": "tasa-de-mortalidad-por-cada-1k",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "bd2335d1",
+                  "fields": [
+                    {
+                      "name": "pais_iso3",
+                      "expression": "`pais_iso3`"
+                    },
+                    {
+                      "name": "anio",
+                      "expression": "`anio`"
+                    },
+                    {
+                      "name": "valor_promedio",
+                      "expression": "`valor_promedio`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": "Tasa de mortalidad por cada 1K habitanates en Centroamérica"
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "anio",
+                  "displayName": "Año",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "valor_promedio",
+                  "displayName": "Tasa de mortalidad",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "pais_iso3",
+                  "displayName": "País",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "impacto-del-co",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "a1882caf",
+                  "fields": [
+                    {
+                      "name": "anio",
+                      "expression": "`anio`"
+                    },
+                    {
+                      "name": "tasa_mortalidad",
+                      "expression": "`tasa_mortalidad`"
+                    },
+                    {
+                      "name": "pais_iso3",
+                      "expression": "`pais_iso3`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": "Impacto del COVID-19 en la mortalidad regional"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "tasa_mortalidad",
+                  "displayName": "Tasa de mortalidad",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "pais_iso3",
+                  "displayName": "País",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "anio",
+                  "legend": {
+                    "hide": false,
+                    "hideTitle": false
+                  },
+                  "displayName": "Año",
+                  "scale": {
+                    "type": "quantitative",
+                    "colorRamp": {
+                      "mode": "scheme",
+                      "scheme": "blues"
+                    },
+                    "reverse": true
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "heatmap",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c264d015",
+                  "fields": [
+                    {
+                      "name": "tasa_mortalidad",
+                      "expression": "`tasa_mortalidad`"
+                    },
+                    {
+                      "name": "anio",
+                      "expression": "`anio`"
+                    },
+                    {
+                      "name": "pais_iso3",
+                      "expression": "`pais_iso3`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": "Tasa de Mortalidad por año y país en Centroamérica"
+              },
+              "widgetType": "heatmap",
+              "encodings": {
+                "x": {
+                  "fieldName": "anio",
+                  "displayName": "Año",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "pais_iso3",
+                  "displayName": "País",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "tasa_mortalidad",
+                  "displayName": "Tasa de Mortalidad",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
