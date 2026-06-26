@@ -2,22 +2,101 @@
 
 ## Visión General
 
-Se implementaron dos modelos complementarios sobre el repositorio analítico consolidado en la Fase 2, ambos ejecutados en **Databricks Serverless** con trazabilidad completa vía **MLflow**:
+El pipeline de ML se compone de **tres notebooks secuenciales** ejecutados en **Databricks Serverless** con trazabilidad completa vía **MLflow**:
 
-| # | Técnica | Problema | Tabla de entrada |
+| # | Notebook | Rol | Salida |
 |---|---|---|---|
-| **Notebook 2** | Regresión Logística | Clasificación binaria pre/post-COVID | `ml.dataset_defunciones` |
-| **Notebook 3** | Regresión Ridge (L2) | Pronóstico de defunciones mensuales | `ml.dataset_mensual_depto_causa` |
+| **1** | Feature Engineering | Aplana el esquema estrella en tablas listas para entrenar | `ml.dataset_defunciones`, `ml.dataset_mensual_depto_causa` |
+| **2** | Regresión Logística | Clasificación binaria pre/post-COVID | Pesos JSON + registro MLflow |
+| **3** | Regresión Ridge (L2) | Pronóstico de defunciones mensuales | Pesos JSON + registro MLflow |
 
-Ambas técnicas están explícitamente autorizadas en los términos de referencia del encargo.
+Los notebooks 2 y 3 consumen las tablas producidas por el notebook 1 — ninguno repite el join contra el esquema estrella.
 
 ---
 
-## Decisiones Transversales de Diseño
+## Notebook 1 — Feature Engineering desde el DW
+
+### Propósito
+
+Los modelos lineales supervisados (Regresión Logística, Ridge) requieren una tabla con una fila por observación, columnas predictoras y una columna objetivo. Ningún algoritmo lineal puede operar directamente sobre un esquema estrella con joins — primero hay que **aplanarlo** en una única tabla de entrenamiento. Esta es la práctica estándar en pipelines ML sobre Spark/Databricks antes de vectorizar con `VectorAssembler`.
+
+### Problema elegido y respaldo metodológico
+
+Se eligió **detección de cambios estructurales pre/post-COVID** como problema de negocio, operacionalizado como **clasificación binaria**: dado un registro de defunción con sus atributos demográficos, geográficos y de causa, predecir si pertenece al período PRE\_COVID (2015–2019) o POST\_COVID (2020–2024).
+
+Esta elección tiene respaldo metodológico formal: la OMS estima el impacto de la pandemia comparando la mortalidad observada contra una línea base construida con datos pre-pandemia, exactamente la misma dicotomia temporal que ya usa la columna `periodo` del modelo dimensional de la Fase 2 (Msemburi et al., *Nature*, 2023; WHO, 2021).
+
+Complementariamente (notebook 3) se aplica **Regresión Ridge** sobre conteos mensuales agregados, alineado con el enfoque de regresión lineal para proyectar mortalidad esperada que la literatura de exceso de mortalidad reconoce como método válido junto a splines, Poisson y modelos Serfling.
+
+### Decisiones de selección de features
+
+```sql
+SELECT
+    f.id_sexo,
+    f.id_grupo_etario,
+    f.id_pueblo,
+    f.periodo,
+    t.anio,
+    t.mes,
+    t.trimestre,
+    g.codigo_depto,       -- 22 valores (no codigo_muni: 1,348 valores, cardinalidad inmanejable)
+    c.capitulo_1,         -- 23 valores (no codigo_completo: 3,087 valores distintos)
+    c.mal_definida,
+    l.tipo_lugar,
+    l.asistencia_medica
+FROM dw.fact_defunciones f
+JOIN dw.dim_tiempo t        ON f.id_tiempo = t.id_tiempo
+JOIN dw.dim_geografia g     ON f.id_geografia = g.id_geografia
+JOIN dw.dim_causa_cie10 c   ON f.id_causa = c.id_causa
+JOIN dw.dim_lugar l         ON f.id_lugar = l.id_lugar
+```
+
+Se excluyen explícitamente `codigo_muni` (1,348 valores) e `id_causa` / `codigo_completo` (3,087 valores) — su alta cardinalidad produciría un espacio de features inmanejable con `OneHotEncoder`. Se usa en su lugar `codigo_depto` (22 valores) y `capitulo_1` (23 valores), la generalización CIE-10 ya validada en el EDA de la Fase 2.
+
+`anio` se mantiene como feature continua para que el modelo aprenda la tendencia temporal además del propio label binario derivado del año.
+
+### Construcción del label y verificación de balance
+
+```python
+ml_base = (
+    ml_base
+    .withColumn("label_post_covid",
+        F.when(F.col("periodo") == "POST_COVID", F.lit(1.0)).otherwise(F.lit(0.0)))
+    .withColumn("mal_definida_int", F.col("mal_definida").cast("int"))
+)
+
+# Verificación de balance antes de entrenar
+ml_base.groupBy("periodo", "label_post_covid").count().orderBy("periodo").show()
+```
+
+Antes de entrenar cualquier clasificador binario es obligatorio verificar el balance del target. Un desbalance fuerte (p. ej. 95/5) exigiría técnicas adicionales (class weights, submuestreo) que no son necesarias si el balance es razonable.
+
+### Persistencia como tablas Delta
+
+```python
+# Tabla 1: registro individual — insumo para clasificación (Notebook 2)
+ml_base.write.format("delta") \
+    .mode("overwrite") \
+    .option("overwriteSchema", "true") \
+    .saveAsTable("ml.dataset_defunciones")
+
+# Tabla 2: agregado mensual — insumo para pronóstico (Notebook 3)
+# Grano: departamento × capítulo CIE-10 × mes
+mensual.write.format("delta") \
+    .mode("overwrite") \
+    .option("overwriteSchema", "true") \
+    .saveAsTable("ml.dataset_mensual_depto_causa")
+```
+
+Las tablas se materializan en formato Delta para que los notebooks 2 y 3 las consuman sin repetir el join, siguiendo el mismo patrón de capas ya usado en el pipeline Stage → DW de la Fase 2.
+
+---
+
+## Decisiones Transversales de Diseño (Notebooks 2 y 3)
 
 ### Por qué L2 (Ridge) y no L1 (Lasso)
 
-Las variables predictoras en ambos modelos son categóricas, codificadas con `StringIndexer` + `OneHotEncoder`. Este proceso genera columnas **mutuamente correlacionadas** dentro de cada grupo (las dummies de un mismo campo son excluyentes entre sí). La regularización L1 (Lasso) en presencia de multicolinealidad tiende a eliminar arbitrariamente una de las variables correlacionadas. Ridge (L2) distribuye el peso entre ellas de forma suave, sin anular ninguna, que es el comportamiento correcto cuando se trabaja con grupos de variables categóricas codificadas.
+Las variables predictoras en ambos modelos son categóricas, codificadas con `StringIndexer` + `OneHotEncoder`. Este proceso genera columnas **mutuamente correlacionadas** dentro de cada grupo (las dummies de un mismo campo son excluyentes entre sí). La regularización L1 (Lasso) en presencia de multicolinealidad tiende a eliminar arbitrariamente una de las variables correlacionadas. Ridge (L2) distribuye el peso entre ellas de forma suave sin anular ninguna — el comportamiento correcto para grupos de variables categóricas codificadas.
 
 ### Pipeline de *features* separado del modelo final
 
@@ -32,7 +111,7 @@ Esta separación preserva la propiedad de no fuga de datos: el pipeline de featu
 
 ### Persistencia de pesos
 
-Los pesos de cada modelo se guardan como un JSON liviano en `/Volumes/workspace/ml/modelos/`, evitando por completo el límite de 256 MB. En un modelo lineal, los pesos *son* el vector de coeficientes más el intercepto — el artefacto es completamente suficiente para reproducir predicciones.
+Los pesos de cada modelo se guardan como JSON liviano en `/Volumes/workspace/ml/modelos/`. En un modelo lineal, los pesos *son* el vector de coeficientes más el intercepto.
 
 ---
 
@@ -42,7 +121,7 @@ Los pesos de cada modelo se guardan como un JSON liviano en `/Volumes/workspace/
 
 Dado un registro de defunción (sexo, grupo etario, etnia, departamento, capítulo de causa CIE-10, mes, tipo de lugar y nivel de asistencia médica), predecir si pertenece al período **PRE\_COVID (2015–2019)** o **POST\_COVID (2020–2024)**.
 
-La Regresión Logística fue elegida sobre modelos de caja negra (Random Forest, redes neuronales) porque sus coeficientes son directamente legibles como el efecto de cada categoría sobre la probabilidad del evento — un requisito de interpretabilidad para un informe de política pública donde el cliente necesita explicaciones, no solo predicciones.
+La Regresión Logística fue elegida sobre modelos de caja negra porque sus coeficientes son directamente legibles como el efecto de cada categoría sobre la probabilidad del evento — un requisito de interpretabilidad para un informe de política pública donde el cliente necesita explicaciones, no solo predicciones.
 
 ### Variables predictoras
 
@@ -89,18 +168,17 @@ Un AUC de 0.617 indica capacidad discriminativa real entre ambos períodos, mode
 
 ```python
 mlflow.set_experiment("/Shared/mortalidad_logistic_periodo")
-# Parámetros registrados: técnica, regParam, elasticNetParam, maxIter, features
-# Métricas registradas: auc, accuracy, f1
+# Parámetros: técnica, regParam, elasticNetParam, maxIter, features
+# Métricas: auc, accuracy, f1
 ```
 
 ### Persistencia
 
 ```python
-# Pesos guardados en:
 # /Volumes/workspace/ml/modelos/logistic_periodo_pesos.json
 pesos = {
     "modelo": "LogisticRegression",
-    "coeficientes": [...],   # vector completo de coeficientes
+    "coeficientes": [...],
     "intercepto": ...,
     "features_categoricas": cat_cols,
     "regParam": 0.01,
@@ -115,7 +193,7 @@ pesos = {
 
 ### Problema de negocio
 
-Pronosticar el **conteo mensual de defunciones** para una combinación departamento × capítulo CIE-10, en función del tiempo y las categorías. El modelo se entrena sobre el período histórico 2015–2022 y se evalúa sobre 2023–2024, operacionalizando el enfoque de **exceso de mortalidad** adoptado por la OMS: comparar lo observado contra una línea base construida con datos previos a la pandemia.
+Pronosticar el **conteo mensual de defunciones** para una combinación departamento × capítulo CIE-10. El modelo se entrena sobre 2015–2022 y se evalúa sobre 2023–2024, operacionalizando el enfoque de exceso de mortalidad de la OMS.
 
 ### Variables predictoras
 
@@ -126,9 +204,8 @@ cat_cols = ["mes", "trimestre", "codigo_depto", "capitulo_1", "periodo"]
 
 ### Partición temporal train/test
 
-A diferencia del notebook 2, aquí se usa una **partición temporal** (no aleatoria), que es la estrategia correcta para evaluar la capacidad de pronóstico hacia adelante en una serie de tiempo:
-
 ```python
+# Partición temporal, no aleatoria — correcta para series de tiempo
 train_raw = mensual.filter(F.col("anio") <= 2022)  # 2015–2022
 test_raw  = mensual.filter(F.col("anio") >  2022)  # 2023–2024
 ```
@@ -140,7 +217,7 @@ ridge = LinearRegression(
     featuresCol="features",
     labelCol="defunciones",
     maxIter=50,
-    regParam=0.3,         # fuerza de regularización
+    regParam=0.3,
     elasticNetParam=0.0,  # 0.0 = L2 puro = Ridge
 )
 ```
@@ -151,15 +228,11 @@ ridge = LinearRegression(
 |---|---|
 | Período de entrenamiento | 2015–2022 |
 | Período de prueba | 2023–2024 |
-| **R² (coeficiente de determinación)** | **0.5227** |
-| RMSE (raíz del error cuadrático medio) | 26.83 defunciones |
-| MAE (error absoluto medio) | 13.47 defunciones |
-
-El grano de evaluación es departamento × capítulo de causa × mes, lo que implica que los errores son sobre conteos agregados, no registros individuales.
+| **R²** | **0.5227** |
+| RMSE | 26.83 defunciones |
+| MAE | 13.47 defunciones |
 
 ### Análisis de exceso de mortalidad
-
-El notebook calcula directamente la diferencia entre lo observado y lo esperado por mes:
 
 ```python
 exceso = (pred.groupBy("anio", "mes")
@@ -172,20 +245,11 @@ exceso = (pred.groupBy("anio", "mes")
 )
 ```
 
-Los resultados de esta tabla alimentan directamente el análisis comparativo pre/post-COVID documentado en la sección de [Análisis y Recomendaciones](analisis_recomendaciones.md).
-
-### Trazabilidad MLflow
-
-```python
-mlflow.set_experiment("/Shared/mortalidad_ridge_pronostico")
-# Parámetros registrados: técnica, regParam, split temporal
-# Métricas registradas: rmse, mae, r2
-```
+Los resultados alimentan directamente el análisis comparativo de la sección [Análisis y Recomendaciones](analisis_recomendaciones.md).
 
 ### Persistencia
 
 ```python
-# Pesos guardados en:
 # /Volumes/workspace/ml/modelos/ridge_pronostico_pesos.json
 pesos = {
     "modelo": "LinearRegression-Ridge",
@@ -203,7 +267,7 @@ pesos = {
 
 ## Auditoría de Ejecuciones
 
-Ambos notebooks registran cada ejecución en `ml.ml_control_log`, siguiendo el mismo patrón de gobernanza que `dw.etl_control_log` de la Fase 2:
+Los notebooks 2 y 3 registran cada ejecución en `ml.ml_control_log`, siguiendo el mismo patrón de gobernanza que `dw.etl_control_log` de la Fase 2:
 
 ```sql
 CREATE TABLE IF NOT EXISTS ml.ml_control_log (

@@ -13,6 +13,7 @@ La tercera y última fase de la plataforma cierra el ciclo *end-to-end*: sobre e
 
 | Componente | Descripción |
 |---|---|
+| **Feature Engineering** | Join de las 7 dimensiones del esquema estrella en tablas planas listas para entrenar |
 | **Modelo de clasificación** | Regresión Logística que predice si una defunción ocurrió en el período pre-COVID o post-COVID |
 | **Modelo de pronóstico** | Regresión Ridge (L2) que estima el conteo mensual de defunciones por departamento y capítulo CIE-10 |
 | **Plataforma de entrenamiento** | Databricks Serverless + MLflow para trazabilidad de experimentos |
@@ -29,8 +30,9 @@ Repositorio DW — capa Gold / Fact-Dimensiones  (Fase 2)
         │
         ▼
 ┌─────────────────────────────────┐
-│  ml.dataset_defunciones         │  ← tabla de entrada para clasificación
-│  ml.dataset_mensual_depto_causa │  ← tabla agregada para pronóstico
+│  Notebook 1 — Feature           │  Join de 7 dimensiones → tablas ML
+│  Engineering                    │  ml.dataset_defunciones
+│                                 │  ml.dataset_mensual_depto_causa
 └────────┬────────────────────────┘
          │
          ▼
