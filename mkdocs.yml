@@ -49,7 +49,6 @@ nav:
       - Modelo de ML: analitica/modelo_ml.md
       - Visualización e Interoperabilidad BI: analitica/bi_interoperabilidad.md
       - Análisis y Recomendaciones: analitica/analisis_recomendaciones.md
-      - Entregables y Criterios: analitica/entregables.md
   - Ética y Gobernanza:
       - Marco Ético: etica/index.md
       - Plan de Anonimización: etica/anonimizacion.md
