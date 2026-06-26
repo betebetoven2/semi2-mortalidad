@@ -1,0 +1,577 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{lastpage}
+
+\geometry{
+  top=2.8cm,
+  bottom=3cm,
+  left=3cm,
+  right=3cm,
+  headheight=1.8cm
+}
+
+\definecolor{negro}{RGB}{0,0,0}
+\definecolor{grismedio}{RGB}{100,100,100}
+\definecolor{grisclaro}{RGB}{220,220,220}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{negro}}
+  {}
+  {0em}
+  {}
+\titlespacing{\section}{0pt}{20pt}{8pt}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{negro}}
+  {}
+  {0em}
+  {}
+\titlespacing{\subsection}{0pt}{14pt}{4pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{%
+  \footnotesize\color{grismedio}%
+  Project Charter — Plataforma Analítica de Mortalidad End to End%
+}
+\fancyhead[R]{%
+  \footnotesize\color{grismedio}%
+  Página \thepage\ de \pageref{LastPage}%
+}
+\fancyfoot[C]{%
+  \color{grisclaro}\rule{\linewidth}{0.4pt}\\[3pt]
+  \footnotesize\color{grismedio}CONFIDENCIAL%
+}
+
+\fancypagestyle{primerapagina}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+\onehalfspacing
+
+\begin{document}
+\thispagestyle{primerapagina}
+
+%% ─── PORTADA ─────────────────────────────────────────────────────────────────
+\vspace*{0.4cm}
+{\color{grisclaro}\rule{\linewidth}{1.2pt}}
+\vspace{6pt}
+
+\begin{center}
+  {\fontsize{9}{11}\selectfont\color{grismedio}%
+   \MakeUppercase{Universidad de San Carlos de Guatemala}\\[2pt]
+   Facultad de Ingeniería \textendash\ Escuela de Ciencias y Sistemas}\\[10pt]
+  {\fontsize{16}{20}\selectfont\bfseries\color{negro}
+   Project Charter\\[4pt]
+   Plataforma Analítica de Mortalidad End to End}
+\end{center}
+
+\vspace{6pt}
+{\color{grisclaro}\rule{\linewidth}{1.2pt}}
+\vspace{14pt}
+
+{\small
+\begin{tabular}{@{}p{3.8cm} p{9.8cm}@{}}
+  \color{grismedio}Curso            & Seminario de Sistemas 2, Sección A \\[3pt]
+  \color{grismedio}Catedrático      & Ingeniero Marlon Orellana \\[3pt]
+  \color{grismedio}Tutor académico  & Estuardo Sebastián Valle Bances \\[3pt]
+  \color{grismedio}Período          & Escuela de Vacaciones 2026 \\[3pt]
+  \color{grismedio}Equipo consultor & Alberto Hernández, Fabio Hernández, Luis Morales \\[3pt]
+  \color{grismedio}Versión          & 1.0 \\[3pt]
+  \color{grismedio}Fecha            & 25 de junio de 2026 \\
+\end{tabular}
+}
+
+%% ─── PROPÓSITO Y JUSTIFICACIÓN ───────────────────────────────────────────────
+\newpage
+\section{Propósito y Justificación}
+
+El presente documento constituye el acta de constitución del proyecto, en adelante Project
+Charter, correspondiente a la consultoría simulada bajo el modelo de Naciones Unidas y el
+Programa de las Naciones Unidas para el Desarrollo, encargada de diseñar e implementar una
+plataforma analítica de mortalidad de extremo a extremo para el Ministerio de Salud Pública y
+Asistencia Social de Guatemala. El proyecto se justifica en la necesidad institucional de
+comprender la evolución de los patrones de mortalidad entre el período previo y el período
+posterior a la pandemia de COVID-19, con el fin de orientar decisiones de política pública y
+asignación de recursos. Este documento formaliza el alcance, los objetivos, la estructura de
+desglose del trabajo, el cronograma, la matriz de responsabilidades y el plan de gestión de
+riesgos y calidad del proyecto en su totalidad.
+
+%% ─── STAKEHOLDERS ───────────────────────────────────────────────────────────
+\section{Partes Interesadas}
+
+Las partes interesadas identificadas para este proyecto y su nivel de influencia sobre las
+decisiones del mismo se detallan a continuación.
+
+\vspace{6pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} X l l X @{}}
+  \toprule
+  \textbf{Parte interesada} & \textbf{Rol} & \textbf{Influencia} & \textbf{Interés principal} \\
+  \midrule
+  Ministerio de Salud Pública y Asistencia Social de Guatemala
+    & Cliente
+    & Alta
+    & Obtener evidencia analítica sobre mortalidad para orientar política pública \\[5pt]
+  Programa de las Naciones Unidas para el Desarrollo
+    & Patrocinador / Acompañante
+    & Alta
+    & Garantizar que la consultoría cumpla estándares internacionales de gobernanza
+      y ética de datos \\[5pt]
+  Ingeniero Marlon Orellana
+    & Catedrático evaluador
+    & Alta
+    & Verificar el cumplimiento del alcance técnico y académico del encargo \\[5pt]
+  Estuardo Sebastián Valle Bances
+    & Tutor académico
+    & Media
+    & Orientar las decisiones técnicas del equipo y resolver ambigüedades en los
+      términos de referencia \\[5pt]
+  Equipo consultor
+    & Ejecutor
+    & Media
+    & Entregar una plataforma de datos reproducible, auditable y bien documentada \\
+  \bottomrule
+\end{tabularx}
+}
+
+%% ─── OBJETIVOS ───────────────────────────────────────────────────────────────
+\section{Objetivos del Proyecto}
+
+El objetivo general consiste en diseñar, implementar y demostrar una plataforma de datos de
+punta a punta que integre fuentes heterogéneas de mortalidad, las gobierne bajo una arquitectura
+por capas hacia un repositorio analítico de tipo Data Warehouse, y entregue evidencia
+comparativa entre los períodos previo y posterior a la pandemia que sustente recomendaciones de
+política para la institución cliente.
+
+De este objetivo general se derivan los siguientes objetivos específicos:
+
+\vspace{4pt}
+{\small
+\begin{tabular}{@{} >{\bfseries}p{0.6cm} p{13cm} @{}}
+  OE1 & Diseñar e implementar procesos de extracción, transformación y carga sobre fuentes de
+        datos heterogéneas tanto locales como en la nube. \\[5pt]
+  OE2 & Construir una arquitectura por capas con tablas de aterrizaje, de datos conformados y
+        de modelo dimensional. \\[5pt]
+  OE3 & Consolidar la información en un repositorio analítico tanto en la nube como en una
+        instancia local, demostrando interoperabilidad entre ambas. \\[5pt]
+  OE4 & Aplicar aprendizaje automático a un problema real de mortalidad. \\[5pt]
+  OE5 & Producir visualización analítica en al menos dos herramientas de inteligencia de
+        negocio distintas. \\[5pt]
+  OE6 & Garantizar el manejo ético, anonimizado y agregado de los datos sensibles en
+        cumplimiento de la normativa europea de protección de datos. \\[5pt]
+  OE7 & Justificar técnicamente ante el cliente cada decisión de ingeniería adoptada. \\
+\end{tabular}
+}
+
+%% ─── ALCANCE ─────────────────────────────────────────────────────────────────
+\section{Alcance del Proyecto}
+
+El alcance del proyecto comprende las tres fases acumulativas establecidas en los términos de
+referencia del encargo. La primera fase abarca la identificación, estructuración, limpieza e
+ingesta de los datos crudos hacia una zona de aterrizaje, con su correspondiente diccionario de
+datos y plan de anonimización. La segunda fase abarca la transformación de dichos datos a través
+de una arquitectura por capas hasta su consolidación en un modelo dimensional cargado
+simultáneamente en un repositorio en la nube y en una réplica local interoperable. La tercera
+fase abarca la aplicación de aprendizaje automático sobre el repositorio consolidado, la
+producción de visualización analítica en múltiples herramientas de inteligencia de negocio, y la
+entrega de un informe final de consultoría con recomendaciones de política pública basadas en
+evidencia.
+
+Queda fuera del alcance del proyecto la implementación de la plataforma en un entorno de
+producción real para la institución cliente, dado que el encargo constituye una prueba de concepto
+con fines exclusivamente educativos.
+
+%% ─── SUPUESTOS Y RESTRICCIONES ───────────────────────────────────────────────
+\section{Supuestos y Restricciones}
+
+\subsection{Supuestos}
+
+Los siguientes supuestos se declaran como verdaderos para efectos de la planificación y
+ejecución del proyecto. Cualquier cambio en estas condiciones deberá evaluarse como un riesgo
+activado y gestionarse mediante el plan de gestión de riesgos.
+
+\vspace{4pt}
+{\small
+\begin{tabular}{@{} >{\bfseries}p{0.6cm} p{13cm} @{}}
+  S1 & Las fuentes públicas de datos de mortalidad del Instituto Nacional de Estadística de
+       Guatemala, la Organización Mundial de la Salud y el Banco Mundial permanecerán
+       disponibles y accesibles durante todo el horizonte del proyecto. \\[5pt]
+  S2 & La plataforma Databricks estará disponible en su modalidad de cómputo sin
+       aprovisionamiento de infraestructura dedicada durante las fases de transformación y
+       aprendizaje automático. \\[5pt]
+  S3 & El equipo consultor contará con acceso continuo a los entornos de nube e instancia
+       local requeridos para la arquitectura híbrida del repositorio analítico. \\[5pt]
+  S4 & El diccionario de variables institucional proporcionado por la fuente original es
+       suficiente para resolver las ambigüedades semánticas identificadas durante el análisis
+       exploratorio. \\[5pt]
+  S5 & Los términos de referencia del encargo autorizan explícitamente el uso de regresión
+       logística y regresión de cresta como únicas técnicas de aprendizaje automático
+       aplicables en la fase analítica. \\
+\end{tabular}
+}
+
+\subsection{Restricciones}
+
+\vspace{4pt}
+{\small
+\begin{tabular}{@{} >{\bfseries}p{0.6cm} p{13cm} @{}}
+  R1 & El horizonte de ejecución del proyecto está fijado en cuatro meses calendario, sin
+       posibilidad de extensión, dado que corresponde al período de la Escuela de Vacaciones
+       2026 de la Facultad de Ingeniería. \\[5pt]
+  R2 & El presupuesto total del proyecto está limitado a USD~20{,}278.21 bajo esquema de
+       suma alzada, conforme a la propuesta financiera N.º PAM-2026-03. \\[5pt]
+  R3 & El equipo consultor está conformado por exactamente tres integrantes, sin posibilidad
+       de incorporar recursos adicionales durante la ejecución. \\[5pt]
+  R4 & Los datos sensibles de salud deben manejarse en todo momento bajo los principios de
+       anonimización conformes con el Reglamento (UE) 2023/2854, sin excepción. \\[5pt]
+  R5 & La implementación en entorno de producción real queda fuera del alcance contratado,
+       limitándose el entregable a una prueba de concepto reproducible y auditable. \\
+\end{tabular}
+}
+
+%% ─── PRESUPUESTO ─────────────────────────────────────────────────────────────
+\section{Presupuesto Resumido}
+
+El detalle completo de tarifas por rol, asignación de persona-mes por fase y costos de
+infraestructura se presenta en la Propuesta Financiera N.º PAM-2026-03 (Anexo Financiero),
+la cual forma parte integral del contrato. El siguiente cuadro resume los montos aprobados por
+categoría.
+
+\vspace{6pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} X r @{}}
+  \toprule
+  \textbf{Categoría} & \textbf{Monto aprobado (USD)} \\
+  \midrule
+  Costo de personal (honorarios del equipo consultor) & \$19{,}265.61 \\
+  Costo no personal (infraestructura en la nube y licencias) & \$1{,}012.60 \\
+  \midrule
+  \textbf{Total aprobado} (suma alzada, todo incluido) & \textbf{\$20{,}278.21} \\
+  \bottomrule
+\end{tabularx}
+}
+
+\vspace{8pt}
+El pago se realizará contra la entrega y aceptación satisfactoria de cada uno de los cinco hitos
+definidos en el cronograma, conforme al detalle porcentual de la hoja \textit{«Cronograma de
+Pagos»} del Anexo Financiero. No se realizarán pagos periódicos fijos independientes de la
+entrega de productos.
+
+%% ─── EDT ─────────────────────────────────────────────────────────────────────
+\newpage
+\section{Estructura de Desglose del Trabajo}
+
+La estructura de desglose del trabajo organiza el proyecto en tres paquetes de trabajo principales,
+correspondientes a cada una de las tres fases acumulativas del encargo, subdivididos a su vez en
+los entregables específicos exigidos por los términos de referencia.
+
+\subsection{Paquete de Trabajo 1: Fundamentos de Datos}
+
+\vspace{4pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} l X @{}}
+  \toprule
+  \textbf{Código} & \textbf{Entregable} \\
+  \midrule
+  1.1 & Identificación y catálogo de fuentes de datos públicas de mortalidad \\[3pt]
+  1.2 & Ingesta de datos desde fuentes heterogéneas locales y en la nube \\[3pt]
+  1.3 & Zona de aterrizaje sin transformación destructiva \\[3pt]
+  1.4 & Diccionario de datos y plan de anonimización preliminar \\[3pt]
+  1.5 & Modelo de datos producido en herramienta de modelado \\[3pt]
+  1.6 & Arquitectura de despliegue de la solución \\[3pt]
+  1.7 & Pipelines de ingesta versionados en repositorio de control de versiones \\[3pt]
+  1.8 & Documentación desplegada mediante integración continua \\
+  \bottomrule
+\end{tabularx}
+}
+
+\subsection{Paquete de Trabajo 2: Transformación y Almacenamiento}
+
+\vspace{4pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} l X @{}}
+  \toprule
+  \textbf{Código} & \textbf{Entregable} \\
+  \midrule
+  2.1 & Capa de datos conformados con reglas de limpieza auditables \\[3pt]
+  2.2 & Modelo dimensional de esquema estrella con tabla de hechos y dimensiones \\[3pt]
+  2.3 & Orquestación de la transformación mediante flujo de trabajo de tareas dependientes \\[3pt]
+  2.4 & Repositorio analítico híbrido con interoperabilidad entre nube e instancia local \\[3pt]
+  2.5 & Sistema de respaldo automatizado del repositorio en la nube hacia la instancia local \\[3pt]
+  2.6 & Modelo de datos de hechos y dimensiones con su diagrama entidad relación \\
+  \bottomrule
+\end{tabularx}
+}
+
+\subsection{Paquete de Trabajo 3: Aprendizaje Automático y Business Intelligence}
+
+\vspace{4pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} l X @{}}
+  \toprule
+  \textbf{Código} & \textbf{Entregable} \\
+  \midrule
+  3.1 & Modelo de aprendizaje automático entrenado y evaluado sobre el repositorio analítico \\[3pt]
+  3.2 & Visualización analítica en al menos dos herramientas de inteligencia de negocio \\[3pt]
+  3.3 & Análisis comparativo entre el período previo y posterior a la pandemia \\[3pt]
+  3.4 & Informe final de consultoría con recomendaciones de política pública \\[3pt]
+  3.5 & Gestión del proyecto: acta de constitución, cronograma, estructura de desglose
+        y matriz de responsabilidades \\[3pt]
+  3.6 & Propuesta financiera de la consultoría \\[3pt]
+  3.7 & Defensa oral con demostración en vivo de extremo a extremo \\
+  \bottomrule
+\end{tabularx}
+}
+
+%% ─── CRITERIOS DE ACEPTACIÓN ─────────────────────────────────────────────────
+\newpage
+\section{Criterios de Aceptación}
+
+Para que cada fase sea considerada formalmente aceptada por la institución cliente, deberán
+cumplirse los siguientes criterios, verificables de manera objetiva en el momento de la entrega.
+
+\vspace{6pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} l X @{}}
+  \toprule
+  \textbf{Fase / Entregable} & \textbf{Criterio de aceptación} \\
+  \midrule
+  Fase 1 — Zona de aterrizaje
+    & Los datos crudos de todas las fuentes identificadas están ingestados sin
+      transformación destructiva, el diccionario de variables está completo y el plan de
+      anonimización preliminar ha sido revisado y aprobado por el tutor académico. \\[5pt]
+  Fase 2 — Modelo dimensional
+    & El repositorio analítico presenta cero registros huérfanos en la verificación de
+      integridad referencial entre la tabla de hechos y cada dimensión, y la réplica local
+      es consultable de manera independiente de la instancia en la nube. \\[5pt]
+  Fase 3 — Aprendizaje automático
+    & El modelo de clasificación alcanza un área bajo la curva ROC superior a 0.50 sobre
+      el conjunto de prueba, y el modelo de pronóstico produce predicciones evaluables
+      sobre el período 2023--2024 con métricas documentadas. \\[5pt]
+  Fase 3 — Visualización analítica
+    & Las visualizaciones están publicadas y son accesibles en al menos dos herramientas
+      de inteligencia de negocio distintas, con conexión directa al repositorio analítico. \\[5pt]
+  Informe final
+    & El informe documenta la metodología completa, los hallazgos del análisis comparativo,
+      las recomendaciones de política pública y las limitaciones del estudio, en formato
+      entregable aprobado por el catedrático. \\[5pt]
+  Defensa oral
+    & La demostración en vivo cubre el recorrido completo de extremo a extremo desde la
+      fuente original hasta el resultado analítico, sin interrupciones técnicas no
+      justificadas. \\
+  \bottomrule
+\end{tabularx}
+}
+
+%% ─── CRONOGRAMA ──────────────────────────────────────────────────────────────
+\newpage
+\section{Cronograma General del Proyecto}
+
+El proyecto se planificó bajo un horizonte de cuatro meses calendario, distribuido en tres fases
+secuenciales y acumulativas, cada una con sus correspondientes hitos de entrega y defensa ante
+el cliente simulado. Cada fase incluye una semana de margen interno para revisión de calidad
+previa a su entrega formal.
+
+\vspace{6pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} X c c c c @{}}
+  \toprule
+  \textbf{Paquete de trabajo} & \textbf{Mes 1} & \textbf{Mes 2} & \textbf{Mes 3} & \textbf{Mes 4} \\
+  \midrule
+  1. Fundamentos de Datos
+    & \multicolumn{2}{c}{Ejecución y cierre} & & \\[4pt]
+  2. Transformación y Almacenamiento
+    & & Inicio & \multicolumn{2}{c}{Ejecución y cierre} \\[4pt]
+  3. Aprendizaje Automático y Business Intelligence
+    & & & Inicio -- Ejecución & Cierre y defensa \\[4pt]
+  Gestión del proyecto y aseguramiento de calidad
+    & Continuo & Continuo & Continuo & Continuo \\
+  \bottomrule
+\end{tabularx}
+}
+
+\vspace{14pt}
+\subsection{Hitos Principales}
+
+\vspace{4pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} l X c @{}}
+  \toprule
+  \textbf{Hito} & \textbf{Entregable asociado} & \textbf{Mes} \\
+  \midrule
+  Hito 1 & Entrega y defensa de la Fase 1: Fundamentos de Datos & 1 \\[3pt]
+  Hito 2 & Entrega y defensa de la Fase 2: Transformación y Almacenamiento & 2 \\[3pt]
+  Hito 3 & Tarea complementaria de integraciones con herramientas de procesamiento & 2 \\[3pt]
+  Hito 4 & Entrega y defensa de la Fase 3: Aprendizaje Automático y Business Intelligence & 4 \\[3pt]
+  Hito 5 & Entrega del informe final de consultoría y cierre del proyecto & 4 \\
+  \bottomrule
+\end{tabularx}
+}
+
+%% ─── MATRIZ RACI ─────────────────────────────────────────────────────────────
+\newpage
+\section{Matriz de Responsabilidades}
+
+La matriz de responsabilidades se elaboró bajo la metodología RACI, que clasifica la
+participación de cada integrante del equipo consultor en cuatro niveles: \textbf{R}~responsable
+de la ejecución, \textbf{A}~autoridad que aprueba, \textbf{C}~consultado para insumos técnicos,
+e \textbf{I}~informado sobre el avance.
+
+\vspace{6pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} X c c c @{}}
+  \toprule
+  \textbf{Actividad}
+    & \textbf{Alberto H.}
+    & \textbf{Fabio H.}
+    & \textbf{Luis M.} \\
+  \midrule
+  Ingesta y arquitectura de datos               & R, A & C    & I    \\[3pt]
+  Análisis exploratorio y reglas de transformación & R, A & C  & I    \\[3pt]
+  Sistema de respaldo y auditoría               & R, A & I    & I    \\[3pt]
+  Transformación ETL y modelo dimensional       & I    & R, A & C    \\[3pt]
+  Orquestación del flujo de trabajo             & C    & R, A & I    \\[3pt]
+  Modelado dimensional en herramienta de modelado & I  & R, A & C    \\[3pt]
+  Aprendizaje automático                        & R, A & C    & C    \\[3pt]
+  Visualización en herramientas de inteligencia de negocio & R & R & A \\[3pt]
+  Documentación y gobernanza de datos           & C    & I    & R, A \\[3pt]
+  Gestión del proyecto y aseguramiento de calidad & C  & C    & R, A \\
+  \bottomrule
+\end{tabularx}
+}
+
+%% ─── GESTIÓN DE RIESGOS ──────────────────────────────────────────────────────
+\newpage
+\section{Gestión de Riesgos}
+
+Se identificaron los riesgos más relevantes observados durante la ejecución del proyecto, junto
+con su probabilidad de ocurrencia, impacto sobre el cronograma o la calidad del entregable, y la
+estrategia de mitigación adoptada en cada caso.
+
+\vspace{6pt}
+{\small
+\begin{tabularx}{\linewidth}{@{} X c c X @{}}
+  \toprule
+  \textbf{Riesgo} & \textbf{Prob.} & \textbf{Impacto} & \textbf{Estrategia de mitigación} \\
+  \midrule
+  Bloqueo de acceso a fuentes públicas mediante mecanismos de protección automatizada
+    & Alta & Medio
+    & Automatización del acceso mediante herramientas de navegación programática que
+      replican la interacción humana \\[6pt]
+  Errores de interpretación semántica en variables de la fuente original
+    & Media & Alto
+    & Análisis exploratorio exhaustivo previo a la definición de reglas de transformación,
+      con verificación cruzada contra el diccionario de variables institucional \\[6pt]
+  Defectos de integridad en el modelo dimensional no detectados antes de la fase de
+  explotación analítica
+    & Media & Alto
+    & Verificación sistemática de integridad referencial y de unicidad de llaves primarias
+      en cada dimensión antes de avanzar a la fase siguiente \\[6pt]
+  Limitaciones de las funcionalidades en vista previa pública de la plataforma de
+  cómputo distribuido
+    & Media & Alto
+    & Identificación temprana de restricciones documentadas de la plataforma y adopción
+      de bibliotecas de respaldo no sujetas a dichas restricciones \\[6pt]
+  Ambigüedad en los términos de referencia respecto a la herramienta de aprendizaje
+  automático exigida
+    & Baja & Medio
+    & Consulta directa y oportuna al tutor académico para resolver la ambigüedad antes
+      de invertir esfuerzo en una implementación incorrecta \\[6pt]
+  Concentración de tareas críticas en fechas próximas a la entrega final
+    & Alta & Alto
+    & Distribución explícita de responsabilidades entre los tres integrantes del equipo
+      y priorización de entregables según su peso en la evaluación \\
+  \bottomrule
+\end{tabularx}
+}
+
+%% ─── PLAN DE CALIDAD ─────────────────────────────────────────────────────────
+\newpage
+\section{Plan de Aseguramiento de Calidad}
+
+El plan de aseguramiento de calidad del proyecto se sustentó en cuatro mecanismos aplicados de
+manera transversal a lo largo de las tres fases.
+
+\vspace{4pt}
+{\small
+\begin{tabular}{@{} >{\bfseries}p{0.6cm} p{13cm} @{}}
+  M1 & Toda regla de transformación aplicada sobre los datos se documentó con un código de
+       referencia trazable hacia el hallazgo del análisis exploratorio que la originó, permitiendo
+       auditar la justificación de cada decisión de limpieza. \\[6pt]
+  M2 & Cada flujo de transformación incorporó una verificación automática de integridad
+       referencial entre la tabla de hechos y sus dimensiones, con el criterio de aceptación de
+       cero registros huérfanos en cada relación. \\[6pt]
+  M3 & Todo cambio de código se validó de manera incremental antes de su incorporación al
+       flujo de producción, mediante pruebas con datos sintéticos que replican la estructura real
+       de los datos del proyecto, previo a su ejecución sobre el volumen completo de registros. \\[6pt]
+  M4 & Cada ejecución del flujo de trabajo completo, así como cada entrenamiento de modelo de
+       aprendizaje automático, quedó registrada en una tabla de control de auditoría con marcas
+       de tiempo, volumen de registros procesados y métricas resultantes, permitiendo la
+       trazabilidad completa de cualquier resultado presentado en el informe final. \\
+\end{tabular}
+}
+
+%% ─── AUTORIZACIÓN ────────────────────────────────────────────────────────────
+\newpage
+\section{Autorización del Project Charter}
+
+La firma del presente documento por las partes indicadas formaliza la aprobación del alcance,
+los objetivos, el presupuesto y las condiciones de ejecución aquí establecidos, y autoriza al
+equipo consultor a dar inicio a la primera fase del proyecto.
+
+\vspace{32pt}
+
+\noindent
+\begin{tabular}{@{} p{7cm} @{\hspace{1.5cm}} p{7cm} @{}}
+
+  \color{negro}\rule{6.5cm}{0.7pt} &
+  \color{negro}\rule{6.5cm}{0.7pt} \\[8pt]
+
+  \textbf{Alberto Hernández} &
+  \textbf{Por la institución cliente} \\[2pt]
+  \small Encargado del Proyecto &
+  \small Ministerio de Salud Pública \\
+  \small Equipo Consultor &
+  \small y Asistencia Social de Guatemala \\
+  &
+  \small Programa de las Naciones Unidas \\
+  &
+  \small para el Desarrollo \\[24pt]
+
+  \small Lugar y fecha: \dotfill &
+  \small Lugar y fecha: \dotfill \\
+
+\end{tabular}
+
+%% ─── REFERENCIAS ─────────────────────────────────────────────────────────────
+\newpage
+\section{Referencias}
+
+\begingroup
+\setlength{\parskip}{6pt}
+\hangindent=1.5em
+Project Management Institute. (2021). \textit{A guide to the project management body of
+knowledge (PMBOK guide)} (7th ed.). Project Management Institute.
+\endgroup
+
+\end{document}
