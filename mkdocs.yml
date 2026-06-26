@@ -44,6 +44,12 @@ nav:
       - Hallazgos del EDA: stage/hallazgos_eda.md
       - Reglas de Conformidad: stage/reglas_stage.md
       - Modelo Dimensional: stage/modelo_dw.md
+  - Fase 3:
+      - Visión General: fase3/index.md
+      - Modelo de ML: fase3/modelo_ml.md
+      - Visualización e Interoperabilidad BI: fase3/bi_interoperabilidad.md
+      - Análisis y Recomendaciones: fase3/analisis_recomendaciones.md
+      - Entregables y Criterios: fase3/entregables.md
   - Ética y Gobernanza:
       - Marco Ético: etica/index.md
       - Plan de Anonimización: etica/anonimizacion.md

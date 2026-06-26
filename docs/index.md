@@ -6,7 +6,7 @@
 
 Este sitio documenta la gobernanza de datos de la Plataforma Analítica de Mortalidad de Guatemala y Centroamérica. La plataforma integra registros individuales de defunciones del INE Guatemala (2015–2024) con indicadores regionales de la OMS y el Banco Mundial, consolidando **923,226 registros** en una arquitectura ELT sobre AWS S3, PostgreSQL y Databricks.
 
-La documentación está organizada en cuatro ejes:
+La documentación está organizada en cinco ejes:
 
 <div class="grid cards" markdown>
 
@@ -32,7 +32,15 @@ La documentación está organizada en cuatro ejes:
 
     Perfilamiento de datos, reglas de conformidad y modelo dimensional. Transformación de Bronze a Data Warehouse en esquema estrella.
 
-    [:octicons-arrow-right-24: Ver transformación y DW](transformacion/index.md)
+    [:octicons-arrow-right-24: Ver transformación y DW](stage/index.md)
+
+-   :material-chart-box-outline:{ .lg .middle } **Fase 3**
+
+    ---
+
+    Aprendizaje automático, visualización analítica, interoperabilidad BI y recomendaciones de política sobre el repositorio dimensional.
+
+    [:octicons-arrow-right-24: Ver explotación analítica](fase3/index.md)
 
 -   :material-shield-account:{ .lg .middle } **Ética y Gobernanza**
 
@@ -64,4 +72,4 @@ Fuentes públicas → Raspberry Pi (scrapers Python) → AWS S3 → PostgreSQL S
 ```
 
 !!! info "Estado de desarrollo"
-    Esta documentación cubre las **Fases 1 y 2** del proyecto. Fase 1: ingesta masiva a Sandbox. Fase 2: transformación a capas y Data Warehouse dimensional. Fase 3 (Machine Learning y visualización analítica) se documentará posteriormente.
+    Esta documentación cubre las **Fases 1, 2 y 3** del proyecto. Fase 1: ingesta masiva a Sandbox. Fase 2: transformación a capas y Data Warehouse dimensional. Fase 3: aprendizaje automático, visualización analítica e interoperabilidad BI.
