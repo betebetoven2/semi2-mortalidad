@@ -881,28 +881,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#herramienta-alternativa" class="md-nav__link">
+  <a href="#databricks-sql-editor" class="md-nav__link">
     <span class="md-ellipsis">
-      Herramienta Alternativa
+      Databricks SQL Editor
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Herramienta Alternativa">
+    <nav class="md-nav" aria-label="Databricks SQL Editor">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vista-3-distribucion-geografica-de-mortalidad" class="md-nav__link">
+  <a href="#vista-3-mortalidad-en-guatemala-20152024" class="md-nav__link">
     <span class="md-ellipsis">
-      Vista 3 — Distribución Geográfica de Mortalidad
+      Vista 3 — Mortalidad en Guatemala (2015–2024)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#vista-4-segmentacion-por-grupo-etario-y-sexo" class="md-nav__link">
+  <a href="#vista-4-comparativa-regional-centroamerica" class="md-nav__link">
     <span class="md-ellipsis">
-      Vista 4 — Segmentación por Grupo Etario y Sexo
+      Vista 4 — Comparativa Regional Centroamérica
     </span>
   </a>
   
@@ -1137,28 +1137,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#herramienta-alternativa" class="md-nav__link">
+  <a href="#databricks-sql-editor" class="md-nav__link">
     <span class="md-ellipsis">
-      Herramienta Alternativa
+      Databricks SQL Editor
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Herramienta Alternativa">
+    <nav class="md-nav" aria-label="Databricks SQL Editor">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vista-3-distribucion-geografica-de-mortalidad" class="md-nav__link">
+  <a href="#vista-3-mortalidad-en-guatemala-20152024" class="md-nav__link">
     <span class="md-ellipsis">
-      Vista 3 — Distribución Geográfica de Mortalidad
+      Vista 3 — Mortalidad en Guatemala (2015–2024)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#vista-4-segmentacion-por-grupo-etario-y-sexo" class="md-nav__link">
+  <a href="#vista-4-comparativa-regional-centroamerica" class="md-nav__link">
     <span class="md-ellipsis">
-      Vista 4 — Segmentación por Grupo Etario y Sexo
+      Vista 4 — Comparativa Regional Centroamérica
     </span>
   </a>
   
@@ -1211,7 +1211,7 @@
 <td>Conexión directa al DW</td>
 </tr>
 <tr>
-<td><strong>Herramienta alternativa</strong></td>
+<td><strong>Databricks SQL Editor</strong></td>
 <td>2 dashboards</td>
 <td>Conexión directa al DW</td>
 </tr>
@@ -1246,15 +1246,78 @@
 </code></pre></div>
 <h3 id="vista-1-analisis-comparativo-prepost-covid-por-causa">Vista 1 — Análisis Comparativo Pre/Post-COVID por Causa<a class="headerlink" href="#vista-1-analisis-comparativo-prepost-covid-por-causa" title="Permanent link">&para;</a></h3>
 <p>Comparativa de mortalidad entre los dos períodos desagregada por capítulo CIE-10, con énfasis en el capítulo U (COVID-19 directo) y el capítulo J (enfermedades respiratorias generales). Incluye gráfico de barras agrupadas, tabla de variación porcentual y filtros por departamento y año.</p>
+<p><img alt="Dashboard Power BI — Vista 1" src="../../images/powerbi1.png" /></p>
 <h3 id="vista-2-tendencia-mensual-y-exceso-de-mortalidad">Vista 2 — Tendencia Mensual y Exceso de Mortalidad<a class="headerlink" href="#vista-2-tendencia-mensual-y-exceso-de-mortalidad" title="Permanent link">&para;</a></h3>
 <p>Serie de tiempo de defunciones mensuales observadas vs. defunciones esperadas según el modelo Ridge, con área sombreada para el exceso o déficit. Permite identificar visualmente el valor atípico de mayo de 2024 y el patrón de normalización post-pandemia en 2023.</p>
+<p><img alt="Dashboard Power BI — Vista 2" src="../../images/powerbi2.png" /></p>
 <hr />
-<h2 id="herramienta-alternativa">Herramienta Alternativa<a class="headerlink" href="#herramienta-alternativa" title="Permanent link">&para;</a></h2>
-<p>Las dos vistas adicionales replican los mismos análisis core conectándose al mismo DW, lo que constituye la demostración de interoperabilidad: <strong>la misma fuente de verdad, dos plataformas distintas</strong>.</p>
-<h3 id="vista-3-distribucion-geografica-de-mortalidad">Vista 3 — Distribución Geográfica de Mortalidad<a class="headerlink" href="#vista-3-distribucion-geografica-de-mortalidad" title="Permanent link">&para;</a></h3>
-<p>Mapa de calor departamental con la tasa de defunciones por 100,000 habitantes, comparando pre y post-COVID. Permite identificar departamentos con mayor impacto diferencial de la pandemia.</p>
-<h3 id="vista-4-segmentacion-por-grupo-etario-y-sexo">Vista 4 — Segmentación por Grupo Etario y Sexo<a class="headerlink" href="#vista-4-segmentacion-por-grupo-etario-y-sexo" title="Permanent link">&para;</a></h3>
-<p>Pirámide de mortalidad por grupo etario y sexo, filtrable por período y capítulo de causa. Complementa el análisis de los coeficientes del modelo logístico con una representación visual directamente interpretable por el cliente.</p>
+<h2 id="databricks-sql-editor">Databricks SQL Editor<a class="headerlink" href="#databricks-sql-editor" title="Permanent link">&para;</a></h2>
+<p>Las dos vistas adicionales se construyen directamente sobre el <strong>editor de visualizaciones nativo de Databricks</strong> (Databricks SQL Editor), ejecutando consultas sobre el mismo DW. Esto constituye la demostración de interoperabilidad: <strong>la misma fuente de verdad, dos plataformas distintas</strong>.</p>
+<h3 id="vista-3-mortalidad-en-guatemala-20152024">Vista 3 — Mortalidad en Guatemala (2015–2024)<a class="headerlink" href="#vista-3-mortalidad-en-guatemala-20152024" title="Permanent link">&para;</a></h3>
+<p>Dashboard con tres visualizaciones sobre <code>workspace.ml.dataset_mensual_depto_causa</code>:</p>
+<p><strong>Mapa de calor de defunciones mensuales</strong> — distribución mes × año. El pico más oscuro corresponde a octubre de 2022 (7,744 defunciones), evidenciando el efecto rezagado de la pandemia en la mortalidad guatemalteca.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="n">anio</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="n">mes</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">defunciones</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_defunciones</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">workspace</span><span class="p">.</span><span class="n">ml</span><span class="p">.</span><span class="n">dataset_mensual_depto_causa</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">anio</span><span class="p">,</span><span class="w"> </span><span class="n">mes</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">anio</span><span class="p">,</span><span class="w"> </span><span class="n">mes</span>
+</code></pre></div>
+<p><strong>Barras horizontales Pre/Post-COVID por capítulo CIE-10</strong> — compara el volumen total de defunciones por capítulo entre ambos períodos. Los capítulos con mayor volumen absoluto son I (enfermedades del sistema circulatorio) y R (síntomas y signos no clasificados).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="n">capitulo_1</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="n">periodo</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">defunciones</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_defunciones</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">workspace</span><span class="p">.</span><span class="n">ml</span><span class="p">.</span><span class="n">dataset_mensual_depto_causa</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">capitulo_1</span><span class="p">,</span><span class="w"> </span><span class="n">periodo</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_defunciones</span><span class="w"> </span><span class="k">DESC</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">20</span>
+</code></pre></div>
+<p><strong>Diagrama de dispersión de variación porcentual</strong> — cruza el volumen total de defunciones (eje X) contra la variación porcentual pre/post COVID (eje Y) por capítulo CIE-10. Los capítulos con mayor variación positiva corresponden a causas directamente vinculadas al COVID-19 o a disrupciones en la atención médica durante la pandemia.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="n">capitulo_1</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">periodo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PRE_COVID&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">defunciones</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pre_covid</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">periodo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;POST_COVID&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">defunciones</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">post_covid</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">defunciones</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="n">ROUND</span><span class="p">(</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">periodo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;POST_COVID&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">defunciones</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="o">-</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">     </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">periodo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PRE_COVID&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">defunciones</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">))</span><span class="w"> </span><span class="o">/</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">NULLIF</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">periodo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PRE_COVID&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">defunciones</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">variacion_pct</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">FROM</span><span class="w"> </span><span class="n">workspace</span><span class="p">.</span><span class="n">ml</span><span class="p">.</span><span class="n">dataset_mensual_depto_causa</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">capitulo_1</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
+<p><img alt="Dashboard Databricks — Vista 3" src="../../images/dashboard1.jpeg" /></p>
+<h3 id="vista-4-comparativa-regional-centroamerica">Vista 4 — Comparativa Regional Centroamérica<a class="headerlink" href="#vista-4-comparativa-regional-centroamerica" title="Permanent link">&para;</a></h3>
+<p>Dashboard con tres visualizaciones sobre <code>workspace.dw.fact_indicador_pais_anio</code>, usando el indicador <code>SP.DYN.CDRT.IN</code> (tasa de mortalidad cruda por cada 1,000 habitantes, Banco Mundial):</p>
+<p><strong>Serie temporal por país</strong> — líneas 2015–2024 para CRI, GTM, HND, NIC, PAN y SLV. Se observa un incremento generalizado en 2020–2021 con posterior descenso hacia niveles prepandemia.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="n">pais_iso3</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="n">anio</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">valor</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tasa_mortalidad</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">workspace</span><span class="p">.</span><span class="n">dw</span><span class="p">.</span><span class="n">fact_indicador_pais_anio</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">anio</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2015</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">2024</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">indicador_codigo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SP.DYN.CDRT.IN&#39;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pais_iso3</span><span class="p">,</span><span class="w"> </span><span class="n">anio</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pais_iso3</span><span class="p">,</span><span class="w"> </span><span class="n">anio</span>
+</code></pre></div>
+<p><strong>Mapa de calor países × años</strong> — refuerza la lectura anterior en formato matricial. Nicaragua (NIC) y El Salvador (SLV) presentan consistentemente las tasas más altas de la región.</p>
+<p><em>(Misma consulta que la serie temporal.)</em></p>
+<p><strong>Barras apiladas impacto COVID (2019 vs. 2021)</strong> — compara la tasa de mortalidad de 2019 (línea base prepandemia) contra 2021 (pico pandémico) para cada país. El Salvador registra el mayor incremento absoluto entre ambos años.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="n">pais_iso3</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="n">anio</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">valor</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tasa_mortalidad</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">workspace</span><span class="p">.</span><span class="n">dw</span><span class="p">.</span><span class="n">fact_indicador_pais_anio</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">indicador_codigo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SP.DYN.CDRT.IN&#39;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">anio</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="w"> </span><span class="mi">2021</span><span class="p">)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pais_iso3</span><span class="p">,</span><span class="w"> </span><span class="n">anio</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">HAVING</span><span class="w"> </span><span class="n">tasa_mortalidad</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pais_iso3</span><span class="p">,</span><span class="w"> </span><span class="n">anio</span>
+</code></pre></div>
+<p><img alt="Dashboard Databricks — Vista 4" src="../../images/dashboard2.jpeg" /></p>
 <hr />
 <h2 id="demostracion-de-interoperabilidad">Demostración de Interoperabilidad<a class="headerlink" href="#demostracion-de-interoperabilidad" title="Permanent link">&para;</a></h2>
 <div class="admonition success">
