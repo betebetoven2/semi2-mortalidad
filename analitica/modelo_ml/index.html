@@ -1,0 +1,1743 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación de gobernanza, linaje y ética — Seminario de Sistemas 2 | USAC 2026">
+      
+      
+        <meta name="author" content="Grupo 3">
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../bi_interoperabilidad/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Modelo de ML - Plataforma Analítica de Mortalidad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modelo-de-machine-learning" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Plataforma Analítica de Mortalidad" class="md-header__button md-logo" aria-label="Plataforma Analítica de Mortalidad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Plataforma Analítica de Mortalidad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modelo de ML
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../fuentes/" class="md-tabs__link">
+          
+  
+  Fuentes de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linaje/" class="md-tabs__link">
+          
+  
+  Linaje de Datos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../stage/" class="md-tabs__link">
+          
+  
+  Capa Stage
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Inteligencia Analítica
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../etica/" class="md-tabs__link">
+          
+  
+  Ética y Gobernanza
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Plataforma Analítica de Mortalidad" class="md-nav__button md-logo" aria-label="Plataforma Analítica de Mortalidad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Plataforma Analítica de Mortalidad
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Fuentes de Datos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Fuentes de Datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fuentes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Catálogo de Fuentes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fuentes/renap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RENAP — Solicitud Formal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linaje de Datos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Linaje de Datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linaje/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arquitectura del Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linaje/tablas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diccionario de Tablas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Capa Stage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Capa Stage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Información General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage/hallazgos_eda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hallazgos del EDA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage/reglas_stage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reglas de Conformidad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage/modelo_dw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modelo Dimensional
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Inteligencia Analítica
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Inteligencia Analítica
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visión General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Modelo de ML
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Modelo de ML
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vision-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visión General
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisiones-transversales-de-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decisiones Transversales de Diseño
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decisiones Transversales de Diseño">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-l2-ridge-y-no-l1-lasso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por qué L2 (Ridge) y no L1 (Lasso)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-de-features-separado-del-modelo-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline de features separado del modelo final
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia-de-pesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia de pesos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebook-2-regresion-logistica-clasificacion-prepost-covid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebook 2 — Regresión Logística: Clasificación Pre/Post-COVID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notebook 2 — Regresión Logística: Clasificación Pre/Post-COVID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema de negocio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-predictoras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables predictoras
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#particion-traintest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partición train/test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del modelo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas de evaluación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trazabilidad-mlflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trazabilidad MLflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebook-3-regresion-ridge-pronostico-de-defunciones-mensuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebook 3 — Regresión Ridge: Pronóstico de Defunciones Mensuales
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notebook 3 — Regresión Ridge: Pronóstico de Defunciones Mensuales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-de-negocio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema de negocio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-predictoras_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables predictoras
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#particion-temporal-traintest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partición temporal train/test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-modelo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del modelo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-evaluacion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas de evaluación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-exceso-de-mortalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análisis de exceso de mortalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trazabilidad-mlflow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trazabilidad MLflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auditoria-de-ejecuciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auditoría de Ejecuciones
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bi_interoperabilidad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualización e Interoperabilidad BI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analisis_recomendaciones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Análisis y Recomendaciones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entregables.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entregables y Criterios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ética y Gobernanza
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Ética y Gobernanza
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../etica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Marco Ético
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../etica/anonimizacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan de Anonimización
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vision-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visión General
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisiones-transversales-de-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decisiones Transversales de Diseño
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decisiones Transversales de Diseño">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-l2-ridge-y-no-l1-lasso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por qué L2 (Ridge) y no L1 (Lasso)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-de-features-separado-del-modelo-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline de features separado del modelo final
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia-de-pesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia de pesos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebook-2-regresion-logistica-clasificacion-prepost-covid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebook 2 — Regresión Logística: Clasificación Pre/Post-COVID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notebook 2 — Regresión Logística: Clasificación Pre/Post-COVID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema de negocio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-predictoras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables predictoras
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#particion-traintest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partición train/test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del modelo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas de evaluación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trazabilidad-mlflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trazabilidad MLflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebook-3-regresion-ridge-pronostico-de-defunciones-mensuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebook 3 — Regresión Ridge: Pronóstico de Defunciones Mensuales
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notebook 3 — Regresión Ridge: Pronóstico de Defunciones Mensuales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-de-negocio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema de negocio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-predictoras_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables predictoras
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#particion-temporal-traintest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partición temporal train/test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-modelo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del modelo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-evaluacion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas de evaluación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-exceso-de-mortalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análisis de exceso de mortalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trazabilidad-mlflow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trazabilidad MLflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auditoria-de-ejecuciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auditoría de Ejecuciones
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="modelo-de-machine-learning">Modelo de Machine Learning<a class="headerlink" href="#modelo-de-machine-learning" title="Permanent link">&para;</a></h1>
+<h2 id="vision-general">Visión General<a class="headerlink" href="#vision-general" title="Permanent link">&para;</a></h2>
+<p>Se implementaron dos modelos complementarios sobre el repositorio analítico consolidado en la Fase 2, ambos ejecutados en <strong>Databricks Serverless</strong> con trazabilidad completa vía <strong>MLflow</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Técnica</th>
+<th>Problema</th>
+<th>Tabla de entrada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Notebook 2</strong></td>
+<td>Regresión Logística</td>
+<td>Clasificación binaria pre/post-COVID</td>
+<td><code>ml.dataset_defunciones</code></td>
+</tr>
+<tr>
+<td><strong>Notebook 3</strong></td>
+<td>Regresión Ridge (L2)</td>
+<td>Pronóstico de defunciones mensuales</td>
+<td><code>ml.dataset_mensual_depto_causa</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ambas técnicas están explícitamente autorizadas en los términos de referencia del encargo.</p>
+<hr />
+<h2 id="decisiones-transversales-de-diseno">Decisiones Transversales de Diseño<a class="headerlink" href="#decisiones-transversales-de-diseno" title="Permanent link">&para;</a></h2>
+<h3 id="por-que-l2-ridge-y-no-l1-lasso">Por qué L2 (Ridge) y no L1 (Lasso)<a class="headerlink" href="#por-que-l2-ridge-y-no-l1-lasso" title="Permanent link">&para;</a></h3>
+<p>Las variables predictoras en ambos modelos son categóricas, codificadas con <code>StringIndexer</code> + <code>OneHotEncoder</code>. Este proceso genera columnas <strong>mutuamente correlacionadas</strong> dentro de cada grupo (las dummies de un mismo campo son excluyentes entre sí). La regularización L1 (Lasso) en presencia de multicolinealidad tiende a eliminar arbitrariamente una de las variables correlacionadas. Ridge (L2) distribuye el peso entre ellas de forma suave, sin anular ninguna, que es el comportamiento correcto cuando se trabaja con grupos de variables categóricas codificadas.</p>
+<h3 id="pipeline-de-features-separado-del-modelo-final">Pipeline de <em>features</em> separado del modelo final<a class="headerlink" href="#pipeline-de-features-separado-del-modelo-final" title="Permanent link">&para;</a></h3>
+<p>Spark Connect ML (motor de Databricks Serverless) impone un límite documentado de <strong>256 MB</strong> sobre cualquier objeto de modelo serializado (<code>CONNECT_ML.MODEL_SIZE_OVERFLOW_EXCEPTION</code>). Un <code>Pipeline</code> que encadena <code>StringIndexer</code> + <code>OneHotEncoder</code> + el estimador final supera ese límite al guardarse, aunque los coeficientes matemáticos pesen apenas unos kilobytes.</p>
+<p>La solución adoptada en ambos notebooks separa el proceso en dos pasos:</p>
+<ol>
+<li><strong>Pipeline de features</strong> — se ajusta <em>solo</em> sobre el conjunto de entrenamiento y se usa para transformar train y test. No se persiste.</li>
+<li><strong>Modelo final</strong> — se ajusta sobre los datos ya transformados. Solo este objeto se guarda, porque su tamaño real (un vector de coeficientes) está muy por debajo del límite.</li>
+</ol>
+<p>Esta separación preserva la propiedad de no fuga de datos: el pipeline de features nunca se entera de las distribuciones del conjunto de prueba.</p>
+<h3 id="persistencia-de-pesos">Persistencia de pesos<a class="headerlink" href="#persistencia-de-pesos" title="Permanent link">&para;</a></h3>
+<p>Los pesos de cada modelo se guardan como un JSON liviano en <code>/Volumes/workspace/ml/modelos/</code>, evitando por completo el límite de 256 MB. En un modelo lineal, los pesos <em>son</em> el vector de coeficientes más el intercepto — el artefacto es completamente suficiente para reproducir predicciones.</p>
+<hr />
+<h2 id="notebook-2-regresion-logistica-clasificacion-prepost-covid">Notebook 2 — Regresión Logística: Clasificación Pre/Post-COVID<a class="headerlink" href="#notebook-2-regresion-logistica-clasificacion-prepost-covid" title="Permanent link">&para;</a></h2>
+<h3 id="problema-de-negocio">Problema de negocio<a class="headerlink" href="#problema-de-negocio" title="Permanent link">&para;</a></h3>
+<p>Dado un registro de defunción (sexo, grupo etario, etnia, departamento, capítulo de causa CIE-10, mes, tipo de lugar y nivel de asistencia médica), predecir si pertenece al período <strong>PRE_COVID (2015–2019)</strong> o <strong>POST_COVID (2020–2024)</strong>.</p>
+<p>La Regresión Logística fue elegida sobre modelos de caja negra (Random Forest, redes neuronales) porque sus coeficientes son directamente legibles como el efecto de cada categoría sobre la probabilidad del evento — un requisito de interpretabilidad para un informe de política pública donde el cliente necesita explicaciones, no solo predicciones.</p>
+<h3 id="variables-predictoras">Variables predictoras<a class="headerlink" href="#variables-predictoras" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">cat_cols</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="s2">&quot;id_sexo&quot;</span><span class="p">,</span> <span class="s2">&quot;id_grupo_etario&quot;</span><span class="p">,</span> <span class="s2">&quot;id_pueblo&quot;</span><span class="p">,</span> <span class="s2">&quot;mes&quot;</span><span class="p">,</span> <span class="s2">&quot;trimestre&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="s2">&quot;codigo_depto&quot;</span><span class="p">,</span> <span class="s2">&quot;capitulo_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tipo_lugar&quot;</span><span class="p">,</span> <span class="s2">&quot;asistencia_medica&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># + variable binaria: mal_definida_int</span>
+</code></pre></div>
+<h3 id="particion-traintest">Partición train/test<a class="headerlink" href="#particion-traintest" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">train_raw</span><span class="p">,</span> <span class="n">test_raw</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Train: 735,384 registros | Test: 183,847 registros</span>
+</code></pre></div>
+<h3 id="configuracion-del-modelo">Configuración del modelo<a class="headerlink" href="#configuracion-del-modelo" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;label_post_covid&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">maxIter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">regParam</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>        <span class="c1"># fuerza de regularización L2</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">elasticNetParam</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># 0.0 = L2 puro (Ridge-style sobre la logística)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="metricas-de-evaluacion">Métricas de evaluación<a class="headerlink" href="#metricas-de-evaluacion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registros de entrenamiento</td>
+<td>735,384</td>
+</tr>
+<tr>
+<td>Registros de prueba</td>
+<td>183,847</td>
+</tr>
+<tr>
+<td><strong>Área bajo la curva ROC (AUC)</strong></td>
+<td><strong>0.6171</strong></td>
+</tr>
+<tr>
+<td>Exactitud (<em>Accuracy</em>)</td>
+<td>0.5867</td>
+</tr>
+<tr>
+<td>Puntuación F1</td>
+<td>0.6656</td>
+</tr>
+</tbody>
+</table>
+<p>Un AUC de 0.617 indica capacidad discriminativa real entre ambos períodos, moderada pero esperable: la mayoría de las causas de muerte no cambian radicalmente con la ocurrencia de una pandemia.</p>
+<h3 id="trazabilidad-mlflow">Trazabilidad MLflow<a class="headerlink" href="#trazabilidad-mlflow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">&quot;/Shared/mortalidad_logistic_periodo&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Parámetros registrados: técnica, regParam, elasticNetParam, maxIter, features</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Métricas registradas: auc, accuracy, f1</span>
+</code></pre></div>
+<h3 id="persistencia">Persistencia<a class="headerlink" href="#persistencia" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Pesos guardados en:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># /Volumes/workspace/ml/modelos/logistic_periodo_pesos.json</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">pesos</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s2">&quot;modelo&quot;</span><span class="p">:</span> <span class="s2">&quot;LogisticRegression&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s2">&quot;coeficientes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>   <span class="c1"># vector completo de coeficientes</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="s2">&quot;intercepto&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="s2">&quot;features_categoricas&quot;</span><span class="p">:</span> <span class="n">cat_cols</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="s2">&quot;regParam&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="s2">&quot;elasticNetParam&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="s2">&quot;mlflow_run_id&quot;</span><span class="p">:</span> <span class="n">run_id</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="notebook-3-regresion-ridge-pronostico-de-defunciones-mensuales">Notebook 3 — Regresión Ridge: Pronóstico de Defunciones Mensuales<a class="headerlink" href="#notebook-3-regresion-ridge-pronostico-de-defunciones-mensuales" title="Permanent link">&para;</a></h2>
+<h3 id="problema-de-negocio_1">Problema de negocio<a class="headerlink" href="#problema-de-negocio_1" title="Permanent link">&para;</a></h3>
+<p>Pronosticar el <strong>conteo mensual de defunciones</strong> para una combinación departamento × capítulo CIE-10, en función del tiempo y las categorías. El modelo se entrena sobre el período histórico 2015–2022 y se evalúa sobre 2023–2024, operacionalizando el enfoque de <strong>exceso de mortalidad</strong> adoptado por la OMS: comparar lo observado contra una línea base construida con datos previos a la pandemia.</p>
+<h3 id="variables-predictoras_1">Variables predictoras<a class="headerlink" href="#variables-predictoras_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">cat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mes&quot;</span><span class="p">,</span> <span class="s2">&quot;trimestre&quot;</span><span class="p">,</span> <span class="s2">&quot;codigo_depto&quot;</span><span class="p">,</span> <span class="s2">&quot;capitulo_1&quot;</span><span class="p">,</span> <span class="s2">&quot;periodo&quot;</span><span class="p">]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># + variable numérica continua: anio</span>
+</code></pre></div>
+<h3 id="particion-temporal-traintest">Partición temporal train/test<a class="headerlink" href="#particion-temporal-traintest" title="Permanent link">&para;</a></h3>
+<p>A diferencia del notebook 2, aquí se usa una <strong>partición temporal</strong> (no aleatoria), que es la estrategia correcta para evaluar la capacidad de pronóstico hacia adelante en una serie de tiempo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">train_raw</span> <span class="o">=</span> <span class="n">mensual</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;anio&quot;</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2022</span><span class="p">)</span>  <span class="c1"># 2015–2022</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">test_raw</span>  <span class="o">=</span> <span class="n">mensual</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;anio&quot;</span><span class="p">)</span> <span class="o">&gt;</span>  <span class="mi">2022</span><span class="p">)</span>  <span class="c1"># 2023–2024</span>
+</code></pre></div>
+<h3 id="configuracion-del-modelo_1">Configuración del modelo<a class="headerlink" href="#configuracion-del-modelo_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">ridge</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">featuresCol</span><span class="o">=</span><span class="s2">&quot;features&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;defunciones&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">maxIter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">regParam</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>         <span class="c1"># fuerza de regularización</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">elasticNetParam</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># 0.0 = L2 puro = Ridge</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="metricas-de-evaluacion_1">Métricas de evaluación<a class="headerlink" href="#metricas-de-evaluacion_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Período de entrenamiento</td>
+<td>2015–2022</td>
+</tr>
+<tr>
+<td>Período de prueba</td>
+<td>2023–2024</td>
+</tr>
+<tr>
+<td><strong>R² (coeficiente de determinación)</strong></td>
+<td><strong>0.5227</strong></td>
+</tr>
+<tr>
+<td>RMSE (raíz del error cuadrático medio)</td>
+<td>26.83 defunciones</td>
+</tr>
+<tr>
+<td>MAE (error absoluto medio)</td>
+<td>13.47 defunciones</td>
+</tr>
+</tbody>
+</table>
+<p>El grano de evaluación es departamento × capítulo de causa × mes, lo que implica que los errores son sobre conteos agregados, no registros individuales.</p>
+<h3 id="analisis-de-exceso-de-mortalidad">Análisis de exceso de mortalidad<a class="headerlink" href="#analisis-de-exceso-de-mortalidad" title="Permanent link">&para;</a></h3>
+<p>El notebook calcula directamente la diferencia entre lo observado y lo esperado por mes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">exceso</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;anio&quot;</span><span class="p">,</span> <span class="s2">&quot;mes&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&quot;defunciones&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;observado&quot;</span><span class="p">),</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        <span class="n">F</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;esperado&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;exceso&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;observado&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;esperado&quot;</span><span class="p">))</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;anio&quot;</span><span class="p">,</span> <span class="s2">&quot;mes&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">)</span>
+</code></pre></div>
+<p>Los resultados de esta tabla alimentan directamente el análisis comparativo pre/post-COVID documentado en la sección de <a href="../analisis_recomendaciones/">Análisis y Recomendaciones</a>.</p>
+<h3 id="trazabilidad-mlflow_1">Trazabilidad MLflow<a class="headerlink" href="#trazabilidad-mlflow_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">&quot;/Shared/mortalidad_ridge_pronostico&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># Parámetros registrados: técnica, regParam, split temporal</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Métricas registradas: rmse, mae, r2</span>
+</code></pre></div>
+<h3 id="persistencia_1">Persistencia<a class="headerlink" href="#persistencia_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Pesos guardados en:</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># /Volumes/workspace/ml/modelos/ridge_pronostico_pesos.json</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">pesos</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="s2">&quot;modelo&quot;</span><span class="p">:</span> <span class="s2">&quot;LinearRegression-Ridge&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="s2">&quot;coeficientes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="s2">&quot;intercepto&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="s2">&quot;features_categoricas&quot;</span><span class="p">:</span> <span class="n">cat_cols</span><span class="p">,</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="s2">&quot;feature_extra&quot;</span><span class="p">:</span> <span class="s2">&quot;anio&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="s2">&quot;regParam&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="s2">&quot;elasticNetParam&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    <span class="s2">&quot;mlflow_run_id&quot;</span><span class="p">:</span> <span class="n">run_id</span><span class="p">,</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="auditoria-de-ejecuciones">Auditoría de Ejecuciones<a class="headerlink" href="#auditoria-de-ejecuciones" title="Permanent link">&para;</a></h2>
+<p>Ambos notebooks registran cada ejecución en <code>ml.ml_control_log</code>, siguiendo el mismo patrón de gobernanza que <code>dw.etl_control_log</code> de la Fase 2:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">ml</span><span class="p">.</span><span class="n">ml_control_log</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">ejecucion_id</span><span class="w">   </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="n">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">notebook</span><span class="w">       </span><span class="n">STRING</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">modelo</span><span class="w">         </span><span class="n">STRING</span><span class="p">,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="n">fecha_inicio</span><span class="w">   </span><span class="k">TIMESTAMP</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="n">fecha_fin</span><span class="w">      </span><span class="k">TIMESTAMP</span><span class="p">,</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="n">filas_train</span><span class="w">    </span><span class="nb">BIGINT</span><span class="p">,</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="n">filas_test</span><span class="w">     </span><span class="nb">BIGINT</span><span class="p">,</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="n">metricas</span><span class="w">       </span><span class="n">STRING</span><span class="p">,</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="n">mlflow_run_id</span><span class="w">  </span><span class="n">STRING</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="p">)</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Reproducibilidad</p>
+<p>Con el <code>mlflow_run_id</code> almacenado en la tabla de control es posible recuperar los parámetros exactos, las métricas y los artefactos de cualquier ejecución pasada desde la interfaz de MLflow en Databricks.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
